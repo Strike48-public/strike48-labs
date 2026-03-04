@@ -1,0 +1,427 @@
+---
+title: Platform Architecture
+description: Understanding the Strike48 ecosystem, Prospector Studio integration, and how components work together.
+---
+
+This guide explains how Strike48 products fit together, the role of Prospector Studio (Matrix), and whether tools can run standalone or require backend connectivity.
+
+## Overview
+
+Strike48 is a collection of security and infrastructure tools built on a **connector architecture**. Tools can run:
+
+1. **Standalone** - As independent desktop applications
+2. **Within StrikeHub** - As embedded connectors in a unified shell
+3. **Connected to Matrix** - Integrated with Prospector Studio for remote execution and orchestration
+
+The architecture is designed for flexibility — use what you need, when you need it.
+
+## Components
+
+### Prospector Studio (Matrix)
+
+**Prospector Studio** is the Strike48 backend platform. It provides:
+
+- **Agent Orchestration** - Manage distributed connectors across multiple machines
+- **Workflow Engine** - Build automated security and infrastructure workflows
+- **Job Routing** - Route tool execution requests to appropriate connectors
+- **GraphQL API** - Programmatic access to platform features
+- **Web UI** - Browser-based management interface
+
+**Matrix** is the internal codename for the connector gateway component within Prospector Studio. When you see "Matrix" in configuration or documentation, it refers to the connector registration and job routing system.
+
+#### Access
+
+Prospector Studio is typically deployed as a private platform within your organization:
+
+- **Self-hosted** - Deploy on your own infrastructure (Kubernetes, VMs)
+- **Cloud-hosted** - Managed deployment by Strike48 team
+- **Development** - Local development instance for testing
+
+Access is authenticated via OIDC (OpenID Connect) using Keycloak or compatible identity providers.
+
+### StrikeHub
+
+**StrikeHub** is the unified desktop shell that hosts multiple connectors in a single window.
+
+**Standalone Mode:**
+- ✅ Launches connectors locally
+- ✅ Provides sidebar navigation and health monitoring
+- ✅ Handles OIDC authentication flow
+- ❌ Cannot trigger remote execution on other machines
+
+**Connected Mode (with Matrix):**
+- ✅ All standalone features
+- ✅ Discover connectors across your infrastructure
+- ✅ Route jobs to remote connectors
+- ✅ Centralized logging and audit trail
+
+### KubeStudio
+
+**KubeStudio** is a Kubernetes cluster management dashboard.
+
+**Standalone Mode:**
+- ✅ Full Kubernetes management capabilities
+- ✅ Uses local kubeconfig for cluster access
+- ✅ Browse namespaces, pods, services
+- ✅ View logs and resource details
+- ✅ Scale deployments
+- ❌ No multi-user collaboration
+- ❌ No centralized audit logging
+
+**Connected Mode (with Matrix):**
+- ✅ All standalone features
+- ✅ Share cluster access with team members
+- ✅ Centralized audit logging
+- ✅ Workflow integration (automated operations)
+
+**Key Point:** KubeStudio works perfectly standalone. Matrix integration adds collaboration and automation features but is not required.
+
+### Pick
+
+**Pick** is a headless penetration testing toolkit with network scanning and tool execution capabilities.
+
+**Standalone Mode:**
+- ✅ Run tools locally via command line or UI
+- ✅ Execute scans on local network
+- ✅ Store results locally
+- ❌ Cannot trigger remotely
+- ❌ No centralized result aggregation
+
+**Connected Mode (with Matrix):**
+- ✅ All standalone features
+- ✅ Deploy as remote agent on target networks
+- ✅ Trigger tools remotely via API or workflows
+- ✅ Aggregate results across multiple agents
+- ✅ Orchestrate distributed scanning campaigns
+
+**Key Point:** Pick is designed for both local and remote execution. For distributed pentesting across multiple networks, Matrix connectivity is highly recommended.
+
+### SDK for Rust
+
+**SDK for Rust** is the developer toolkit for building custom Strike48 connectors.
+
+**Standalone Usage:**
+- ✅ Build custom security tools
+- ✅ Create standalone CLI tools
+- ✅ Implement tool executors
+- ❌ No connector registration
+- ❌ No remote job execution
+
+**With Matrix Integration:**
+- ✅ All standalone features
+- ✅ Register tools with connector registry
+- ✅ Receive remote job execution requests
+- ✅ Participate in workflows
+- ✅ Integrate with orchestration platform
+
+**Key Point:** Use the SDK to build tools that work locally, then add Matrix integration when you need remote execution and orchestration.
+
+### StrikeKit
+
+**StrikeKit** is a comprehensive red team operations workstation.
+
+**Standalone Mode:**
+- ✅ Full engagement management
+- ✅ C2 operations (listeners, agents, commands)
+- ✅ Activity tracking and auto-extraction
+- ✅ Finding documentation
+- ✅ Report generation
+- ✅ Local database storage
+- ❌ No team collaboration
+- ❌ No centralized intelligence sharing
+
+**Connected Mode (with Matrix):**
+- ✅ All standalone features
+- ✅ Multi-user collaboration on engagements
+- ✅ Shared intelligence database
+- ✅ Workflow integration for automated tasks
+- ✅ Centralized reporting and metrics
+
+**Key Point:** StrikeKit is a fully-featured standalone tool. Matrix integration enables team collaboration and data sharing across operators.
+
+### Dioxus Connector
+
+**Dioxus Connector** is a reference implementation showing how to build cross-platform connectors.
+
+**Standalone Deployments:**
+- ✅ Desktop (Linux, macOS, Windows)
+- ✅ Web (via LiveView)
+- ✅ Mobile (Android, iOS)
+- ✅ Terminal (TUI)
+
+**With Matrix Integration:**
+- ✅ All platform deployments
+- ✅ Register with connector registry
+- ✅ Execute tools remotely
+- ✅ Participate in workflows
+
+**Key Point:** Demonstrates the power of Dioxus for write-once, deploy-anywhere connector development.
+
+## Architecture Patterns
+
+### Connector Lifecycle
+
+All Strike48 connectors follow this lifecycle:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     Connector Startup                        │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+                     ▼
+          ┌──────────────────────┐
+          │ Load Configuration   │
+          │ - ENV variables      │
+          │ - TOML files         │
+          │ - Database (if any)  │
+          └──────────┬───────────┘
+                     │
+                     ▼
+          ┌──────────────────────┐
+          │ Start HTTP Server    │───── Standalone tools stop here
+          │ - Serve UI           │
+          │ - Handle API calls   │
+          └──────────┬───────────┘
+                     │
+                     ▼
+          ┌──────────────────────┐
+          │ Connect to Matrix?   │◄──── Optional
+          │ - gRPC connection    │
+          │ - Register tools     │
+          │ - Receive jobs       │
+          └──────────┬───────────┘
+                     │
+                     ▼
+          ┌──────────────────────┐
+          │ Ready for Use        │
+          └──────────────────────┘
+```
+
+### Communication Patterns
+
+**Local Mode (Standalone):**
+```
+┌─────────────┐
+│   User      │
+└──────┬──────┘
+       │ HTTP/UI
+       ▼
+┌─────────────┐
+│  Connector  │
+└──────┬──────┘
+       │ Direct execution
+       ▼
+┌─────────────┐
+│  Target     │
+└─────────────┘
+```
+
+**StrikeHub Integration:**
+```
+┌─────────────┐
+│   User      │
+└──────┬──────┘
+       │ UI interaction
+       ▼
+┌─────────────┐
+│  StrikeHub  │
+└──────┬──────┘
+       │ Unix socket (IPC)
+       ▼
+┌─────────────┐
+│  Connector  │
+└──────┬──────┘
+       │ Direct execution
+       ▼
+┌─────────────┐
+│  Target     │
+└─────────────┘
+```
+
+**Matrix Integration:**
+```
+┌─────────────┐
+│   User      │
+└──────┬──────┘
+       │ API/UI
+       ▼
+┌─────────────┐
+│  Matrix     │
+└──────┬──────┘
+       │ gRPC job routing
+       ▼
+┌─────────────┐
+│  Connector  │
+└──────┬──────┘
+       │ Execute tool
+       ▼
+┌─────────────┐
+│  Target     │
+└─────────────┘
+```
+
+**Distributed Mode (Multiple Connectors):**
+```
+┌─────────────┐
+│   User      │
+└──────┬──────┘
+       │ API/Workflow
+       ▼
+┌─────────────┐
+│  Matrix     │
+└──┬──┬────┬──┘
+   │  │    │ gRPC job routing
+   ▼  ▼    ▼
+┌────┐ ┌────┐ ┌────┐
+│ C1 │ │ C2 │ │ C3 │  ← Connectors on different networks
+└─┬──┘ └─┬──┘ └─┬──┘
+  │      │      │ Execute tools
+  ▼      ▼      ▼
+┌────┐ ┌────┐ ┌────┐
+│ T1 │ │ T2 │ │ T3 │  ← Target systems
+└────┘ └────┘ └────┘
+```
+
+## Configuration
+
+### Standalone Tools
+
+Standalone tools typically need minimal configuration:
+
+```bash
+# KubeStudio - just needs kubeconfig
+export KUBECONFIG=~/.kube/config
+./kubestudio
+
+# Pick - run with default settings
+./pick scan --target 192.168.1.0/24
+
+# StrikeKit - uses local database
+./strikekit
+```
+
+### Matrix-Connected Tools
+
+Tools connecting to Matrix require additional configuration:
+
+```bash
+# Environment variables for Matrix integration
+export MATRIX_HOST=connectors.strike48.example.com
+export MATRIX_API_URL=https://api.strike48.example.com
+export MATRIX_TENANT_ID=production
+export INSTANCE_ID=pick-agent-1
+
+# Start connector with Matrix integration
+./pick --connect-matrix
+```
+
+See individual product configuration guides for complete details:
+- [SDK-rs Configuration](/developers/sdk-rs/configuration/)
+- [StrikeKit Configuration](/developers/strikekit/configuration/)
+- [Dioxus Connector Configuration](/developers/dioxus-connector/getting-started/configuration/)
+
+## Decision Matrix
+
+Use this table to decide if you need Matrix integration:
+
+| Use Case | Standalone | With Matrix |
+|----------|-----------|-------------|
+| Single user, local tools | ✅ Sufficient | ⚠️ Overkill |
+| Team collaboration | ❌ Limited | ✅ Recommended |
+| Remote tool execution | ❌ Not possible | ✅ Required |
+| Distributed operations | ❌ Not possible | ✅ Required |
+| Workflow automation | ❌ Not possible | ✅ Required |
+| Centralized logging | ❌ Not available | ✅ Recommended |
+| Quick testing/prototyping | ✅ Fast setup | ⚠️ Extra complexity |
+
+## Getting Started
+
+### For Individual Users
+
+If you're working solo and don't need remote execution:
+
+1. Download the tool (KubeStudio, Pick, StrikeKit)
+2. Run it locally - no additional setup required
+3. Use StrikeHub if you want a unified shell (optional)
+
+### For Teams
+
+If you're working with a team or need distributed operations:
+
+1. Deploy Prospector Studio (Matrix) - contact Strike48 team or self-host
+2. Configure OIDC authentication
+3. Install connectors on workstations and agents
+4. Configure Matrix connection (MATRIX_HOST, credentials)
+5. Register connectors with Matrix registry
+
+### For Developers
+
+If you're building custom tools:
+
+1. Install SDK for Rust
+2. Build and test tools locally
+3. Add Matrix integration when ready for remote execution
+4. Deploy to your infrastructure
+
+See the [SDK Quick Start](/developers/sdk-rs/quick-start/) for detailed developer onboarding.
+
+## Security Considerations
+
+### Standalone Mode
+
+- Tools run with your local user permissions
+- No network exposure (tools bind to localhost)
+- Authentication handled by local OS
+- Data stored locally
+
+### StrikeHub Integration
+
+- IPC via Unix domain sockets (no network exposure)
+- Single authentication flow via OIDC
+- Connectors inherit permissions from StrikeHub
+- Process isolation for security
+
+### Matrix Integration
+
+- Mutual TLS (mTLS) for connector-to-Matrix communication
+- OIDC/OAuth2 for user authentication
+- Role-based access control (RBAC) for job authorization
+- Audit logging for all operations
+- Network segmentation recommended
+
+## FAQ
+
+### Do I need Prospector Studio to use Strike48 tools?
+
+**No.** Most Strike48 tools work perfectly standalone. Prospector Studio (Matrix) adds team collaboration, remote execution, and workflow automation, but is not required for basic usage.
+
+### Can I try tools without deploying Prospector Studio?
+
+**Yes.** Download any tool and run it locally. No backend required.
+
+### How do I get access to Prospector Studio?
+
+Contact the Strike48 team for:
+- Managed cloud hosting
+- Self-hosting deployment guide
+- Development instance setup
+
+### What's the difference between Matrix and Prospector Studio?
+
+**Prospector Studio** is the full platform (UI, API, workflows, agents). **Matrix** is the connector gateway component within Prospector Studio. In practice, they're used interchangeably in configuration and documentation.
+
+### Can I run some tools standalone and connect others to Matrix?
+
+**Yes.** Tools are independent. Run what you need locally and connect specific agents/connectors to Matrix as required.
+
+### Do I need StrikeHub to use KubeStudio or Pick?
+
+**No.** KubeStudio and Pick are standalone applications. StrikeHub provides a unified shell if you want all tools in one window, but it's optional.
+
+## Next Steps
+
+- **Individual Users**: [Download StrikeHub](/strikehub/getting-started/) and start using tools locally
+- **Teams**: Contact Strike48 for Prospector Studio deployment
+- **Developers**: [Start building with the SDK](/developers/sdk-rs/quick-start/)
+
+For questions about architecture or deployment, reach out to the Strike48 team or open an issue on GitHub.

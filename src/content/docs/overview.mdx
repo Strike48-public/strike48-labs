@@ -41,6 +41,14 @@ Strike48 uses a **host + connector** model:
 
 Each connector runs in its own process for isolation — a crash in one tool doesn't affect the shell or other connectors. Communication happens over Unix domain sockets, so no TCP ports are exposed to the network.
 
+:::tip[Want to understand the full architecture?]
+See the [Platform Architecture](/architecture/) page for comprehensive details on:
+- Whether tools can run standalone vs. requiring Matrix connectivity
+- How to access Prospector Studio
+- Communication patterns and deployment models
+- Security considerations and configuration options
+:::
+
 ## Tech Stack
 
 | Component | Technology |

@@ -30,7 +30,6 @@ Prospector Studio ships with several pre-configured MCP server integrations:
 
 | Server | Description |
 |--------|-------------|
-| **Tidewave** | Elixir development tools |
 | **Prospector Workflows** | Expose workflows as callable MCP tools |
 | **GitHub MCP** | GitHub repository and issue operations |
 | **Tavily MCP** | Web search and research |
@@ -62,13 +61,9 @@ MCP servers can be configured at the system level via `.mcp.json`:
 ```json
 {
   "mcpServers": {
-    "tidewave": {
-      "type": "http",
-      "url": "http://localhost:4001/tidewave/mcp"
-    },
     "matrix-workflows": {
       "type": "http",
-      "url": "http://localhost:4001/workflows/mcp"
+      "url": "https://studio.example.com/workflows/mcp"
     }
   }
 }

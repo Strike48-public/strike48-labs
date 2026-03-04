@@ -1,0 +1,166 @@
+---
+title: Installation
+description: Install dependencies and set up StrikeKit for red team operations
+---
+
+# Installation
+
+This guide will help you install StrikeKit and all required dependencies.
+
+## System Requirements
+
+### Supported Platforms
+- Linux (x86_64, aarch64)
+- macOS (Intel, Apple Silicon)
+- Windows (x86_64)
+
+### Required Dependencies
+- **Rust 1.85+** (edition 2024)
+- **Dioxus CLI** (`dx`) - for hot-reloading development
+- **Just** (optional but recommended) - command runner
+
+## Installing Rust
+
+If you don't have Rust installed, use [rustup](https://rustup.rs/):
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+After installation, ensure you're on Rust 1.85 or later:
+
+```bash
+rustc --version
+# Should show: rustc 1.85.0 or higher
+```
+
+If you need to update Rust:
+
+```bash
+rustup update stable
+```
+
+## Installing Dioxus CLI
+
+The Dioxus CLI (`dx`) provides hot-reloading development support:
+
+```bash
+cargo install dioxus-cli
+```
+
+Verify installation:
+
+```bash
+dx --version
+```
+
+## Installing Just (Optional)
+
+[Just](https://github.com/casey/just) is a command runner that simplifies common tasks:
+
+### Linux
+```bash
+# Using cargo
+cargo install just
+
+# Or using package manager
+# Ubuntu/Debian
+sudo apt install just
+
+# Arch Linux
+sudo pacman -S just
+
+# Fedora
+sudo dnf install just
+```
+
+### macOS
+```bash
+# Using cargo
+cargo install just
+
+# Or using Homebrew
+brew install just
+```
+
+### Windows
+```bash
+# Using cargo
+cargo install just
+
+# Or using Chocolatey
+choco install just
+
+# Or using Scoop
+scoop install just
+```
+
+Verify installation:
+
+```bash
+just --version
+```
+
+## Cloning StrikeKit
+
+Clone the StrikeKit repository:
+
+```bash
+git clone https://github.com/Strike48/strikekit.git
+cd strikekit
+```
+
+## Building StrikeKit
+
+### Using Just (Recommended)
+
+Build the release binary:
+
+```bash
+just build
+```
+
+This compiles StrikeKit in release mode with optimizations.
+
+### Using Cargo Directly
+
+If you don't have Just installed:
+
+```bash
+cargo build --release --bin sk-connector --features connector --no-default-features
+```
+
+The compiled binary will be in `target/release/sk-connector`.
+
+## Data Storage
+
+StrikeKit stores data in a SQLite database. The database location depends on your platform:
+
+- **macOS**: `~/Library/Application Support/StrikeKit/strikekit.db`
+- **Linux**: `~/.local/share/StrikeKit/strikekit.db`
+- **Windows**: `%APPDATA%\StrikeKit\strikekit.db`
+
+The database directory is created automatically on first run.
+
+## Verifying Installation
+
+Run a quick syntax check to verify everything is set up correctly:
+
+```bash
+just check
+```
+
+Or with cargo:
+
+```bash
+cargo check
+```
+
+If the check passes without errors, your installation is complete!
+
+## Next Steps
+
+Now that you have StrikeKit installed, proceed to:
+
+- [Quick Start Guide](./quick-start.md) - Launch your first engagement
+- [Configuration Guide](./configuration.md) - Customize your setup

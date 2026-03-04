@@ -111,6 +111,26 @@ export default defineConfig({
                 { label: "Configuration", slug: "developers/sdk-rs/configuration" },
               ],
             },
+            {
+              label: "StrikeKit",
+              collapsed: true,
+              items: [
+                { label: "Overview", slug: "developers/strikekit" },
+                { label: "Installation", slug: "developers/strikekit/installation" },
+                { label: "Quick Start", slug: "developers/strikekit/quick-start" },
+                { label: "Configuration", slug: "developers/strikekit/configuration" },
+              ],
+            },
+            {
+              label: "Dioxus Connector",
+              collapsed: true,
+              items: [
+                { label: "Overview", slug: "developers/dioxus-connector" },
+                { label: "Architecture", slug: "developers/dioxus-connector/architecture" },
+                { label: "Installation", slug: "developers/dioxus-connector/getting-started/installation" },
+                { label: "Configuration", slug: "developers/dioxus-connector/getting-started/configuration" },
+              ],
+            },
           ],
         },
         {

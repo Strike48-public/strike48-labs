@@ -1,0 +1,68 @@
+---
+title: StrikeHub
+description: The unified native desktop shell for Strike48 connector applications.
+---
+
+StrikeHub is a Dioxus 0.6 desktop application that acts as a unified host shell for Strike48 connectors. It discovers running connector processes, communicates with them over IPC, and renders each as an embeddable panel inside a single native window.
+
+## What It Does
+
+- **Connector sidebar** — Lists all known connectors with online/offline/checking status indicators
+- **Embedded content area** — Renders the active connector's UI via an iframe backed by the `connector://` custom protocol
+- **Dual transport** — Supports IPC (Unix domain sockets) and legacy TCP modes per connector
+- **Authentication** — OIDC flow with Keycloak, automatic token injection into connector HTML
+- **WebSocket bridging** — Single-port WsRelay bridges Dioxus liveview and Matrix GraphQL subscriptions
+- **Health monitoring** — Periodic health checks with automatic status updates
+- **Configuration** — TOML-based connector config at `~/.config/strikehub/connectors.toml`
+
+## Architecture
+
+```
+┌──────────────────────────────────────────────────────┐
+│  StrikeHub (Dioxus Desktop)                          │
+│                                                      │
+│  ┌──────────┐  ┌──────────────────────────────────┐  │
+│  │ Sidebar  │  │  Content Area                    │  │
+│  │          │  │                                  │  │
+│  │ ● Kube   │  │  ┌──────────────────────────┐   │  │
+│  │ ● Jira   │  │  │ Embedded WebView         │   │  │
+│  │ ○ GitLab │  │  │ (liveview of active app)  │   │  │
+│  │ ○ Office │  │  │                          │   │  │
+│  │ ○ Team   │  │  └──────────────────────────┘   │  │
+│  │          │  │                                  │  │
+│  └──────────┘  └──────────────────────────────────┘  │
+│                                                      │
+│  ┌──────────────────────────────────────────────────┐│
+│  │ Status Bar: 3/5 connectors online                ││
+│  └──────────────────────────────────────────────────┘│
+└──────────────────────────────────────────────────────┘
+```
+
+Each connector runs as a **separate process** with its own Axum HTTP server. StrikeHub embeds the connector's UI via an iframe pointed at a `connector://` custom protocol URL. Orchestration (health checks, lifecycle management) happens over the same Unix domain socket.
+
+## Connector Apps
+
+| App | Purpose |
+|-----|---------|
+| KubeStudio | Kubernetes cluster browser |
+| JiraStudio | Jira Cloud client |
+| GitLabStudio | GitLab client (projects, MRs, pipelines) |
+| StrikeOffice | Google Workspace manager |
+| StrikeTeam | Isometric AI agent RPG |
+
+## Crate Structure
+
+```
+strikehub/
+├── Cargo.toml          (workspace root)
+├── crates/
+│   ├── sh-core/        (config, IPC runner, auth, proxy, WS relay)
+│   └── sh-ui/          (Dioxus desktop UI components)
+```
+
+## Next Steps
+
+- [Getting Started](/strikehub/getting-started/) — Install and run StrikeHub
+- [Installation Guide](/strikehub/guides/installation/) — Detailed build instructions
+- [Configuration](/strikehub/guides/configuration/) — Environment variables and TOML config
+- [Connectors](/strikehub/guides/connectors/) — How the connector system works

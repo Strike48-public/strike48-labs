@@ -1,0 +1,31 @@
+/* Strike48 Starlight Theme Overrides */
+
+:root {
+  --sl-font: "Inter", sans-serif;
+  --sl-font-mono: "JetBrains Mono", monospace;
+
+  /* Brand tokens */
+  --strike-gold: #efbf04;
+  --strike-blue: #2563eb;
+
+  /* Starlight accent — blue */
+  --sl-color-accent-low: #1e3a5f;
+  --sl-color-accent: #2563eb;
+  --sl-color-accent-high: #93b4f4;
+
+  /* Light mode background */
+  --sl-color-bg: #f6f7fb;
+}
+
+:root[data-theme="dark"] {
+  --sl-color-accent-low: #172554;
+  --sl-color-accent: #60a5fa;
+  --sl-color-accent-high: #dbeafe;
+  --sl-color-bg: #0f172a;
+}
+
+/* Smooth font rendering */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

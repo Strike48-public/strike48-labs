@@ -1,0 +1,105 @@
+---
+import Hero from "../components/Hero.astro";
+import ProductCard from "../components/ProductCard.astro";
+import FeatureGrid from "../components/FeatureGrid.astro";
+import "../styles/landing.css";
+
+const features = [
+  {
+    icon: "🔌",
+    title: "Connector Architecture",
+    description:
+      "Modular connector system — each tool runs as an isolated process with its own UI, communicating over IPC.",
+  },
+  {
+    icon: "🔒",
+    title: "Secure by Default",
+    description:
+      "Unix domain sockets for process isolation. OIDC authentication with automatic token injection. No ports exposed.",
+  },
+  {
+    icon: "⚡",
+    title: "Native Performance",
+    description:
+      "Built with Rust and Dioxus for sub-2-second startup. WebView rendering with minimal memory overhead.",
+  },
+  {
+    icon: "🎯",
+    title: "Single Window",
+    description:
+      "All your Strike48 tools in one native window. Switch between connectors without alt-tabbing.",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Strike48 Labs</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        color: #0f172a;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <Hero
+      title="Strike48"
+      tagline="Desktop shell & connector platform for developer tools. One native window to manage Kubernetes clusters, project trackers, and more."
+    />
+
+    <section class="products-section">
+      <h2>Products</h2>
+      <div class="products-grid">
+        <ProductCard
+          title="StrikeHub"
+          description="The unified desktop shell. Discover, launch, and manage all your Strike48 connectors from a single native window with sidebar navigation and health monitoring."
+          href="/strikehub/"
+          icon="🖥️"
+        />
+        <ProductCard
+          title="KubeStudio"
+          description="Kubernetes cluster browser and management tool. View workloads, inspect pods, manage deployments — all from a native desktop interface."
+          href="/kubestudio/"
+          icon="☸️"
+        />
+        <ProductCard
+          title="Pick"
+          description="Connector marketplace and registry. Browse, install, and manage Strike48 connectors from a curated catalog."
+          href="/pick/"
+          icon="🛒"
+          badge="New"
+        />
+      </div>
+    </section>
+
+    <FeatureGrid features={features} />
+
+    <section class="cta-section">
+      <h2>Ready to get started?</h2>
+      <p>Set up StrikeHub and start managing your developer tools in one place.</p>
+      <div class="cta-group">
+        <a href="/strikehub/getting-started/" class="cta-primary">
+          Quick Start Guide
+        </a>
+        <a href="/overview/" class="cta-secondary">
+          Browse Documentation
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2025 Strike48. Licensed under MPL-2.0.</p>
+    </footer>
+  </body>
+</html>

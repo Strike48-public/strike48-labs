@@ -1,0 +1,33 @@
+---
+title: Pick
+description: Connector marketplace and registry for the Strike48 platform.
+---
+
+Pick is the connector marketplace for Strike48. It provides a catalog of available connectors, handles installation and updates, and integrates with StrikeHub to manage your connector library.
+
+## What It Does
+
+- **Browse connectors** — Discover available Strike48 connectors from a curated catalog
+- **Install and update** — Download connector binaries and keep them up to date
+- **Manage your library** — Enable, disable, and configure installed connectors
+- **StrikeHub integration** — Installed connectors automatically appear in StrikeHub's sidebar
+
+## How It Works
+
+Pick connects to the Strike48 marketplace API to fetch the connector catalog. Each connector listing includes:
+
+- Name, description, and icon
+- Version history and changelog
+- Binary downloads for supported platforms (macOS, Linux)
+- Required StrikeHub version
+
+When you install a connector through Pick, it:
+
+1. Downloads the binary for your platform
+2. Registers it in `~/.config/strikehub/connectors.toml`
+3. Notifies StrikeHub to refresh its connector list
+
+## Next Steps
+
+- [Getting Started](/pick/getting-started/) — Set up Pick and browse the marketplace
+- [Marketplace Guide](/pick/guides/marketplace/) — How to use the connector marketplace

@@ -1,0 +1,22 @@
+{
+  "name": "strike48-labs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.13",
+    "@astrojs/starlight": "^0.37.6",
+    "@astrojs/starlight-tailwind": "^4.0.2",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "astro": "^5.18.0",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.2.1"
+  }
+}

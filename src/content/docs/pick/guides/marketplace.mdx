@@ -1,0 +1,61 @@
+---
+title: Marketplace
+description: Browse, install, and manage connectors from the Strike48 marketplace.
+---
+
+The Pick marketplace is a curated catalog of Strike48 connectors. This guide covers how to find, install, and manage connectors.
+
+## Browsing the Catalog
+
+The marketplace displays connectors in a grid view with:
+
+- **Icon and name** — Visual identification
+- **Description** — What the connector does
+- **Version** — Current release version
+- **Status** — Installed, available, or update available
+
+Use the search bar to filter by name or category.
+
+## Connector Categories
+
+Connectors are organized into categories:
+
+| Category | Examples |
+|----------|---------|
+| DevOps | KubeStudio, CI/CD tools |
+| Project Management | JiraStudio, GitLabStudio |
+| Productivity | StrikeOffice (Google Workspace) |
+| Communication | StrikeTeam |
+
+## Installing Connectors
+
+When you install a connector, Pick:
+
+1. Downloads the connector binary for your platform
+2. Places it in the Strike48 connectors directory
+3. Adds an entry to `~/.config/strikehub/connectors.toml`
+4. Sets the transport mode to IPC by default
+
+The connector binary path and transport settings are configured automatically.
+
+## Managing Installed Connectors
+
+From the Pick interface, you can:
+
+- **Enable / Disable** — Toggle whether a connector appears in StrikeHub
+- **Uninstall** — Remove the binary and config entry
+- **Configure** — Adjust settings like auto-start and transport mode
+- **View details** — See version info, changelog, and documentation links
+
+## Version Management
+
+Pick tracks connector versions and notifies you when updates are available. Each connector release includes:
+
+- **Version number** (semver)
+- **Changelog** — What changed in this release
+- **Compatibility** — Required StrikeHub version
+- **Binary hashes** — SHA-256 checksums for integrity verification
+
+## Publishing Connectors
+
+If you've built a custom connector and want to share it through the marketplace, see the Strike48 developer documentation for the connector submission process.

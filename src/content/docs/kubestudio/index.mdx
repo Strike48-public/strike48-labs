@@ -1,0 +1,37 @@
+---
+title: KubeStudio
+description: Kubernetes cluster browser and management tool for the Strike48 platform.
+---
+
+KubeStudio is a native desktop Kubernetes client built with Dioxus and Axum. It runs as a StrikeHub connector or as a standalone application, providing a visual interface for browsing clusters, inspecting workloads, and managing deployments.
+
+## Features
+
+- **Cluster browsing** — Navigate namespaces, view workloads, inspect pod details
+- **Deployment management** — Scale deployments, view rollout history, trigger restarts
+- **Pod inspection** — View logs, resource usage, container status, and events
+- **Multi-cluster** — Switch between kubeconfig contexts
+- **Dual mode** — Runs standalone or embedded in StrikeHub as a connector
+
+## Architecture
+
+KubeStudio is built as a Dioxus liveview application served by an Axum HTTP server:
+
+```
+ks-connector binary
+├── Axum server (TCP or Unix socket)
+│   ├── /liveview        (Dioxus liveview UI)
+│   ├── /health          (health check endpoint)
+│   ├── /connector/info  (metadata for StrikeHub)
+│   ├── /assets/*        (CSS, JS, WASM)
+│   └── /ws              (Dioxus liveview WebSocket)
+└── Kubernetes API client (via kube-rs)
+```
+
+When running inside StrikeHub, KubeStudio communicates over a Unix domain socket. When running standalone, it binds a TCP port.
+
+## Next Steps
+
+- [Getting Started](/kubestudio/getting-started/) — Build and run KubeStudio
+- [Cluster Management](/kubestudio/guides/cluster-management/) — Navigate and manage your clusters
+- [Deployments](/kubestudio/guides/deployments/) — Work with Kubernetes deployments

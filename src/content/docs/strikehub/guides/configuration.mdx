@@ -1,0 +1,95 @@
+---
+title: Configuration
+description: Configure StrikeHub with environment variables and TOML connector config.
+---
+
+StrikeHub is configured through environment variables and a TOML config file for connectors.
+
+## Environment Variables
+
+| Variable | Purpose | Default |
+|----------|---------|---------|
+| `STRIKE48_API_URL` | Strike48 API / Keycloak server URL | None |
+| `MATRIX_TLS_INSECURE` | Skip TLS verification (`true` or `1`) | `false` |
+| `RUST_LOG` | Log level filter (`error`, `warn`, `info`, `debug`, `trace`) | `info` |
+
+Example:
+
+```bash
+RUST_LOG=debug \
+STRIKE48_API_URL=https://studio.strike48.test \
+cargo run --features desktop
+```
+
+## Connector Configuration
+
+Connectors are defined in `~/.config/strikehub/connectors.toml`. This file is auto-created on first run with built-in defaults.
+
+### Format
+
+```toml
+[connectors.kubestudio]
+display_name = "KubeStudio"
+binary = "/path/to/ks-connector"
+port = 3030
+icon = "hero-server-stack"
+auto_start = false
+transport = "ipc"
+socket_path = "/tmp/strikehub-kubestudio.sock"
+```
+
+### Fields
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `display_name` | String | Name shown in the sidebar |
+| `binary` | String | Path to the connector binary (required for IPC) |
+| `port` | Integer | TCP port (used when `transport = "tcp"`) |
+| `icon` | String | Icon identifier for the sidebar |
+| `auto_start` | Boolean | Start the connector automatically on launch |
+| `transport` | String | `"ipc"` or `"tcp"` — defaults to `"tcp"` for backward compatibility |
+| `socket_path` | String | Unix socket path (IPC mode only) |
+| `enabled` | Boolean | Whether the connector appears in the sidebar |
+
+### Example: Full Configuration
+
+```toml
+[connectors.kubestudio]
+display_name = "KubeStudio"
+binary = "~/code/strike48/studio-kube-desktop/target/release/ks-connector"
+icon = "kubernetes"
+auto_start = true
+transport = "ipc"
+
+[connectors.jirastudio]
+display_name = "JiraStudio"
+binary = "~/code/strike48/scratch/jirastudio/target/release/js-connector"
+port = 3031
+icon = "jira"
+auto_start = false
+transport = "tcp"
+
+[connectors.gitlabstudio]
+display_name = "GitLabStudio"
+binary = "~/code/strike48/scratch/gitlabstudio/target/release/gl-connector"
+port = 3032
+icon = "gitlab"
+auto_start = false
+transport = "tcp"
+
+[connectors.custom-external]
+display_name = "External Service"
+icon = "app"
+enabled = true
+transport = "ipc"
+socket_path = "/tmp/my-app.sock"
+```
+
+### Custom Connectors
+
+You can register any HTTP server as a connector. For IPC mode, provide a `socket_path` pointing to an existing Unix domain socket. For TCP mode, provide a `port`.
+
+The connector must serve:
+- `GET /health` — Returns 200 OK when healthy
+- `GET /connector/info` — Returns JSON with name and icon metadata
+- `GET /liveview` — The main UI endpoint (HTML page)

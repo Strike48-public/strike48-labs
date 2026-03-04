@@ -3,22 +3,46 @@ title: Pick
 description: Headless penetration testing toolkit for the Strike48 platform.
 ---
 
-import MediaCard from "../../../components/MediaCard.astro";
+Pick is a lightweight, headless penetration testing agent built with Dioxus, providing network reconnaissance, device discovery, and remote tool execution capabilities.
 
-Pick is a lightweight, headless penetration testing agent built with Dioxus. It runs as a StrikeHub connector or standalone binary, providing network reconnaissance, device discovery, and remote tool execution capabilities.
+## What is Pick?
 
-## What It Does
+Pick is a droppable penetration testing toolkit that runs as a StrikeHub connector or standalone binary. It's designed as a single binary that can be deployed on any system without requiring a GUI, windowing system, or desktop environment. Pick provides network scanning, device discovery, traffic capture, and remote command execution — all controllable locally via a workspace UI or remotely via the Prospector Studio API.
 
-- **Network scanning** — TCP port scanning with concurrent connections
-- **Device discovery** — ARP table reading, mDNS service discovery, UPnP/SSDP enumeration
-- **Traffic capture** — Network packet capture (requires elevated privileges)
-- **WiFi scanning** — WiFi network enumeration
-- **System recon** — Device and system information gathering
-- **Screen capture** — Screenshot capture as base64 PNG
-- **Command execution** — Remote shell command execution
-- **Bi-directional control** — Tools triggered manually via UI or remotely via Prospector Studio API
+## Key Features
 
-## Built-in Tools
+### Network Scanning
+TCP port scanning and service discovery:
+- Concurrent connection scanning
+- Configurable port ranges
+- Service identification
+
+### Device Discovery
+Multiple discovery protocols:
+- ARP table reading
+- mDNS service discovery
+- UPnP/SSDP enumeration
+
+### Traffic Capture
+Network packet analysis:
+- Network packet capture (requires elevated privileges)
+- WiFi network enumeration
+- Real-time traffic monitoring
+
+### System Reconnaissance
+Host information gathering:
+- Device and system information collection
+- Screenshot capture as base64 PNG
+- Environment enumeration
+
+### Remote Execution
+Bi-directional tool control:
+- Shell command execution
+- Tools triggered manually via UI or remotely via Prospector Studio API
+- Bi-directional control between local and remote interfaces
+
+### Built-in Tools
+Comprehensive toolkit out of the box:
 
 | Tool | Description |
 |------|-------------|
@@ -32,21 +56,8 @@ Pick is a lightweight, headless penetration testing agent built with Dioxus. It 
 | `traffic_capture` | Network packet capture |
 | `execute_command` | Shell command execution |
 
-## Architecture
-
-Pick is built with the [Dioxus](https://dioxuslabs.com/) framework, enabling true cross-platform deployment from a single codebase. It's designed as a droppable payload — a single binary that can be deployed on any system without requiring a GUI, windowing system, or desktop environment.
-
-It operates in two modes:
-- **Standalone mode** — Connects directly to Prospector Studio over gRPC
-- **StrikeHub IPC mode** — Runs as a managed connector within StrikeHub, communicating over Unix domain sockets
-
-When running inside StrikeHub, Pick serves a full workspace UI (dashboard, tools, files, shell, logs, chat) via Dioxus LiveView.
-
-:::tip[Want to understand the technical architecture?]
-See the [Architecture](/pick/architecture/) page for detailed information about Pick's modular design, platform abstractions, and how to extend it with custom tools.
-:::
-
-## Platform Support
+### Cross-Platform Support
+Deploy anywhere from a single codebase:
 
 | Platform | Runtime |
 |----------|---------|
@@ -57,27 +68,46 @@ See the [Architecture](/pick/architecture/) page for detailed information about 
 | Mobile | Android, iOS |
 | Terminal | TUI interface |
 
-## Demos
+## Architecture
 
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-  <MediaCard
-    title="Running Scans"
-    description="Executing port scans and device discovery tools."
-    iconName="radar"
-  />
-  <MediaCard
-    title="Viewing Results"
-    description="Browsing scan results in the Pick workspace UI."
-    iconName="file-search"
-  />
-  <MediaCard
-    title="Remote Execution"
-    description="Triggering tools remotely via Prospector Studio."
-    iconName="cloud-cog"
-  />
-</div>
+Pick is built with the [Dioxus](https://dioxuslabs.com/) framework, enabling true cross-platform deployment from a single codebase. It operates in two modes:
+- **Standalone mode** — Connects directly to Prospector Studio over gRPC
+- **StrikeHub IPC mode** — Runs as a managed connector within StrikeHub, communicating over Unix domain sockets
+
+When running inside StrikeHub, Pick serves a full workspace UI (dashboard, tools, files, shell, logs, chat) via Dioxus LiveView.
+
+## Technology Stack
+
+- **Language**: Rust
+- **UI Framework**: Dioxus (liveview mode)
+- **HTTP Server**: Axum
+- **Remote API**: gRPC (Prospector Studio)
+- **Integration**: StrikeHub connector protocol
+- **Build Tool**: Just command runner
+
+## Use Cases
+
+Pick is designed for:
+
+- **Red Team Operations** - Deploy as a droppable agent for network reconnaissance and lateral movement
+- **Penetration Testing** - Scan networks, discover devices, and execute remote commands
+- **Security Research** - Develop and test new reconnaissance tools
+- **Training & Education** - Learn network scanning and discovery techniques in a controlled environment
+
+## License
+
+Pick is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). This means:
+- Free to use, modify, and distribute
+- Modified versions must be open source under AGPL-3.0
+- Network service deployments must provide source code to users
+
+## Disclaimer
+
+**IMPORTANT**: Pick is intended for authorized security testing, penetration testing engagements, and educational purposes only. Users are responsible for ensuring they have proper authorization before using this tool against any systems. Unauthorized access to computer systems is illegal.
 
 ## Next Steps
+
+Ready to get started? Check out the following guides:
 
 - [Getting Started](/pick/getting-started/) — Deploy Pick and run your first scan
 - [Architecture](/pick/architecture/) — Technical architecture and design

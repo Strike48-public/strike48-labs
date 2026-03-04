@@ -3,21 +3,54 @@ title: StrikeHub
 description: The unified native desktop shell for Strike48 connector applications.
 ---
 
-import MediaCard from "../../../components/MediaCard.astro";
+StrikeHub is a unified native desktop shell for Strike48 connector applications, built with Dioxus 0.6 and designed to host, manage, and render multiple connector apps within a single native window.
 
-StrikeHub is a Dioxus 0.6 desktop application that acts as a unified host shell for Strike48 connector apps. It discovers running connector processes, communicates with them over IPC, and renders each as an embeddable panel inside a single native window.
+## What is StrikeHub?
 
-Connector apps are native desktop tools that integrate with the **Prospector Studio** agent platform. StrikeHub manages their lifecycle, authentication, and UI embedding so each connector can focus on its domain.
+StrikeHub is a desktop application that acts as a host shell for Strike48 connector apps. It discovers running connector processes, communicates with them over IPC, and renders each as an embeddable panel inside a single native window. Connector apps are native desktop tools that integrate with the **Prospector Studio** agent platform. StrikeHub manages their lifecycle, authentication, and UI embedding so each connector can focus on its domain.
 
-## What It Does
+## Key Features
 
-- **Connector sidebar** — Lists all known connectors with online/offline/checking status indicators
-- **Embedded content area** — Renders the active connector's UI via an iframe backed by the `connector://` custom protocol
-- **Dual transport** — Supports IPC (Unix domain sockets) and legacy TCP modes per connector
-- **Authentication** — OIDC flow with Keycloak, automatic token injection into connector HTML
-- **WebSocket bridging** — Single-port WsRelay bridges Dioxus liveview and Prospector Studio GraphQL subscriptions
-- **Health monitoring** — Periodic health checks with automatic status updates
-- **Configuration** — TOML-based connector config at `~/.config/strikehub/connectors.toml`
+### Connector Sidebar
+Browse and manage all registered connectors:
+- Online/offline/checking status indicators
+- One-click connector switching
+- Visual connector health overview
+
+### Embedded Content Area
+Unified rendering of connector UIs:
+- Renders the active connector's UI via an iframe backed by the `connector://` custom protocol
+- Seamless switching between connector apps
+- Native window integration
+
+### Dual Transport
+Flexible communication modes:
+- IPC via Unix domain sockets for StrikeHub-managed connectors
+- Legacy TCP mode for standalone connector processes
+- Per-connector transport configuration
+
+### Authentication
+OIDC-based identity management:
+- OIDC flow with Keycloak
+- Automatic token injection into connector HTML
+- Session management across connectors
+
+### WebSocket Bridging
+Single-port relay for real-time communication:
+- Bridges Dioxus liveview and Prospector Studio GraphQL subscriptions
+- WsRelay multiplexing on a single port
+
+### Health Monitoring
+Continuous connector status tracking:
+- Periodic health checks against each connector
+- Automatic status updates in the sidebar
+- Graceful handling of connector restarts
+
+### Configuration
+TOML-based connector management:
+- Connector config at `~/.config/strikehub/connectors.toml`
+- Environment variable overrides
+- Per-connector settings
 
 ## Architecture
 
@@ -44,16 +77,7 @@ Connector apps are native desktop tools that integrate with the **Prospector Stu
 
 Each connector runs as a **separate process** with its own Axum HTTP server. StrikeHub embeds the connector's UI via an iframe pointed at a `connector://` custom protocol URL. Orchestration (health checks, lifecycle management) happens over the same Unix domain socket.
 
-## Connector Apps
-
-The first two connector releases:
-
-| App | Icon | Description |
-|-----|------|-------------|
-| KubeStudio | `server` | Kubernetes cluster management dashboard |
-| Pick | `shield-alert` | Penetration testing toolkit |
-
-## Crate Structure
+StrikeHub is built with a modular crate structure:
 
 ```
 strikehub/
@@ -63,27 +87,33 @@ strikehub/
 │   └── sh-ui/          (Dioxus desktop UI components)
 ```
 
-## Demos
+## Technology Stack
 
-<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-  <MediaCard
-    title="Launching Connectors"
-    description="Starting KubeStudio and Pick connectors from the sidebar."
-    iconName="rocket"
-  />
-  <MediaCard
-    title="Switching Apps"
-    description="Navigating between connector apps in the embedded content area."
-    iconName="layout-dashboard"
-  />
-  <MediaCard
-    title="Authentication Flow"
-    description="OIDC sign-in with Keycloak and automatic token injection."
-    iconName="lock"
-  />
-</div>
+- **Language**: Rust
+- **UI Framework**: Dioxus 0.6 (desktop mode)
+- **HTTP Server**: Axum
+- **Integration**: Prospector Studio agent platform
+- **Build Tool**: Just command runner
+
+## Use Cases
+
+StrikeHub is designed for:
+
+- **Security Operations** - Host red team and security assessment connector apps in a unified workspace
+- **DevOps Workflows** - Manage Kubernetes clusters and deployments via the KubeStudio connector
+- **Team Collaboration** - Share a consistent desktop environment across teams
+- **Connector Development** - Build and test new connectors with live-reload support
+
+## License
+
+StrikeHub is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). This means:
+- Free to use, modify, and distribute
+- Modified versions must be open source under AGPL-3.0
+- Network service deployments must provide source code to users
 
 ## Next Steps
+
+Ready to get started? Check out the following guides:
 
 - [Getting Started](/strikehub/getting-started/) — Install and run StrikeHub
 - [Installation](/strikehub/guides/installation/) — Detailed build instructions

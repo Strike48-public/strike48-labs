@@ -35,3 +35,69 @@ html {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
+
+/* ── Sidebar Redesign: Mistral-inspired styling ── */
+
+/* Top-level group labels become small uppercase category headers */
+nav.sidebar .top-level > li > details > summary .large {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+}
+
+/* Remove Starlight's default left hairline on nested items */
+nav.sidebar ul ul li {
+  border-inline-start: none;
+}
+
+/* Active page: left accent bar, no background fill */
+nav.sidebar a[aria-current="page"],
+nav.sidebar a[aria-current="page"]:hover,
+nav.sidebar a[aria-current="page"]:focus {
+  background-color: transparent;
+  color: var(--sl-color-accent);
+  font-weight: 600;
+  border-inline-start: 3px solid var(--sl-color-accent);
+  padding-inline-start: calc(var(--sl-sidebar-item-padding-inline, 0.5rem) - 3px);
+}
+
+/* Tighter vertical spacing between top-level sections */
+nav.sidebar .top-level > li + li {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 50rem) {
+  nav.sidebar .top-level > li + li {
+    margin-top: 0.375rem;
+  }
+}
+
+/* Compact link padding */
+nav.sidebar a {
+  padding: 0.2em var(--sl-sidebar-item-padding-inline, 0.5rem);
+  font-size: var(--sl-text-sm);
+}
+
+/* Hover: just color change, no background */
+nav.sidebar a:hover,
+nav.sidebar a:focus {
+  color: var(--sl-color-white);
+  background-color: transparent;
+}
+
+/* Smaller caret icon */
+nav.sidebar .caret {
+  color: var(--sl-color-gray-3);
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Nested group summaries retain normal styling */
+nav.sidebar ul ul summary .large {
+  font-size: var(--sl-text-sm);
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--sl-color-white);
+}

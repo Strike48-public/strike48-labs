@@ -40,6 +40,19 @@ export default defineConfig({
           collapsed: false,
           items: [
             {
+              label: "Prospector Studio",
+              collapsed: true,
+              items: [
+                { label: "Overview", slug: "prospector-studio" },
+                { label: "Getting Started", slug: "prospector-studio/getting-started" },
+                { label: "Agents", slug: "prospector-studio/guides/agents" },
+                { label: "Knowledge Bases", slug: "prospector-studio/guides/knowledge-bases" },
+                { label: "Workflows", slug: "prospector-studio/guides/workflows" },
+                { label: "MCP Servers", slug: "prospector-studio/guides/mcp-servers" },
+                { label: "Connectors", slug: "prospector-studio/guides/connectors" },
+              ],
+            },
+            {
               label: "StrikeHub",
               collapsed: true,
               items: [
@@ -118,6 +131,13 @@ export default defineConfig({
           label: "For Developers",
           collapsed: false,
           items: [
+            {
+              label: "Prospector Studio",
+              collapsed: true,
+              items: [
+                { label: "GraphQL API", slug: "developers/prospector-studio/graphql-api" },
+              ],
+            },
             {
               label: "SDK for Rust",
               collapsed: true,

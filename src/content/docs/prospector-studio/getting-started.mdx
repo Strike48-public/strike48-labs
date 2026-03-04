@@ -1,0 +1,47 @@
+---
+title: Getting Started with Prospector Studio
+description: Access and start using Prospector Studio.
+---
+
+This guide walks you through accessing Prospector Studio and using it for the first time.
+
+## Accessing Prospector Studio
+
+Prospector Studio is available at your organization's Studio URL. For local development:
+
+- **Studio UI**: `http://localhost:5174/studio`
+- **Backend API**: `http://localhost:4000`
+
+## Authentication
+
+Prospector Studio uses OIDC with Keycloak for authentication. When you open Studio, you'll be redirected to the login page to authenticate.
+
+## First Steps
+
+### 1. Start a Conversation
+
+Once logged in, you'll see the chat interface. Start a new conversation to interact with the default agent.
+
+### 2. Explore Agents
+
+Navigate to the Agents section to view available agents. Each agent has:
+- A configured LLM provider and model
+- Optional tools and integrations
+- Optional knowledge base connections
+
+### 3. Enable Features
+
+Most features are controlled by feature flags. If you don't see expected functionality, check with your administrator to ensure the relevant flags are enabled.
+
+## Feature Flags
+
+Prospector Studio uses feature flags to gate access to capabilities. Available features depend on which flags are enabled for your environment. Common flags control access to:
+- Workflow builder
+- Knowledge base management
+- Agent configuration
+
+## What's Next
+
+- [Agents](/prospector-studio/guides/agents/) — Learn about agent configuration
+- [Knowledge Bases](/prospector-studio/guides/knowledge-bases/) — Set up document-backed RAG
+- [Workflows](/prospector-studio/guides/workflows/) — Create automated workflows

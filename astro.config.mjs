@@ -113,6 +113,13 @@ export default defineConfig({
                 { label: "Installation", slug: "developers/sdk-rs/installation" },
                 { label: "Quick Start", slug: "developers/sdk-rs/quick-start" },
                 { label: "Configuration", slug: "developers/sdk-rs/configuration" },
+                {
+                  label: "Guides",
+                  collapsed: true,
+                  items: [
+                    { label: "Building Your First Connector", slug: "developers/sdk-rs/guides/building-your-first-connector" },
+                  ],
+                },
               ],
             },
             {

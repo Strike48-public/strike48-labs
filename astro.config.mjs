@@ -156,6 +156,15 @@ export default defineConfig({
             { label: "Demos & Media", slug: "media" },
           ],
         },
+        {
+          label: "Contributing",
+          collapsed: true,
+          items: [
+            { label: "GIF Guidelines", slug: "contributing/gif-guidelines" },
+            { label: "GIF Workflow", slug: "contributing/gif-workflow" },
+            { label: "VHS Examples", slug: "contributing/vhs-examples" },
+          ],
+        },
       ],
       expressiveCode: {
         themes: ["github-dark", "github-light"],

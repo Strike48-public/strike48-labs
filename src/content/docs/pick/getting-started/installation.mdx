@@ -1,0 +1,263 @@
+---
+title: Installation
+description: Install and set up Dioxus Connector
+---
+
+# Installation Guide
+
+This guide will help you get started with building and running the Dioxus Connector on your preferred platform.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+### Required for All Platforms
+
+- **Rust 1.70+** with `cargo`
+  ```bash
+  # Install Rust via rustup
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+  # Verify installation
+  rustc --version
+  cargo --version
+  ```
+
+### Platform-Specific Requirements
+
+#### Desktop (Linux, macOS, Windows)
+
+**Linux:**
+```bash
+# Ubuntu/Debian
+sudo apt-get install libwebkit2gtk-4.1-dev \
+  build-essential \
+  curl \
+  wget \
+  file \
+  libssl-dev \
+  libayatana-appindicator3-dev \
+  librsvg2-dev
+
+# Fedora
+sudo dnf install webkit2gtk4.1-devel \
+  openssl-devel \
+  curl \
+  wget \
+  file \
+  libappindicator-gtk3-devel \
+  librsvg2-devel
+```
+
+**macOS:**
+- Xcode Command Line Tools
+  ```bash
+  xcode-select --install
+  ```
+
+**Windows:**
+- Microsoft Visual Studio C++ Build Tools
+- WebView2 Runtime (usually pre-installed on Windows 10+)
+
+#### Web (LiveView)
+
+No additional dependencies beyond Rust.
+
+#### Mobile (Android & iOS)
+
+Install cargo-mobile2:
+```bash
+cargo install cargo-mobile2
+```
+
+**Android:**
+- Android Studio with SDK
+- Android NDK
+- Java Development Kit (JDK) 11+
+
+**iOS:**
+- Xcode (macOS only)
+- iOS SDK
+
+#### Terminal (TUI)
+
+No additional dependencies beyond Rust.
+
+## Building from Source
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Strike48/dioxus-connector.git
+cd dioxus-connector
+```
+
+## Platform-Specific Builds
+
+### Desktop
+
+Build and run the desktop application:
+
+```bash
+# Development mode
+cargo run --package pentest-desktop
+
+# Release build
+cargo build --release --package pentest-desktop
+
+# The binary will be located at:
+# target/release/pentest-desktop
+```
+
+### Web (LiveView)
+
+Build and run the web server:
+
+```bash
+# Development mode (starts server on http://localhost:3000)
+cargo run --package pentest-web
+
+# Release build
+cargo build --release --package pentest-web
+
+# Run the release binary
+./target/release/pentest-web
+```
+
+The web interface will be available at `http://localhost:3000`.
+
+### Terminal (TUI)
+
+Build and run the TUI application:
+
+```bash
+# Development mode
+cargo run --package pentest-tui
+
+# Release build
+cargo build --release --package pentest-tui
+
+# Run the release binary
+./target/release/pentest-tui
+```
+
+### Mobile
+
+#### Android
+
+First-time setup:
+
+```bash
+cd apps/mobile
+cargo mobile init
+```
+
+Build and deploy:
+
+```bash
+# Build APK
+cargo mobile android build
+
+# Build and run on connected device
+cargo mobile android run
+
+# Build release APK
+cargo mobile android build --release
+```
+
+#### iOS
+
+First-time setup (macOS only):
+
+```bash
+cd apps/mobile
+cargo mobile init
+```
+
+Build and deploy:
+
+```bash
+# Build for iOS simulator
+cargo mobile ios build
+
+# Build and run on simulator
+cargo mobile ios run
+
+# Build release for device
+cargo mobile ios build --release
+```
+
+## Verifying Installation
+
+After building, verify the installation by running the application:
+
+### Desktop
+```bash
+./target/release/pentest-desktop --help
+```
+
+### Web
+```bash
+./target/release/pentest-web --help
+```
+
+### TUI
+```bash
+./target/release/pentest-tui --help
+```
+
+You should see the available command-line options for each application.
+
+## Troubleshooting
+
+### Common Issues
+
+#### Build Errors on Linux
+
+If you encounter build errors related to missing libraries:
+```bash
+# Ensure all development packages are installed
+sudo apt-get update
+sudo apt-get install -y libwebkit2gtk-4.1-dev build-essential curl wget file libssl-dev
+```
+
+#### macOS WebView Issues
+
+If you get WebView-related errors:
+```bash
+# Update Xcode Command Line Tools
+sudo rm -rf /Library/Developer/CommandLineTools
+xcode-select --install
+```
+
+#### Rust Version Issues
+
+Ensure you're using a recent Rust version:
+```bash
+rustup update stable
+rustup default stable
+```
+
+#### Mobile Build Failures
+
+For Android/iOS build issues, ensure all SDKs are properly configured:
+```bash
+cargo mobile doctor
+```
+
+This command will check your environment and report any missing dependencies.
+
+## Next Steps
+
+Now that you have Dioxus Connector installed, proceed to:
+
+- [Configuration Guide](./configuration.md) - Learn how to configure the connector
+- [Architecture Documentation](../architecture.md) - Understand the project structure
+
+## Getting Help
+
+If you encounter issues not covered in this guide:
+
+- Check the [GitHub Issues](https://github.com/Strike48/dioxus-connector/issues)
+- Consult the [Dioxus Documentation](https://dioxuslabs.com/learn/0.5/)
+- Review the project's README for additional context

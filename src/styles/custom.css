@@ -29,3 +29,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Reduce header padding for more compact look */
+.header {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}

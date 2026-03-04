@@ -36,7 +36,7 @@ export default defineConfig({
           ],
         },
         {
-          label: "For End Users",
+          label: "For Users",
           collapsed: false,
           items: [
             {
@@ -86,6 +86,9 @@ export default defineConfig({
               items: [
                 { label: "Overview", slug: "pick" },
                 { label: "Getting Started", slug: "pick/getting-started" },
+                { label: "Architecture", slug: "pick/architecture" },
+                { label: "Installation", slug: "pick/getting-started/installation" },
+                { label: "Configuration", slug: "pick/getting-started/configuration" },
                 { label: "Tools", slug: "pick/guides/marketplace" },
                 {
                   label: "Help",
@@ -97,6 +100,16 @@ export default defineConfig({
                     { label: "Remote Execution", slug: "pick/help/remote-execution" },
                   ],
                 },
+              ],
+            },
+            {
+              label: "StrikeKit",
+              collapsed: true,
+              items: [
+                { label: "Overview", slug: "developers/strikekit" },
+                { label: "Installation", slug: "developers/strikekit/installation" },
+                { label: "Quick Start", slug: "developers/strikekit/quick-start" },
+                { label: "Configuration", slug: "developers/strikekit/configuration" },
               ],
             },
           ],
@@ -124,26 +137,6 @@ export default defineConfig({
                     { label: "Deploying Connectors", slug: "developers/sdk-rs/guides/deployment" },
                   ],
                 },
-              ],
-            },
-            {
-              label: "StrikeKit",
-              collapsed: true,
-              items: [
-                { label: "Overview", slug: "developers/strikekit" },
-                { label: "Installation", slug: "developers/strikekit/installation" },
-                { label: "Quick Start", slug: "developers/strikekit/quick-start" },
-                { label: "Configuration", slug: "developers/strikekit/configuration" },
-              ],
-            },
-            {
-              label: "Dioxus Connector",
-              collapsed: true,
-              items: [
-                { label: "Overview", slug: "developers/dioxus-connector" },
-                { label: "Architecture", slug: "developers/dioxus-connector/architecture" },
-                { label: "Installation", slug: "developers/dioxus-connector/getting-started/installation" },
-                { label: "Configuration", slug: "developers/dioxus-connector/getting-started/configuration" },
               ],
             },
           ],

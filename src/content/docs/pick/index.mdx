@@ -34,13 +34,17 @@ Pick is a lightweight, headless penetration testing agent built with Dioxus. It 
 
 ## Architecture
 
-Pick is designed as a droppable payload — a single binary that can be deployed on any system without requiring a GUI, windowing system, or desktop environment.
+Pick is built with the [Dioxus](https://dioxuslabs.com/) framework, enabling true cross-platform deployment from a single codebase. It's designed as a droppable payload — a single binary that can be deployed on any system without requiring a GUI, windowing system, or desktop environment.
 
 It operates in two modes:
 - **Standalone mode** — Connects directly to Prospector Studio over gRPC
 - **StrikeHub IPC mode** — Runs as a managed connector within StrikeHub, communicating over Unix domain sockets
 
 When running inside StrikeHub, Pick serves a full workspace UI (dashboard, tools, files, shell, logs, chat) via Dioxus LiveView.
+
+:::tip[Want to understand the technical architecture?]
+See the [Architecture](/pick/architecture/) page for detailed information about Pick's modular design, platform abstractions, and how to extend it with custom tools.
+:::
 
 ## Platform Support
 
@@ -76,5 +80,8 @@ When running inside StrikeHub, Pick serves a full workspace UI (dashboard, tools
 ## Next Steps
 
 - [Getting Started](/pick/getting-started/) — Deploy Pick and run your first scan
+- [Architecture](/pick/architecture/) — Technical architecture and design
+- [Installation](/pick/getting-started/installation/) — Set up your development environment
+- [Configuration](/pick/getting-started/configuration/) — Configure for your needs
 - [Tools](/pick/guides/marketplace/) — Tool usage and configuration
 - [Debug Logging](/pick/help/debugging/) — Troubleshooting and debug logging

@@ -54,11 +54,11 @@ const features = [
   </head>
   <body>
     <Hero
-      tagline="Desktop connector apps for the Prospector Studio agent platform. Kubernetes management, penetration testing, and more — all in one native window."
+      tagline="Documentation for the Strike48 security platform. Desktop connector apps for end users, and SDKs for building custom tools and connectors."
     />
 
     <section class="products-section">
-      <h2>Products</h2>
+      <h2>For End Users</h2>
       <div class="products-grid">
         <ProductCard
           title="StrikeHub"
@@ -77,6 +77,30 @@ const features = [
           description="Headless penetration testing toolkit. Network scanning, device discovery, traffic capture, and remote tool execution — deployed as a lightweight agent."
           href="/pick/"
           iconName="shield-alert"
+        />
+      </div>
+    </section>
+
+    <section class="products-section">
+      <h2>For Developers</h2>
+      <div class="products-grid">
+        <ProductCard
+          title="SDK for Rust"
+          description="Build powerful, type-safe connectors with the Strike48 SDK. Integrate with Matrix, execute tools, and handle real-time communication."
+          href="/developers/sdk-rs/"
+          iconName="code"
+        />
+        <ProductCard
+          title="StrikeKit"
+          description="Comprehensive red team operations workstation. Engagement management, C2 operations, activity tracking, and professional report generation."
+          href="/developers/strikekit/"
+          iconName="terminal"
+        />
+        <ProductCard
+          title="Dioxus Connector"
+          description="Cross-platform penetration testing connector. Write once, deploy everywhere — desktop, web, mobile, and terminal."
+          href="/developers/dioxus-connector/"
+          iconName="layers"
         />
       </div>
     </section>

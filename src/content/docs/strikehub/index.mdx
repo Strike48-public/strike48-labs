@@ -23,22 +23,11 @@ Unified rendering of connector UIs:
 - Seamless switching between connector apps
 - Native window integration
 
-### Dual Transport
-Flexible communication modes:
-- IPC via Unix domain sockets for StrikeHub-managed connectors
-- Legacy TCP mode for standalone connector processes
-- Per-connector transport configuration
-
 ### Authentication
 OIDC-based identity management:
 - OIDC flow with Keycloak
 - Automatic token injection into connector HTML
 - Session management across connectors
-
-### WebSocket Bridging
-Single-port relay for real-time communication:
-- Bridges Dioxus liveview and Prospector Studio GraphQL subscriptions
-- WsRelay multiplexing on a single port
 
 ### Health Monitoring
 Continuous connector status tracking:
@@ -106,10 +95,7 @@ StrikeHub is designed for:
 
 ## License
 
-StrikeHub is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). This means:
-- Free to use, modify, and distribute
-- Modified versions must be open source under AGPL-3.0
-- Network service deployments must provide source code to users
+StrikeHub is licensed under the Mozilla Public License 2.0 (MPL-2.0). You can use, modify, and distribute the software. Modifications to MPL-licensed files must be shared under the same license.
 
 ## Next Steps
 

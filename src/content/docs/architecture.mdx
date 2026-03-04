@@ -28,11 +28,7 @@ Both modes give you the full Strike48 experience with authentication, tool regis
 
 #### Access
 
-Prospector Studio is typically deployed as a private platform within your organization:
-
-- **Cloud-hosted** - Managed deployment by Strike48 team
-
-Access is authenticated via OIDC (OpenID Connect) using Keycloak or compatible identity providers.
+Prospector Studio is an internal platform managed by the Strike48 team. Access is authenticated via OIDC (OpenID Connect) using Keycloak or compatible identity providers.
 
 ### StrikeHub
 
@@ -256,19 +252,6 @@ See individual product configuration guides for complete details:
 - [StrikeKit Configuration](/developers/strikekit/configuration/)
 - [Pick Configuration](/pick/getting-started/configuration/)
 
-## Decision Guide
-
-Use this table to decide between the StrikeHub desktop app and Prospector Studio:
-
-| Use Case | StrikeHub (Desktop) | Prospector Studio (Platform) |
-|----------|-----------|-------------|
-| Single user, local tools | ✅ Recommended | ✅ Also supported |
-| Team collaboration | ❌ Limited | ✅ Recommended |
-| Remote tool execution | ❌ Not available | ✅ Required |
-| Distributed operations | ❌ Not available | ✅ Required |
-| Workflow automation | ❌ Not available | ✅ Required |
-| Centralized logging | ❌ Not available | ✅ Recommended |
-
 ## Getting Started
 
 ### For Individual Users
@@ -281,22 +264,11 @@ Use this table to decide between the StrikeHub desktop app and Prospector Studio
 
 If you're working with a team or need distributed operations:
 
-1. Deploy Prospector Studio - contact Strike48 team or self-host
+1. Deploy Prospector Studio — contact the Strike48 team for access
 2. Configure OIDC authentication
 3. Install connectors on workstations and agents
 4. Configure Prospector Studio connection (MATRIX_HOST, credentials)
 5. Register connectors with the connector registry
-
-### For Developers
-
-If you're building custom connectors:
-
-1. Install SDK for Rust
-2. Build and test connectors locally during development
-3. Deploy through StrikeHub or Prospector Studio for production use
-4. Register tools with the connector registry
-
-See the [SDK Quick Start](/developers/sdk-rs/quick-start/) for detailed developer onboarding.
 
 ## Security Considerations
 
@@ -319,18 +291,15 @@ See the [SDK Quick Start](/developers/sdk-rs/quick-start/) for detailed develope
 
 ### Do I need Prospector Studio to use Strike48 tools?
 
-**Not necessarily.** You can run all Strike48 connectors through the StrikeHub desktop app for local use. Prospector Studio adds team collaboration, remote execution, and workflow automation for teams and distributed operations.
+**Not necessarily.** You can run all Strike48 connectors through the StrikeHub desktop app for local use. Prospector Studio adds team collaboration, remote execution, and workflow automation for distributed operations.
 
 ### How do I get started?
 
-[Download StrikeHub](/strikehub/getting-started/) and launch connectors from the desktop app. For team features, deploy Prospector Studio.
+[Download StrikeHub](/strikehub/getting-started/) and launch connectors from the desktop app. For team features, contact the Strike48 team for Prospector Studio access.
 
 ### How do I get access to Prospector Studio?
 
-Contact the Strike48 team for:
-- Managed cloud hosting
-- Self-hosting deployment guide
-- Development instance setup
+Contact the Strike48 team for access and onboarding.
 
 ### Can I run some connectors in StrikeHub and others in Prospector Studio?
 
@@ -339,7 +308,7 @@ Contact the Strike48 team for:
 ## Next Steps
 
 - **Individual Users**: [Download StrikeHub](/strikehub/getting-started/) and start using connectors from the desktop app
-- **Teams**: Contact Strike48 for Prospector Studio deployment
+- **Teams**: Contact the Strike48 team for Prospector Studio access
 - **Developers**: [Start building with the SDK](/developers/sdk-rs/quick-start/)
 
-For questions about architecture or deployment, reach out to the Strike48 team or open an issue on GitHub.
+For questions about architecture or access, reach out to the Strike48 team.

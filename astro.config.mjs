@@ -118,6 +118,7 @@ export default defineConfig({
                   collapsed: true,
                   items: [
                     { label: "Building Your First Connector", slug: "developers/sdk-rs/guides/building-your-first-connector" },
+                    { label: "Testing Connectors", slug: "developers/sdk-rs/guides/testing-connectors" },
                   ],
                 },
               ],

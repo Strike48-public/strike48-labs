@@ -10,7 +10,7 @@ Agents are the core building block of Prospector Studio. Each agent combines an 
 From the Studio UI, navigate to the Agents section and create a new agent. Configure:
 
 - **Name** — A descriptive name for the agent
-- **Model** — The LLM provider and model (e.g., Claude, Gemini)
+- **Model** — The LLM provider and model (e.g., Claude)
 - **System Prompt** — Instructions that define the agent's behavior
 - **Tools** — External integrations the agent can invoke
 - **Knowledge Bases** — Document collections the agent can query for context
@@ -30,6 +30,5 @@ Each conversation with an agent maintains full context history. Agents can handl
 
 Prospector Studio supports multiple LLM providers through a unified API:
 - **Anthropic** — Claude models via AWS Bedrock
-- **Google** — Gemini models
 
-The provider and model are configured per-agent, allowing different agents to use different models based on their use case.
+Additional providers may be supported in the future. The provider and model are configured per-agent, allowing different agents to use different models based on their use case.

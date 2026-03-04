@@ -1,0 +1,84 @@
+---
+title: Media & Demos
+description: Video walkthroughs, GIFs, and demos of the Strike48 platform.
+---
+
+import MediaCard from "../../../components/MediaCard.astro";
+
+Browse demos and video walkthroughs for each Strike48 product. Most recordings are still in production — cards marked **Coming Soon** will be updated as assets become available.
+
+## StrikeHub
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+  <MediaCard
+    title="Launching Connectors"
+    description="Starting KubeStudio and Pick connectors from the sidebar."
+    iconName="rocket"
+  />
+  <MediaCard
+    title="Switching Apps"
+    description="Navigating between connector apps in the embedded content area."
+    iconName="layout-dashboard"
+  />
+  <MediaCard
+    title="Authentication Flow"
+    description="OIDC sign-in with Keycloak and automatic token injection."
+    iconName="lock"
+  />
+</div>
+
+[View all StrikeHub demos](/media/strikehub/)
+
+## KubeStudio
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+  <MediaCard
+    title="Cluster Overview"
+    description="Browsing namespaces and viewing cluster-wide resource summary."
+    iconName="server"
+  />
+  <MediaCard
+    title="Workload Browser"
+    description="Navigating deployments, pods, and services within a namespace."
+    iconName="boxes"
+  />
+  <MediaCard
+    title="Pod Logs"
+    description="Streaming real-time logs from running containers."
+    iconName="scroll-text"
+  />
+  <MediaCard
+    title="Deployment Scaling"
+    description="Scaling replica counts and watching rollout progress."
+    iconName="scaling"
+  />
+  <MediaCard
+    title="Multi-Cluster Switching"
+    description="Switching between kubeconfig contexts for different clusters."
+    iconName="network"
+  />
+</div>
+
+[View all KubeStudio demos](/media/kubestudio/)
+
+## Pick
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+  <MediaCard
+    title="Running Scans"
+    description="Executing port scans and device discovery tools."
+    iconName="radar"
+  />
+  <MediaCard
+    title="Viewing Results"
+    description="Browsing scan results in the Pick workspace UI."
+    iconName="file-search"
+  />
+  <MediaCard
+    title="Remote Execution"
+    description="Triggering tools remotely via Prospector Studio."
+    iconName="cloud-cog"
+  />
+</div>
+
+[View all Pick demos](/media/pick/)

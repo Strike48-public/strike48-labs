@@ -44,6 +44,16 @@ export default defineConfig({
                 { label: "Connectors", slug: "strikehub/guides/connectors" },
               ],
             },
+            {
+              label: "Help & Debugging",
+              collapsed: true,
+              items: [
+                { label: "Debug Logging", slug: "strikehub/help/debugging" },
+                { label: "Connectivity", slug: "strikehub/help/connectivity" },
+                { label: "Authentication", slug: "strikehub/help/authentication" },
+                { label: "UI & Rendering", slug: "strikehub/help/ui-rendering" },
+              ],
+            },
           ],
         },
         {
@@ -56,6 +66,16 @@ export default defineConfig({
               items: [
                 { label: "Cluster Management", slug: "kubestudio/guides/cluster-management" },
                 { label: "Deployments", slug: "kubestudio/guides/deployments" },
+              ],
+            },
+            {
+              label: "Help & Debugging",
+              collapsed: true,
+              items: [
+                { label: "Debug Logging", slug: "kubestudio/help/debugging" },
+                { label: "Cluster Connectivity", slug: "kubestudio/help/cluster-connectivity" },
+                { label: "Permissions & RBAC", slug: "kubestudio/help/permissions" },
+                { label: "Workload Issues", slug: "kubestudio/help/workload-issues" },
               ],
             },
           ],
@@ -71,6 +91,25 @@ export default defineConfig({
                 { label: "Tools", slug: "pick/guides/marketplace" },
               ],
             },
+            {
+              label: "Help & Debugging",
+              collapsed: true,
+              items: [
+                { label: "Debug Logging", slug: "pick/help/debugging" },
+                { label: "Privileges", slug: "pick/help/privileges" },
+                { label: "Network Tools", slug: "pick/help/network-tools" },
+                { label: "Remote Execution", slug: "pick/help/remote-execution" },
+              ],
+            },
+          ],
+        },
+        {
+          label: "Media",
+          items: [
+            { label: "Overview", slug: "media" },
+            { label: "StrikeHub Demos", slug: "media/strikehub" },
+            { label: "KubeStudio Demos", slug: "media/kubestudio" },
+            { label: "Pick Demos", slug: "media/pick" },
           ],
         },
         {

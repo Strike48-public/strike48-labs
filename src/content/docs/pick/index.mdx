@@ -3,11 +3,9 @@ title: Pick
 description: Headless penetration testing toolkit for the Strike48 platform.
 ---
 
-Pick is a lightweight, headless penetration testing agent built with Dioxus. It runs as a StrikeHub connector or standalone binary, providing network reconnaissance, device discovery, and remote tool execution capabilities.
+import MediaCard from "../../../components/MediaCard.astro";
 
-:::note[Demo coming soon]
-A video walkthrough of Pick — running scans, viewing results, and remote tool execution via Prospector Studio — is in progress. Browse the [Media & Demos](/media/pick/) catalog for the latest status.
-:::
+Pick is a lightweight, headless penetration testing agent built with Dioxus. It runs as a StrikeHub connector or standalone binary, providing network reconnaissance, device discovery, and remote tool execution capabilities.
 
 ## What It Does
 
@@ -55,8 +53,28 @@ When running inside StrikeHub, Pick serves a full workspace UI (dashboard, tools
 | Mobile | Android, iOS |
 | Terminal | TUI interface |
 
+## Demos
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+  <MediaCard
+    title="Running Scans"
+    description="Executing port scans and device discovery tools."
+    iconName="radar"
+  />
+  <MediaCard
+    title="Viewing Results"
+    description="Browsing scan results in the Pick workspace UI."
+    iconName="file-search"
+  />
+  <MediaCard
+    title="Remote Execution"
+    description="Triggering tools remotely via Prospector Studio."
+    iconName="cloud-cog"
+  />
+</div>
+
 ## Next Steps
 
 - [Getting Started](/pick/getting-started/) — Deploy Pick and run your first scan
-- [Guides](/pick/guides/marketplace/) — Tool usage and configuration
-- [Help & Debugging](/pick/help/debugging/) — Troubleshooting guides and debug logging
+- [Tools](/pick/guides/marketplace/) — Tool usage and configuration
+- [Debug Logging](/pick/help/debugging/) — Troubleshooting and debug logging

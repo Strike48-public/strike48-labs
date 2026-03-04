@@ -3,13 +3,11 @@ title: StrikeHub
 description: The unified native desktop shell for Strike48 connector applications.
 ---
 
+import MediaCard from "../../../components/MediaCard.astro";
+
 StrikeHub is a Dioxus 0.6 desktop application that acts as a unified host shell for Strike48 connector apps. It discovers running connector processes, communicates with them over IPC, and renders each as an embeddable panel inside a single native window.
 
 Connector apps are native desktop tools that integrate with the **Prospector Studio** agent platform. StrikeHub manages their lifecycle, authentication, and UI embedding so each connector can focus on its domain.
-
-:::note[Demo coming soon]
-A video walkthrough of StrikeHub — launching connectors, switching between apps, and the authentication flow — is in progress. Browse the [Media & Demos](/media/strikehub/) catalog for the latest status.
-:::
 
 ## What It Does
 
@@ -65,10 +63,30 @@ strikehub/
 │   └── sh-ui/          (Dioxus desktop UI components)
 ```
 
+## Demos
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+  <MediaCard
+    title="Launching Connectors"
+    description="Starting KubeStudio and Pick connectors from the sidebar."
+    iconName="rocket"
+  />
+  <MediaCard
+    title="Switching Apps"
+    description="Navigating between connector apps in the embedded content area."
+    iconName="layout-dashboard"
+  />
+  <MediaCard
+    title="Authentication Flow"
+    description="OIDC sign-in with Keycloak and automatic token injection."
+    iconName="lock"
+  />
+</div>
+
 ## Next Steps
 
 - [Getting Started](/strikehub/getting-started/) — Install and run StrikeHub
-- [Installation Guide](/strikehub/guides/installation/) — Detailed build instructions
+- [Installation](/strikehub/guides/installation/) — Detailed build instructions
 - [Configuration](/strikehub/guides/configuration/) — Environment variables and TOML config
 - [Connectors](/strikehub/guides/connectors/) — How the connector system works
-- [Help & Debugging](/strikehub/help/debugging/) — Troubleshooting guides and debug logging
+- [Debug Logging](/strikehub/help/debugging/) — Troubleshooting and debug logging

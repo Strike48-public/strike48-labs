@@ -1,4 +1,6 @@
 ---
+import logo from "../assets/strike48-logo-light.svg";
+
 interface Props {
   title?: string;
   tagline?: string;
@@ -8,11 +10,10 @@ const { title = "Strike48", tagline = "Desktop shell & connector platform" } = A
 ---
 
 <section class="landing-hero">
-  <img src="/favicon.svg" alt="Strike48" width="72" height="72" style="margin: 0 auto 1.5rem;" />
-  <h1>{title}</h1>
+  <img src={logo.src} alt="Strike48" height="48" style="margin: 0 auto 1.5rem; display: block;" />
   <p class="tagline">{tagline}</p>
   <div class="cta-group">
-    <a href="/docs/strikehub/getting-started/" class="cta-primary">Get Started</a>
+    <a href="/strikehub/getting-started/" class="cta-primary">Get Started</a>
     <a href="/overview/" class="cta-secondary">Read the Docs</a>
   </div>
 </section>

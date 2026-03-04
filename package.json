@@ -16,6 +16,7 @@
     "@fontsource/inter": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "astro": "^5.18.0",
+    "lucide-static": "^0.576.0",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1"
   }

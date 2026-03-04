@@ -6,28 +6,28 @@ import "../styles/landing.css";
 
 const features = [
   {
-    icon: "🔌",
+    iconName: "plug",
     title: "Connector Architecture",
     description:
       "Modular connector system — each tool runs as an isolated process with its own UI, communicating over IPC.",
   },
   {
-    icon: "🔒",
+    iconName: "lock",
     title: "Secure by Default",
     description:
       "Unix domain sockets for process isolation. OIDC authentication with automatic token injection. No ports exposed.",
   },
   {
-    icon: "⚡",
+    iconName: "zap",
     title: "Native Performance",
     description:
       "Built with Rust and Dioxus for sub-2-second startup. WebView rendering with minimal memory overhead.",
   },
   {
-    icon: "🎯",
+    iconName: "app-window",
     title: "Single Window",
     description:
-      "All your Strike48 tools in one native window. Switch between connectors without alt-tabbing.",
+      "All your Strike48 connectors in one native window. Switch between tools without alt-tabbing.",
   },
 ];
 ---
@@ -54,8 +54,7 @@ const features = [
   </head>
   <body>
     <Hero
-      title="Strike48"
-      tagline="Desktop shell & connector platform for developer tools. One native window to manage Kubernetes clusters, project trackers, and more."
+      tagline="Desktop connector apps for the Prospector Studio agent platform. Kubernetes management, penetration testing, and more — all in one native window."
     />
 
     <section class="products-section">
@@ -63,22 +62,21 @@ const features = [
       <div class="products-grid">
         <ProductCard
           title="StrikeHub"
-          description="The unified desktop shell. Discover, launch, and manage all your Strike48 connectors from a single native window with sidebar navigation and health monitoring."
+          description="The unified desktop shell. Discover, launch, and manage Strike48 connector apps from a single native window with sidebar navigation and health monitoring."
           href="/strikehub/"
-          icon="🖥️"
+          iconName="layout-dashboard"
         />
         <ProductCard
           title="KubeStudio"
-          description="Kubernetes cluster browser and management tool. View workloads, inspect pods, manage deployments — all from a native desktop interface."
+          description="Kubernetes cluster management dashboard. Browse namespaces, inspect workloads, view pod logs, and manage deployments."
           href="/kubestudio/"
-          icon="☸️"
+          iconName="server"
         />
         <ProductCard
           title="Pick"
-          description="Connector marketplace and registry. Browse, install, and manage Strike48 connectors from a curated catalog."
+          description="Headless penetration testing toolkit. Network scanning, device discovery, traffic capture, and remote tool execution — deployed as a lightweight agent."
           href="/pick/"
-          icon="🛒"
-          badge="New"
+          iconName="shield-alert"
         />
       </div>
     </section>
@@ -87,7 +85,7 @@ const features = [
 
     <section class="cta-section">
       <h2>Ready to get started?</h2>
-      <p>Set up StrikeHub and start managing your developer tools in one place.</p>
+      <p>Set up StrikeHub and start managing your connector apps in one place.</p>
       <div class="cta-group">
         <a href="/strikehub/getting-started/" class="cta-primary">
           Quick Start Guide

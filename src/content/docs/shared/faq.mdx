@@ -7,7 +7,7 @@ description: Frequently asked questions about the Strike48 platform.
 
 ### What is Strike48?
 
-Strike48 is a native desktop platform that brings developer tools together in a single window. It consists of StrikeHub (the host shell), connectors (individual tools like KubeStudio), and Pick (the connector marketplace).
+Strike48 builds desktop connector apps for the Prospector Studio agent platform. StrikeHub is the desktop host shell, and the first two connector releases are KubeStudio (Kubernetes management) and Pick (penetration testing toolkit).
 
 ### What platforms are supported?
 
@@ -51,10 +51,10 @@ KubeStudio supports read operations (browsing, log viewing) and limited write op
 
 ## Pick
 
-### Where are connector binaries stored?
+### Does Pick require root privileges?
 
-Connector binaries installed through Pick are placed in the Strike48 connectors directory and registered in `~/.config/strikehub/connectors.toml`.
+Some tools (traffic capture, WiFi scanning) require elevated privileges. Port scanning, device info, ARP table reading, and other tools work without root.
 
-### Can I install connectors manually?
+### Can Pick be controlled remotely?
 
-Yes. Add an entry to `~/.config/strikehub/connectors.toml` with the binary path and transport settings. Pick is a convenience layer, not a requirement.
+Yes. When connected to Prospector Studio (standalone or via StrikeHub), all tools are registered and can be invoked remotely by users or AI agents through the Prospector Studio API.

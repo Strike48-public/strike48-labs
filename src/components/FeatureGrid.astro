@@ -1,6 +1,8 @@
 ---
+import LucideIcon from "./LucideIcon.astro";
+
 interface Feature {
-  icon: string;
+  iconName: string;
   title: string;
   description: string;
 }
@@ -17,7 +19,9 @@ const { features } = Astro.props;
   <div class="features-grid">
     {features.map((f) => (
       <div class="feature-item">
-        <div class="feature-icon">{f.icon}</div>
+        <div class="feature-icon">
+          <LucideIcon name={f.iconName} size={28} />
+        </div>
         <h3>{f.title}</h3>
         <p>{f.description}</p>
       </div>

@@ -1,38 +1,55 @@
 ---
 title: Getting Started with Pick
-description: Set up Pick and start browsing the Strike48 connector marketplace.
+description: Deploy Pick and run your first penetration testing scan.
 ---
 
-Pick is the connector marketplace for the Strike48 ecosystem. It integrates with StrikeHub to let you discover, install, and manage connectors.
+Pick is a headless penetration testing agent that runs as a StrikeHub connector or standalone binary.
 
 ## Prerequisites
 
-- **StrikeHub** installed and running
-- **Internet access** to reach the Strike48 marketplace API
+- **Rust 1.91.1+**
+- **macOS or Linux** (Windows for desktop mode)
+- **Elevated privileges** for traffic capture and WiFi scanning
 
-## Accessing Pick
+## Build from Source
 
-Pick is available as a connector inside StrikeHub. It appears in the sidebar alongside your other connectors.
+```bash
+git clone https://github.com/Strike48/dioxus-connector.git
+cd dioxus-connector
+cargo build --release -p pentest-agent
+```
 
-1. Open StrikeHub
-2. Click **Pick** in the sidebar
-3. Browse the connector catalog
+The headless binary is produced at `./target/release/pentest-agent`.
 
-## Installing a Connector
+## Running Standalone
 
-1. Browse or search the marketplace catalog
-2. Click on a connector to view its details
-3. Click **Install** to download and register the connector
-4. The new connector appears in StrikeHub's sidebar
+Run Pick directly, connecting to a Prospector Studio backend:
 
-## Updating Connectors
+```bash
+./target/release/pentest-agent
+```
 
-Pick checks for updates to installed connectors. When an update is available:
+## Running as a StrikeHub Connector
 
-1. A badge appears on the connector in the Pick catalog
-2. Click **Update** to download the new version
-3. Restart the connector to apply the update
+Configure Pick in `~/.config/strikehub/connectors.toml`:
+
+```toml
+[connectors.pick]
+display_name = "Pick"
+binary = "/path/to/pentest-agent"
+icon = "hero-shield-exclamation"
+auto_start = false
+transport = "ipc"
+```
+
+StrikeHub will spawn the binary and communicate over a Unix domain socket. Pick serves its workspace UI via Dioxus LiveView at the socket path.
+
+## Running a Port Scan
+
+Once Pick is running inside StrikeHub, open it from the sidebar. The tools dashboard lists all available tools. Select **port_scan**, configure the target host and port range, and execute.
+
+Tools can also be triggered remotely via the Prospector Studio API by AI agents or other users.
 
 ## Next Steps
 
-- [Marketplace Guide](/pick/guides/marketplace/) — Deep dive into the marketplace features
+- [Tool Guide](/pick/guides/marketplace/) — Detailed usage for each built-in tool

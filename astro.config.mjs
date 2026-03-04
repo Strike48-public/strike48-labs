@@ -8,6 +8,7 @@ export default defineConfig({
       logo: {
         light: "./src/assets/strike48-logo.svg",
         dark: "./src/assets/strike48-logo-light.svg",
+        replacesTitle: true,
       },
       customCss: [
         "@fontsource/inter/400.css",
@@ -67,7 +68,7 @@ export default defineConfig({
             {
               label: "Guides",
               items: [
-                { label: "Marketplace", slug: "pick/guides/marketplace" },
+                { label: "Tools", slug: "pick/guides/marketplace" },
               ],
             },
           ],

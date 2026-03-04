@@ -1,33 +1,57 @@
 ---
 title: Pick
-description: Connector marketplace and registry for the Strike48 platform.
+description: Headless penetration testing toolkit for the Strike48 platform.
 ---
 
-Pick is the connector marketplace for Strike48. It provides a catalog of available connectors, handles installation and updates, and integrates with StrikeHub to manage your connector library.
+Pick is a lightweight, headless penetration testing agent built with Dioxus. It runs as a StrikeHub connector or standalone binary, providing network reconnaissance, device discovery, and remote tool execution capabilities.
 
 ## What It Does
 
-- **Browse connectors** — Discover available Strike48 connectors from a curated catalog
-- **Install and update** — Download connector binaries and keep them up to date
-- **Manage your library** — Enable, disable, and configure installed connectors
-- **StrikeHub integration** — Installed connectors automatically appear in StrikeHub's sidebar
+- **Network scanning** — TCP port scanning with concurrent connections
+- **Device discovery** — ARP table reading, mDNS service discovery, UPnP/SSDP enumeration
+- **Traffic capture** — Network packet capture (requires elevated privileges)
+- **WiFi scanning** — WiFi network enumeration
+- **System recon** — Device and system information gathering
+- **Screen capture** — Screenshot capture as base64 PNG
+- **Command execution** — Remote shell command execution
+- **Bi-directional control** — Tools triggered manually via UI or remotely via Prospector Studio API
 
-## How It Works
+## Built-in Tools
 
-Pick connects to the Strike48 marketplace API to fetch the connector catalog. Each connector listing includes:
+| Tool | Description |
+|------|-------------|
+| `port_scan` | TCP port scanning with concurrent connections |
+| `device_info` | System/device information gathering |
+| `wifi_scan` | WiFi network enumeration |
+| `arp_table` | ARP cache reading |
+| `ssdp_discover` | UPnP device discovery |
+| `network_discover` | mDNS service discovery |
+| `screenshot` | Screen capture (base64 PNG) |
+| `traffic_capture` | Network packet capture |
+| `execute_command` | Shell command execution |
 
-- Name, description, and icon
-- Version history and changelog
-- Binary downloads for supported platforms (macOS, Linux)
-- Required StrikeHub version
+## Architecture
 
-When you install a connector through Pick, it:
+Pick is designed as a droppable payload — a single binary that can be deployed on any system without requiring a GUI, windowing system, or desktop environment.
 
-1. Downloads the binary for your platform
-2. Registers it in `~/.config/strikehub/connectors.toml`
-3. Notifies StrikeHub to refresh its connector list
+It operates in two modes:
+- **Standalone mode** — Connects directly to Prospector Studio over gRPC
+- **StrikeHub IPC mode** — Runs as a managed connector within StrikeHub, communicating over Unix domain sockets
+
+When running inside StrikeHub, Pick serves a full workspace UI (dashboard, tools, files, shell, logs, chat) via Dioxus LiveView.
+
+## Platform Support
+
+| Platform | Runtime |
+|----------|---------|
+| Linux | Desktop, headless |
+| macOS | Desktop, headless |
+| Windows | Desktop |
+| Web | Dioxus LiveView |
+| Mobile | Android, iOS |
+| Terminal | TUI interface |
 
 ## Next Steps
 
-- [Getting Started](/pick/getting-started/) — Set up Pick and browse the marketplace
-- [Marketplace Guide](/pick/guides/marketplace/) — How to use the connector marketplace
+- [Getting Started](/pick/getting-started/) — Deploy Pick and run your first scan
+- [Guides](/pick/guides/marketplace/) — Tool usage and configuration

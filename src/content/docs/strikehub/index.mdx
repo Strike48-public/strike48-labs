@@ -3,7 +3,9 @@ title: StrikeHub
 description: The unified native desktop shell for Strike48 connector applications.
 ---
 
-StrikeHub is a Dioxus 0.6 desktop application that acts as a unified host shell for Strike48 connectors. It discovers running connector processes, communicates with them over IPC, and renders each as an embeddable panel inside a single native window.
+StrikeHub is a Dioxus 0.6 desktop application that acts as a unified host shell for Strike48 connector apps. It discovers running connector processes, communicates with them over IPC, and renders each as an embeddable panel inside a single native window.
+
+Connector apps are native desktop tools that integrate with the **Prospector Studio** agent platform. StrikeHub manages their lifecycle, authentication, and UI embedding so each connector can focus on its domain.
 
 ## What It Does
 
@@ -11,7 +13,7 @@ StrikeHub is a Dioxus 0.6 desktop application that acts as a unified host shell 
 - **Embedded content area** — Renders the active connector's UI via an iframe backed by the `connector://` custom protocol
 - **Dual transport** — Supports IPC (Unix domain sockets) and legacy TCP modes per connector
 - **Authentication** — OIDC flow with Keycloak, automatic token injection into connector HTML
-- **WebSocket bridging** — Single-port WsRelay bridges Dioxus liveview and Matrix GraphQL subscriptions
+- **WebSocket bridging** — Single-port WsRelay bridges Dioxus liveview and Prospector Studio GraphQL subscriptions
 - **Health monitoring** — Periodic health checks with automatic status updates
 - **Configuration** — TOML-based connector config at `~/.config/strikehub/connectors.toml`
 
@@ -25,15 +27,15 @@ StrikeHub is a Dioxus 0.6 desktop application that acts as a unified host shell 
 │  │ Sidebar  │  │  Content Area                    │  │
 │  │          │  │                                  │  │
 │  │ ● Kube   │  │  ┌──────────────────────────┐   │  │
-│  │ ● Jira   │  │  │ Embedded WebView         │   │  │
-│  │ ○ GitLab │  │  │ (liveview of active app)  │   │  │
-│  │ ○ Office │  │  │                          │   │  │
-│  │ ○ Team   │  │  └──────────────────────────┘   │  │
+│  │ ● Pick   │  │  │ Embedded WebView         │   │  │
+│  │          │  │  │ (liveview of active app)  │   │  │
+│  │          │  │  │                          │   │  │
+│  │          │  │  └──────────────────────────┘   │  │
 │  │          │  │                                  │  │
 │  └──────────┘  └──────────────────────────────────┘  │
 │                                                      │
 │  ┌──────────────────────────────────────────────────┐│
-│  │ Status Bar: 3/5 connectors online                ││
+│  │ Status Bar: connectors online                    ││
 │  └──────────────────────────────────────────────────┘│
 └──────────────────────────────────────────────────────┘
 ```
@@ -42,13 +44,12 @@ Each connector runs as a **separate process** with its own Axum HTTP server. Str
 
 ## Connector Apps
 
-| App | Purpose |
-|-----|---------|
-| KubeStudio | Kubernetes cluster browser |
-| JiraStudio | Jira Cloud client |
-| GitLabStudio | GitLab client (projects, MRs, pipelines) |
-| StrikeOffice | Google Workspace manager |
-| StrikeTeam | Isometric AI agent RPG |
+The first two connector releases:
+
+| App | Icon | Description |
+|-----|------|-------------|
+| KubeStudio | `server` | Kubernetes cluster management dashboard |
+| Pick | `shield-alert` | Penetration testing toolkit |
 
 ## Crate Structure
 

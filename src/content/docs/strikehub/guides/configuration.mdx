@@ -57,25 +57,16 @@ socket_path = "/tmp/strikehub-kubestudio.sock"
 [connectors.kubestudio]
 display_name = "KubeStudio"
 binary = "~/code/strike48/studio-kube-desktop/target/release/ks-connector"
-icon = "kubernetes"
+icon = "hero-server-stack"
 auto_start = true
 transport = "ipc"
 
-[connectors.jirastudio]
-display_name = "JiraStudio"
-binary = "~/code/strike48/scratch/jirastudio/target/release/js-connector"
-port = 3031
-icon = "jira"
+[connectors.pick]
+display_name = "Pick"
+binary = "~/code/strike48/dioxus-connector/target/release/pentest-agent"
+icon = "hero-shield-exclamation"
 auto_start = false
-transport = "tcp"
-
-[connectors.gitlabstudio]
-display_name = "GitLabStudio"
-binary = "~/code/strike48/scratch/gitlabstudio/target/release/gl-connector"
-port = 3032
-icon = "gitlab"
-auto_start = false
-transport = "tcp"
+transport = "ipc"
 
 [connectors.custom-external]
 display_name = "External Service"

@@ -121,6 +121,7 @@ export default defineConfig({
                     { label: "Testing Connectors", slug: "developers/sdk-rs/guides/testing-connectors" },
                     { label: "Error Handling", slug: "developers/sdk-rs/guides/error-handling" },
                     { label: "Async Patterns with Tokio", slug: "developers/sdk-rs/guides/async-patterns" },
+                    { label: "Deploying Connectors", slug: "developers/sdk-rs/guides/deployment" },
                   ],
                 },
               ],

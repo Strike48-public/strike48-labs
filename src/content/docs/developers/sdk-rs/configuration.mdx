@@ -73,7 +73,7 @@ let config = ConnectorConfig::from_env()
 
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
-| `MATRIX_HOST` or `MATRIX_URL` | Matrix server URL | `localhost:50061` | Yes |
+| `MATRIX_HOST` or `MATRIX_URL` | Prospector Studio server URL | `localhost:50061` | Yes |
 | `TENANT_ID` | Tenant identifier | - | Yes |
 | `CONNECTOR_TYPE` | Connector type identifier | - | Yes |
 | `INSTANCE_ID` | Unique instance identifier | Auto-generated | No |
@@ -92,7 +92,7 @@ let config = ConnectorConfig::from_env()
 The `INSTANCE_ID` uniquely identifies your connector instance. This is **critical** for:
 
 - **Credential persistence** - Saved credentials are keyed by instance ID
-- **Session management** - Matrix server tracks sessions by instance
+- **Session management** - Prospector Studio tracks sessions by instance
 - **Reconnection** - Same instance ID allows seamless reconnection
 
 ### Auto-Generated Instance ID
@@ -134,7 +134,7 @@ The SDK uses asymmetric authentication (`private_key_jwt`) with RSA key pairs.
 ### First Connection Flow
 
 1. Connector starts without credentials
-2. Admin approves connector in Matrix Studio
+2. Admin approves connector in Prospector Studio
 3. SDK generates RSA key pair automatically
 4. Private key saved for future use
 5. Connector receives session token
@@ -205,7 +205,7 @@ spec:
 
 ## Instance Metadata & Routing
 
-Instance metadata enables multi-instance routing and better UI display in Matrix Studio.
+Instance metadata enables multi-instance routing and better UI display in Prospector Studio.
 
 ### Display Name
 
@@ -262,7 +262,7 @@ export CONNECTOR_COST_CENTER="engineering"
 
 ## Agent Routing Behavior
 
-Matrix Studio uses instance metadata for intelligent routing:
+Prospector Studio uses instance metadata for intelligent routing:
 
 | Command | Routing Behavior |
 |---------|------------------|
@@ -440,7 +440,7 @@ export RUST_LOG=info,strike48_connector_sdk=debug
 
 | Variable | Type | Default | Description |
 |----------|------|---------|-------------|
-| `MATRIX_HOST` | String | `localhost:50061` | Matrix server host:port |
+| `MATRIX_HOST` | String | `localhost:50061` | Prospector Studio host:port |
 | `MATRIX_URL` | String | - | Alias for MATRIX_HOST |
 | `TENANT_ID` | String | **required** | Tenant identifier |
 | `CONNECTOR_TYPE` | String | **required** | Connector type |

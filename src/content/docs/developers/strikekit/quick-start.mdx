@@ -20,7 +20,7 @@ just dev
 This launches the connector with:
 - Hot-reloading enabled (edit Rust code and see changes instantly)
 - Headless liveview server
-- Matrix integration for collaborative access
+- Prospector Studio integration for collaborative access
 - Default port: 3030
 
 You should see output similar to:
@@ -28,22 +28,22 @@ You should see output similar to:
 ```
 [INFO] Starting StrikeKit connector...
 [INFO] Liveview server listening on http://0.0.0.0:3030
-[INFO] Connected to Matrix gateway
+[INFO] Connected to Prospector Studio gateway
 ```
 
 ### Custom Configuration
 
-You can customize the port and Matrix host:
+You can customize the port and Prospector Studio host:
 
 ```bash
 # Custom port
 just dev PORT=3040
 
-# Custom Matrix host
-just dev HOST=my-matrix-host.example.com
+# Custom Prospector Studio host
+just dev HOST=my-studio-host.example.com
 
 # Both custom
-just dev PORT=3040 HOST=my-matrix-host.example.com
+just dev PORT=3040 HOST=my-studio-host.example.com
 ```
 
 ### Manual Start
@@ -67,7 +67,7 @@ cargo run --bin sk-connector --features connector --no-default-features
 
 ### Step 1: Start the Wizard
 
-1. Access StrikeKit through your Matrix interface or local browser
+1. Access StrikeKit through Prospector Studio or your local browser
 2. Navigate to the dashboard
 3. Click **Create New Engagement**
 

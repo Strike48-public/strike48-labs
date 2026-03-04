@@ -616,8 +616,8 @@ async fn health_check() -> &'static str {
 }
 
 async fn readiness_check() -> Result<&'static str, StatusCode> {
-    // Check Matrix connection
-    if is_connected_to_matrix().await {
+    // Check Prospector Studio connection
+    if is_connected_to_studio().await {
         Ok("Ready")
     } else {
         Err(StatusCode::SERVICE_UNAVAILABLE)

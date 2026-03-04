@@ -3,11 +3,11 @@ title: Welcome to Strike48
 description: Documentation for the Strike48 desktop platform — StrikeHub, KubeStudio, and Pick.
 ---
 
-Strike48 builds desktop connector apps for the **Prospector Studio** agent platform. Prospector Studio is a distributed AI orchestration platform for building workflows, managing agents, and connecting external systems. The Strike48 connectors extend that platform to the desktop — bringing native tools for Kubernetes management, penetration testing, and more into a unified shell.
+Strike48 builds native desktop tools and connectors for security and infrastructure operations. **Prospector Studio** is Strike48's distributed AI orchestration platform for building workflows, managing agents, and connecting external systems. Strike48 connectors extend the platform to the desktop — bringing native tools for Kubernetes management, penetration testing, and more into a unified shell.
 
 ## How It Fits Together
 
-**Prospector Studio** (Matrix) is the backend platform — workflow engine, agent runtime, GraphQL API, and web-based studio UI. **Strike48 connectors** are native desktop apps that integrate with Prospector Studio over gRPC, providing specialized tools that run locally on your machine while staying connected to the platform.
+**Prospector Studio** is the backend platform — workflow engine, agent runtime, GraphQL API, and web-based studio UI. **Strike48 connectors** are native desktop apps that integrate with Prospector Studio over gRPC, providing specialized tools that run locally on your machine while staying connected to the platform.
 
 **StrikeHub** is the desktop shell that hosts all connectors in a single window. The first two connector releases are **KubeStudio** and **Pick**.
 
@@ -21,7 +21,7 @@ The unified desktop shell. StrikeHub discovers, launches, and manages connector 
 
 ### KubeStudio
 
-Kubernetes cluster management dashboard. Browse namespaces, inspect workloads, view pod logs, and manage deployments from a native desktop interface. Runs as a StrikeHub connector or standalone.
+Kubernetes cluster management dashboard. Browse namespaces, inspect workloads, view pod logs, and manage deployments from a native desktop interface. Best experienced hosted within Prospector Studio or the StrikeHub desktop app.
 
 [Get started with KubeStudio →](/kubestudio/)
 
@@ -43,7 +43,7 @@ Each connector runs in its own process for isolation — a crash in one tool doe
 
 :::tip[Want to understand the full architecture?]
 See the [Platform Architecture](/architecture/) page for comprehensive details on:
-- Whether tools can run standalone vs. requiring Matrix connectivity
+- Whether tools can run standalone vs. connected to Prospector Studio
 - How to access Prospector Studio
 - Communication patterns and deployment models
 - Security considerations and configuration options

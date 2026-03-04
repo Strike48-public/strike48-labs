@@ -20,20 +20,20 @@ StrikeKit is configured primarily through environment variables. This guide cove
 SK_PORT=8080 cargo run --bin sk-connector --features connector --no-default-features
 ```
 
-### Matrix Integration
+### Prospector Studio Integration
 
 #### `MATRIX_HOST`
-- **Description**: Matrix gateway endpoint hostname
+- **Description**: Prospector Studio gateway endpoint hostname
 - **Required**: Yes (for connector mode)
 - **Example**: `MATRIX_HOST=connectors-studio.strike48.test`
 
 #### `MATRIX_API_URL`
-- **Description**: Matrix API base URL
+- **Description**: Prospector Studio API base URL
 - **Required**: Yes (for connector mode)
 - **Example**: `MATRIX_API_URL=https://studio.strike48.test`
 
 #### `MATRIX_TENANT_ID`
-- **Description**: Matrix tenant identifier
+- **Description**: Prospector Studio tenant identifier
 - **Required**: Yes (for connector mode)
 - **Example**: `MATRIX_TENANT_ID=non-prod`
 
@@ -140,16 +140,16 @@ The `justfile` provides convenient command aliases that use sensible defaults. Y
 just dev PORT=8080
 ```
 
-### Custom Matrix Host
+### Custom Prospector Studio Host
 
 ```bash
-just dev HOST=my-matrix-server.example.com
+just dev HOST=my-studio-server.example.com
 ```
 
 ### Combined Options
 
 ```bash
-just dev PORT=8080 HOST=my-matrix-server.example.com
+just dev PORT=8080 HOST=my-studio-server.example.com
 ```
 
 ## Database Configuration
@@ -250,7 +250,7 @@ export STRIKE48_ACCEPT_INVALID_CERTS=true
 
 ### Connection Issues
 
-If the connector can't reach Matrix:
+If the connector can't reach Prospector Studio:
 
 1. Verify network connectivity:
    ```bash

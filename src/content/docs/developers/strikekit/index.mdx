@@ -9,7 +9,7 @@ StrikeKit is a comprehensive red team operations workstation built with Rust and
 
 ## What is StrikeKit?
 
-StrikeKit is a full-featured platform that combines engagement management, command and control capabilities, and collaborative documentation in a single application. It runs in **connector mode** as a headless liveview server with hot-reloading support, enabling team collaboration through Matrix integration.
+StrikeKit is a full-featured platform that combines engagement management, command and control capabilities, and collaborative documentation in a single application. It runs in **connector mode** as a headless liveview server with hot-reloading support, enabling team collaboration through Prospector Studio integration.
 
 ## Key Features
 
@@ -81,9 +81,9 @@ Built-in attack paths for:
 - Web application testing
 - Active Directory exploitation
 
-### Matrix Integration
+### Prospector Studio Integration
 Collaborative red teaming:
-- Run UI through Matrix connector
+- Run UI through Prospector Studio connector
 - Team coordination
 - Real-time collaboration
 - Distributed operations
@@ -98,7 +98,7 @@ crates/
 ├── sk-db/        # SQLite database layer
 ├── sk-c2/        # C2 listener and protocol
 ├── sk-agent/     # Cross-platform agent/implant
-├── sk-matrix/    # Matrix connector integration
+├── sk-matrix/    # Prospector Studio connector integration
 ├── sk-executor/  # Task execution engine
 ├── sk-workflow/  # Workflow orchestration
 └── sk-ui/        # Dioxus liveview UI (connector mode)
@@ -109,7 +109,7 @@ crates/
 - **Language**: Rust 1.85+ (edition 2024)
 - **UI Framework**: Dioxus 0.7 (liveview mode)
 - **Database**: SQLite
-- **Integration**: Matrix connector protocol
+- **Integration**: Prospector Studio connector protocol
 - **Build Tool**: Just command runner
 
 ## Use Cases

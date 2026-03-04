@@ -201,8 +201,8 @@ pub enum ConnectorError {
     #[error("Authentication failed: {0}")]
     Auth(String),
 
-    #[error("Matrix communication error: {0}")]
-    Matrix(#[from] strike48_connector_sdk::Error),
+    #[error("Prospector Studio communication error: {0}")]
+    Studio(#[from] strike48_connector_sdk::Error),
 }
 ```
 

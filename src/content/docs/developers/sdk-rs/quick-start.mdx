@@ -140,7 +140,7 @@ let config = ConnectorConfig {
 ```
 
 Key configuration fields:
-- `matrix_host` - Matrix server URL
+- `matrix_host` - Prospector Studio server URL
 - `tenant_id` - Your tenant identifier
 - `connector_type` - Must match `connector_type()` method
 - `instance_id` - Unique ID for this connector instance
@@ -155,7 +155,7 @@ runner.run().await?;
 ```
 
 The `ConnectorRunner` manages the lifecycle:
-1. Connects to Matrix server
+1. Connects to Prospector Studio
 2. Handles authentication
 3. Routes requests to your `execute()` method
 4. Manages reconnection on failures
@@ -177,7 +177,7 @@ cargo run
 You should see output like:
 
 ```
-INFO  Connecting to Matrix server at localhost:50061
+INFO  Connecting to Prospector Studio at localhost:50061
 INFO  Connector registered: echo (instance: echo-1709478901234)
 INFO  Waiting for approval...
 ```
@@ -186,11 +186,11 @@ INFO  Waiting for approval...
 
 ### Step 1: Approve the Connector
 
-Open Matrix Studio and approve the pending connector connection.
+Open Prospector Studio and approve the pending connector connection.
 
 ### Step 2: Send a Test Request
 
-From Matrix Studio or using the Matrix API, send a test request:
+From Prospector Studio or using the API, send a test request:
 
 ```json
 {
@@ -354,10 +354,10 @@ impl BaseConnector for MyConnector {
 ### Connection Refused
 
 ```
-Error: Failed to connect to Matrix server
+Error: Failed to connect to Prospector Studio
 ```
 
-**Solution:** Ensure the Matrix server is running at the configured host/port.
+**Solution:** Ensure Prospector Studio is running at the configured host/port.
 
 ### Authentication Failed
 
@@ -366,7 +366,7 @@ Error: Authentication failed
 ```
 
 **Solution:**
-1. Check that you've approved the connector in Matrix Studio
+1. Check that you've approved the connector in Prospector Studio
 2. Verify your `tenant_id` is correct
 3. Ensure the connector isn't already registered with a different instance_id
 

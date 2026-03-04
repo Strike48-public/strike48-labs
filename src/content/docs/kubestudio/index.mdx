@@ -7,7 +7,7 @@ KubeStudio is a native desktop Kubernetes client built with Dioxus and Axum, pro
 
 ## What is KubeStudio?
 
-KubeStudio is a Kubernetes cluster management dashboard that runs as a StrikeHub connector or as a standalone application. It connects to your clusters via kubeconfig, providing a rich visual interface for navigating namespaces, inspecting pods, managing deployments, and monitoring workloads — all from a single native desktop window.
+KubeStudio is a Kubernetes cluster management dashboard that runs as a connector within StrikeHub or Prospector Studio. It connects to your clusters via kubeconfig, providing a rich visual interface for navigating namespaces, inspecting pods, managing deployments, and monitoring workloads — all from a single native desktop window.
 
 ## Key Features
 
@@ -37,10 +37,10 @@ Work across multiple environments:
 - Manage development, staging, and production clusters
 - Per-cluster configuration
 
-### Dual Mode
-Flexible deployment options:
-- Runs standalone with its own TCP-bound HTTP server
-- Runs embedded in StrikeHub as a managed connector over Unix domain sockets
+### Flexible Deployment
+Run where it fits your workflow:
+- Embedded in StrikeHub as a managed connector over Unix domain sockets
+- Hosted in Prospector Studio for team collaboration and remote access
 
 ## Architecture
 
@@ -57,7 +57,7 @@ ks-connector binary
 └── Kubernetes API client (via kube-rs)
 ```
 
-When running inside StrikeHub, KubeStudio communicates over a Unix domain socket. When running standalone, it binds a TCP port.
+When running inside StrikeHub, KubeStudio communicates over a Unix domain socket for secure, isolated IPC.
 
 ## Technology Stack
 

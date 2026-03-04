@@ -78,9 +78,9 @@ pick_connector: remote invocation received tool="port_scan"
 
 Pick runs in two modes, and log output differs:
 
-### Headless mode (standalone)
+### Headless mode (Prospector Studio)
 
-Logs go directly to stderr:
+When running as a hosted connector, logs go directly to stderr:
 
 ```bash
 RUST_LOG=debug ./pick-connector 2>&1 | tee pick-debug.log
@@ -93,8 +93,6 @@ Logs go to StrikeHub's combined output. To isolate Pick's logs:
 ```bash
 RUST_LOG=pick_connector=debug cargo run --features desktop 2>&1 | grep pick_connector
 ```
-
-Or run Pick standalone to debug in isolation, then switch back to IPC mode once resolved.
 
 ## Collecting logs for bug reports
 

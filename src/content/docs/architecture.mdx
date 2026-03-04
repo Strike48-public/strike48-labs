@@ -3,17 +3,16 @@ title: Platform Architecture
 description: Understanding the Strike48 ecosystem, Prospector Studio integration, and how components work together.
 ---
 
-This guide explains how Strike48 products fit together, the role of Prospector Studio, and whether tools can run standalone or require backend connectivity.
+This guide explains how Strike48 products fit together, the role of Prospector Studio, and how connectors are deployed.
 
 ## Overview
 
-Strike48 is a collection of security and infrastructure tools built on a **connector architecture**. Tools can run:
+Strike48 is a collection of security and infrastructure tools built on a **connector architecture**. Connectors are designed to run:
 
-1. **Standalone** - As independent desktop applications
-2. **Within StrikeHub** - As embedded connectors in a unified shell
-3. **Connected to Prospector Studio** - Integrated for remote execution and orchestration
+1. **Within StrikeHub** — As embedded connectors in the unified desktop shell
+2. **Connected to Prospector Studio** — Hosted in the platform for remote execution, orchestration, and team collaboration
 
-The architecture is designed for flexibility — use what you need, when you need it.
+Both modes give you the full Strike48 experience with authentication, tool registration, and centralized management.
 
 ## Components
 
@@ -31,9 +30,7 @@ The architecture is designed for flexibility — use what you need, when you nee
 
 Prospector Studio is typically deployed as a private platform within your organization:
 
-- **Self-hosted** - Deploy on your own infrastructure (Kubernetes, VMs)
 - **Cloud-hosted** - Managed deployment by Strike48 team
-- **Development** - Local development instance for testing
 
 Access is authenticated via OIDC (OpenID Connect) using Keycloak or compatible identity providers.
 
@@ -41,14 +38,13 @@ Access is authenticated via OIDC (OpenID Connect) using Keycloak or compatible i
 
 **StrikeHub** is the unified desktop shell that hosts multiple connectors in a single window.
 
-**Standalone Mode:**
-- ✅ Launches connectors locally
+**Desktop Mode:**
+- ✅ Launches and manages connectors locally
 - ✅ Provides sidebar navigation and health monitoring
 - ✅ Handles OIDC authentication flow
-- ❌ Cannot trigger remote execution on other machines
 
-**Connected Mode (with Prospector Studio):**
-- ✅ All standalone features
+**Connected to Prospector Studio:**
+- ✅ All desktop features
 - ✅ Discover connectors across your infrastructure
 - ✅ Route jobs to remote connectors
 - ✅ Centralized logging and audit trail
@@ -57,103 +53,78 @@ Access is authenticated via OIDC (OpenID Connect) using Keycloak or compatible i
 
 **KubeStudio** is a Kubernetes cluster management dashboard.
 
-**Standalone Mode:**
+**Via StrikeHub (Desktop):**
 - ✅ Full Kubernetes management capabilities
 - ✅ Uses local kubeconfig for cluster access
 - ✅ Browse namespaces, pods, services
 - ✅ View logs and resource details
 - ✅ Scale deployments
-- ❌ No multi-user collaboration
-- ❌ No centralized audit logging
 
-**Connected Mode (with Prospector Studio):**
-- ✅ All standalone features
+**Via Prospector Studio (Platform):**
+- ✅ All desktop features
 - ✅ Share cluster access with team members
 - ✅ Centralized audit logging
 - ✅ Workflow integration (automated operations)
+- ✅ Multi-user collaboration
 
-**Key Point:** KubeStudio works perfectly standalone. Prospector Studio integration adds collaboration and automation features but is not required.
+**Key Point:** Run KubeStudio through StrikeHub for local desktop use, or connect through Prospector Studio for team collaboration and automation.
 
 ### Pick
 
 **Pick** is a headless penetration testing toolkit with network scanning and tool execution capabilities.
 
-**Standalone Mode:**
-- ✅ Run tools locally via command line or UI
+**Via StrikeHub (Desktop):**
+- ✅ Run tools locally via the workspace UI
 - ✅ Execute scans on local network
 - ✅ Store results locally
-- ❌ Cannot trigger remotely
-- ❌ No centralized result aggregation
 
-**Connected Mode (with Prospector Studio):**
-- ✅ All standalone features
+**Via Prospector Studio (Platform):**
+- ✅ All desktop features
 - ✅ Deploy as remote agent on target networks
 - ✅ Trigger tools remotely via API or workflows
 - ✅ Aggregate results across multiple agents
 - ✅ Orchestrate distributed scanning campaigns
 
-**Key Point:** Pick is designed for both local and remote execution. For distributed pentesting across multiple networks, connecting to Prospector Studio is highly recommended.
+**Key Point:** Run Pick through StrikeHub for local desktop use, or host it in Prospector Studio for distributed pentesting and remote execution across multiple networks.
 
 ### SDK for Rust
 
 **SDK for Rust** is the developer toolkit for building custom Strike48 connectors.
 
-**Standalone Usage:**
+**Local Development:**
 - ✅ Build custom security tools
-- ✅ Create standalone CLI tools
 - ✅ Implement tool executors
-- ❌ No connector registration
-- ❌ No remote job execution
+- ✅ Test connectors locally
 
-**With Prospector Studio Integration:**
-- ✅ All standalone features
+**Deployed via StrikeHub or Prospector Studio:**
 - ✅ Register tools with connector registry
 - ✅ Receive remote job execution requests
 - ✅ Participate in workflows
 - ✅ Integrate with orchestration platform
 
-**Key Point:** Use the SDK to build tools that work locally, then add Prospector Studio integration when you need remote execution and orchestration.
+**Key Point:** Use the SDK to build custom connectors, then deploy them through StrikeHub or Prospector Studio for full platform integration.
 
 ### StrikeKit
 
 **StrikeKit** is a comprehensive red team operations workstation.
 
-**Standalone Mode:**
+**Via StrikeHub (Desktop):**
 - ✅ Full engagement management
 - ✅ C2 operations (listeners, agents, commands)
 - ✅ Activity tracking and auto-extraction
 - ✅ Finding documentation
 - ✅ Report generation
 - ✅ Local database storage
-- ❌ No team collaboration
-- ❌ No centralized intelligence sharing
 
-**Connected Mode (with Prospector Studio):**
-- ✅ All standalone features
+**Via Prospector Studio (Platform):**
+- ✅ All desktop features
 - ✅ Multi-user collaboration on engagements
 - ✅ Shared intelligence database
 - ✅ Workflow integration for automated tasks
 - ✅ Centralized reporting and metrics
 
-**Key Point:** StrikeKit is a fully-featured standalone tool. Prospector Studio integration enables team collaboration and data sharing across operators.
+**Key Point:** Run StrikeKit through StrikeHub for local operations, or connect through Prospector Studio for team collaboration and shared intelligence.
 
-### Dioxus Connector
-
-**Dioxus Connector** is a reference implementation showing how to build cross-platform connectors.
-
-**Standalone Deployments:**
-- ✅ Desktop (Linux, macOS, Windows)
-- ✅ Web (via LiveView)
-- ✅ Mobile (Android, iOS)
-- ✅ Terminal (TUI)
-
-**With Prospector Studio Integration:**
-- ✅ All platform deployments
-- ✅ Register with connector registry
-- ✅ Execute tools remotely
-- ✅ Participate in workflows
-
-**Key Point:** Demonstrates the power of Dioxus for write-once, deploy-anywhere connector development.
 
 ## Architecture Patterns
 
@@ -176,7 +147,7 @@ All Strike48 connectors follow this lifecycle:
                      │
                      ▼
           ┌──────────────────────┐
-          │ Start HTTP Server    │───── Standalone tools stop here
+          │ Start HTTP Server    │
           │ - Serve UI           │
           │ - Handle API calls   │
           └──────────┬───────────┘
@@ -197,24 +168,7 @@ All Strike48 connectors follow this lifecycle:
 
 ### Communication Patterns
 
-**Local Mode (Standalone):**
-```
-┌─────────────┐
-│   User      │
-└──────┬──────┘
-       │ HTTP/UI
-       ▼
-┌─────────────┐
-│  Connector  │
-└──────┬──────┘
-       │ Direct execution
-       ▼
-┌─────────────┐
-│  Target     │
-└─────────────┘
-```
-
-**StrikeHub Integration:**
+**StrikeHub (Desktop):**
 ```
 ┌─────────────┐
 │   User      │
@@ -282,25 +236,9 @@ All Strike48 connectors follow this lifecycle:
 
 ## Configuration
 
-### Standalone Tools
-
-Standalone tools typically need minimal configuration:
-
-```bash
-# KubeStudio - just needs kubeconfig
-export KUBECONFIG=~/.kube/config
-./kubestudio
-
-# Pick - run with default settings
-./pick scan --target 192.168.1.0/24
-
-# StrikeKit - uses local database
-./strikekit
-```
-
 ### Prospector Studio-Connected Tools
 
-Tools connecting to Prospector Studio require additional configuration:
+Connectors hosted in Prospector Studio require the following configuration:
 
 ```bash
 # Environment variables for Prospector Studio integration
@@ -316,31 +254,28 @@ export INSTANCE_ID=pick-agent-1
 See individual product configuration guides for complete details:
 - [SDK-rs Configuration](/developers/sdk-rs/configuration/)
 - [StrikeKit Configuration](/developers/strikekit/configuration/)
-- [Dioxus Connector Configuration](/developers/dioxus-connector/getting-started/configuration/)
+- [Pick Configuration](/pick/getting-started/configuration/)
 
 ## Decision Guide
 
-Use this table to decide if you need Prospector Studio integration:
+Use this table to decide between the StrikeHub desktop app and Prospector Studio:
 
-| Use Case | Standalone | With Prospector Studio |
+| Use Case | StrikeHub (Desktop) | Prospector Studio (Platform) |
 |----------|-----------|-------------|
-| Single user, local tools | ✅ Sufficient | ⚠️ Overkill |
+| Single user, local tools | ✅ Recommended | ✅ Also supported |
 | Team collaboration | ❌ Limited | ✅ Recommended |
-| Remote tool execution | ❌ Not possible | ✅ Required |
-| Distributed operations | ❌ Not possible | ✅ Required |
-| Workflow automation | ❌ Not possible | ✅ Required |
+| Remote tool execution | ❌ Not available | ✅ Required |
+| Distributed operations | ❌ Not available | ✅ Required |
+| Workflow automation | ❌ Not available | ✅ Required |
 | Centralized logging | ❌ Not available | ✅ Recommended |
-| Quick testing/prototyping | ✅ Fast setup | ⚠️ Extra complexity |
 
 ## Getting Started
 
 ### For Individual Users
 
-If you're working solo and don't need remote execution:
-
-1. Download the tool (KubeStudio, Pick, StrikeKit)
-2. Run it locally - no additional setup required
-3. Use StrikeHub if you want a unified shell (optional)
+1. [Download StrikeHub](/strikehub/getting-started/) and run it on your machine
+2. Launch connectors (KubeStudio, Pick, StrikeKit) from the StrikeHub sidebar
+3. All your tools in one window with shared authentication and health monitoring
 
 ### For Teams
 
@@ -354,25 +289,18 @@ If you're working with a team or need distributed operations:
 
 ### For Developers
 
-If you're building custom tools:
+If you're building custom connectors:
 
 1. Install SDK for Rust
-2. Build and test tools locally
-3. Add Prospector Studio integration when ready for remote execution
-4. Deploy to your infrastructure
+2. Build and test connectors locally during development
+3. Deploy through StrikeHub or Prospector Studio for production use
+4. Register tools with the connector registry
 
 See the [SDK Quick Start](/developers/sdk-rs/quick-start/) for detailed developer onboarding.
 
 ## Security Considerations
 
-### Standalone Mode
-
-- Tools run with your local user permissions
-- No network exposure (tools bind to localhost)
-- Authentication handled by local OS
-- Data stored locally
-
-### StrikeHub Integration
+### StrikeHub (Desktop)
 
 - IPC via Unix domain sockets (no network exposure)
 - Single authentication flow via OIDC
@@ -391,11 +319,11 @@ See the [SDK Quick Start](/developers/sdk-rs/quick-start/) for detailed develope
 
 ### Do I need Prospector Studio to use Strike48 tools?
 
-**No.** Most Strike48 tools work perfectly standalone. Prospector Studio adds team collaboration, remote execution, and workflow automation, but is not required for basic usage.
+**Not necessarily.** You can run all Strike48 connectors through the StrikeHub desktop app for local use. Prospector Studio adds team collaboration, remote execution, and workflow automation for teams and distributed operations.
 
-### Can I try tools without deploying Prospector Studio?
+### How do I get started?
 
-**Yes.** Download any tool and run it locally. No backend required.
+[Download StrikeHub](/strikehub/getting-started/) and launch connectors from the desktop app. For team features, deploy Prospector Studio.
 
 ### How do I get access to Prospector Studio?
 
@@ -404,17 +332,13 @@ Contact the Strike48 team for:
 - Self-hosting deployment guide
 - Development instance setup
 
-### Can I run some tools standalone and connect others to Prospector Studio?
+### Can I run some connectors in StrikeHub and others in Prospector Studio?
 
-**Yes.** Tools are independent. Run what you need locally and connect specific agents/connectors to Prospector Studio as required.
-
-### Do I need StrikeHub to use KubeStudio or Pick?
-
-**No.** KubeStudio and Pick are standalone applications. StrikeHub provides a unified shell if you want all tools in one window, but it's optional.
+**Yes.** Connectors are independent processes. You can run some locally through StrikeHub and connect others to Prospector Studio for remote operations.
 
 ## Next Steps
 
-- **Individual Users**: [Download StrikeHub](/strikehub/getting-started/) and start using tools locally
+- **Individual Users**: [Download StrikeHub](/strikehub/getting-started/) and start using connectors from the desktop app
 - **Teams**: Contact Strike48 for Prospector Studio deployment
 - **Developers**: [Start building with the SDK](/developers/sdk-rs/quick-start/)
 

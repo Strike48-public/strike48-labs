@@ -1,15 +1,16 @@
 ---
 title: Getting Started with KubeStudio
-description: Build and run KubeStudio as a standalone app or StrikeHub connector.
+description: Build and run KubeStudio as a StrikeHub connector.
 ---
 
-KubeStudio can run as a standalone desktop app or as a connector inside StrikeHub.
+KubeStudio runs as a connector inside StrikeHub or hosted within Prospector Studio.
 
 ## Prerequisites
 
 - **Rust 1.91.1+**
 - **A Kubernetes cluster** (or kubeconfig pointing to one)
 - **macOS or Linux**
+- **StrikeHub** or **Prospector Studio**
 
 ## Build from Source
 
@@ -19,19 +20,9 @@ cd studio-kube-desktop
 cargo build --release
 ```
 
-## Running Standalone
-
-Run KubeStudio as a standalone liveview server:
-
-```bash
-cargo run
-```
-
-This starts the Axum server on `127.0.0.1:3030`. Open a browser to `http://localhost:3030/liveview` or use the desktop mode.
-
 ## Running as a StrikeHub Connector
 
-To run inside StrikeHub, configure it in `~/.config/strikehub/connectors.toml`:
+Configure KubeStudio in `~/.config/strikehub/connectors.toml`:
 
 ```toml
 [connectors.kubestudio]

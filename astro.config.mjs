@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
 export default defineConfig({
+  site: "https://docs.strike48.com",
   integrations: [
     starlight({
       title: "Strike48 Labs",

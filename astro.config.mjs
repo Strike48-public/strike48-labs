@@ -120,6 +120,7 @@ export default defineConfig({
                     { label: "Building Your First Connector", slug: "developers/sdk-rs/guides/building-your-first-connector" },
                     { label: "Testing Connectors", slug: "developers/sdk-rs/guides/testing-connectors" },
                     { label: "Error Handling", slug: "developers/sdk-rs/guides/error-handling" },
+                    { label: "Async Patterns with Tokio", slug: "developers/sdk-rs/guides/async-patterns" },
                   ],
                 },
               ],

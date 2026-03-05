@@ -12,9 +12,9 @@
   /* ── daisyUI → Starlight variable bridge ── */
 
   /* Accent colors derived from daisyUI primary */
-  --sl-color-accent-low: color-mix(in oklch, var(--color-primary) 50%, black 50%);
+  --sl-color-accent-low: color-mix(in oklch, var(--color-primary) 40%, var(--color-base-100) 60%);
   --sl-color-accent: var(--color-primary);
-  --sl-color-accent-high: color-mix(in oklch, var(--color-primary) 70%, white 30%);
+  --sl-color-accent-high: color-mix(in oklch, var(--color-primary) 60%, var(--color-base-content) 40%);
 
   /* Backgrounds from daisyUI base surfaces */
   --sl-color-bg: var(--color-base-100);
@@ -32,6 +32,16 @@
   --sl-color-gray-4: color-mix(in oklch, var(--color-base-content) 35%, var(--color-base-100) 65%);
   --sl-color-gray-5: color-mix(in oklch, var(--color-base-content) 20%, var(--color-base-100) 80%);
   --sl-color-gray-6: color-mix(in oklch, var(--color-base-content) 8%, var(--color-base-100) 92%);
+}
+
+/* Bridge color-scheme to our data-color-scheme attribute so the browser
+   resolves system colors (e.g. CanvasText in <dialog>) correctly for
+   arbitrary daisyUI theme names, not just data-theme="light". */
+html[data-color-scheme='light'] {
+  color-scheme: light;
+}
+html[data-color-scheme='dark'] {
+  color-scheme: dark;
 }
 
 /* Smooth font rendering */
@@ -294,7 +304,7 @@ nav.sidebar ul ul summary .large {
 }
 
 .mermaid-diagram:hover .node:hover {
-  filter: blur(0) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+  filter: blur(0) drop-shadow(0 4px 12px color-mix(in srgb, var(--color-base-content) 15%, transparent));
   transform: translateY(-2px);
   transition: filter 0.2s ease, transform 0.2s ease;
 }
@@ -306,10 +316,6 @@ nav.sidebar ul ul summary .large {
 
 .mermaid-diagram .edge:hover {
   stroke-width: 3.5 !important;
-}
-
-:root[data-theme="dark"] .mermaid-diagram:hover .node:hover {
-  filter: blur(0) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35));
 }
 
 /* ── Accessibility ── */

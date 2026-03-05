@@ -27,9 +27,9 @@ const { href, label = "Install" } = Astro.props;
     background: linear-gradient(
       105deg,
       transparent 30%,
-      rgba(255, 255, 255, 0.12) 45%,
-      rgba(255, 255, 255, 0.18) 50%,
-      rgba(255, 255, 255, 0.12) 55%,
+      color-mix(in srgb, var(--color-primary-content) 12%, transparent) 45%,
+      color-mix(in srgb, var(--color-primary-content) 18%, transparent) 50%,
+      color-mix(in srgb, var(--color-primary-content) 12%, transparent) 55%,
       transparent 70%
     );
     transform: translateX(-100%);

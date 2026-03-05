@@ -1,8 +1,12 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import rehypeMermaid from "./src/utils/rehype-mermaid";
 
 export default defineConfig({
   site: "https://docs.strike48.com",
+  markdown: {
+    rehypePlugins: [rehypeMermaid],
+  },
   integrations: [
     starlight({
       title: "Strike48 Labs",
@@ -10,6 +14,11 @@ export default defineConfig({
         light: "./src/assets/strike48-logo.svg",
         dark: "./src/assets/strike48-logo-light.svg",
         replacesTitle: true,
+      },
+      components: {
+        SiteTitle: "./src/components/SiteTitle.astro",
+        Header: "./src/components/Header.astro",
+        PageTitle: "./src/components/PageTitle.astro",
       },
       customCss: [
         "@fontsource/inter/400.css",

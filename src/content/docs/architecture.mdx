@@ -128,106 +128,43 @@ Prospector Studio is an internal platform managed by the Strike48 team. Access i
 
 All Strike48 connectors follow this lifecycle:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     Connector Startup                        │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-          ┌──────────────────────┐
-          │ Load Configuration   │
-          │ - ENV variables      │
-          │ - TOML files         │
-          │ - Database (if any)  │
-          └──────────┬───────────┘
-                     │
-                     ▼
-          ┌──────────────────────┐
-          │ Start HTTP Server    │
-          │ - Serve UI           │
-          │ - Handle API calls   │
-          └──────────┬───────────┘
-                     │
-                     ▼
-          ┌──────────────────────────────┐
-          │ Connect to Prospector Studio? │◄── Optional
-          │ - gRPC connection             │
-          │ - Register tools              │
-          │ - Receive jobs                │
-          └──────────┬───────────────────┘
-                     │
-                     ▼
-          ┌──────────────────────┐
-          │ Ready for Use        │
-          └──────────────────────┘
+```mermaid
+flowchart LR
+    A["Connector Startup"] --> B["Load Configuration<br/>ENV variables · TOML files · Database"]
+    B --> C["Start HTTP Server<br/>Serve UI · Handle API calls"]
+    C --> D["Connect to Prospector Studio?<br/>gRPC connection · Register tools · Receive jobs"]
+    D --> E["Ready for Use"]
+    D -. Optional .-> D
 ```
 
 ### Communication Patterns
 
 **StrikeHub (Desktop):**
-```
-┌─────────────┐
-│   User      │
-└──────┬──────┘
-       │ UI interaction
-       ▼
-┌─────────────┐
-│  StrikeHub  │
-└──────┬──────┘
-       │ Unix socket (IPC)
-       ▼
-┌─────────────┐
-│  Connector  │
-└──────┬──────┘
-       │ Direct execution
-       ▼
-┌─────────────┐
-│  Target     │
-└─────────────┘
+```mermaid
+flowchart LR
+    A["User"] -- "UI interaction" --> B["StrikeHub"]
+    B -- "Unix socket (IPC)" --> C["Connector"]
+    C -- "Direct execution" --> D["Target"]
 ```
 
 **Prospector Studio Integration:**
-```
-┌─────────────────────┐
-│        User         │
-└──────────┬──────────┘
-           │ API/UI
-           ▼
-┌─────────────────────┐
-│  Prospector Studio  │
-└──────────┬──────────┘
-           │ gRPC job routing
-           ▼
-┌─────────────────────┐
-│     Connector       │
-└──────────┬──────────┘
-           │ Execute tool
-           ▼
-┌─────────────────────┐
-│      Target         │
-└─────────────────────┘
+```mermaid
+flowchart LR
+    A["User"] -- "API / UI" --> B["Prospector Studio"]
+    B -- "gRPC job routing" --> C["Connector"]
+    C -- "Execute tool" --> D["Target"]
 ```
 
 **Distributed Mode (Multiple Connectors):**
-```
-┌─────────────────────┐
-│        User         │
-└──────────┬──────────┘
-           │ API/Workflow
-           ▼
-┌─────────────────────┐
-│  Prospector Studio  │
-└──┬──────┬───────┬───┘
-   │      │       │ gRPC job routing
-   ▼      ▼       ▼
-┌────┐ ┌────┐ ┌────┐
-│ C1 │ │ C2 │ │ C3 │  ← Connectors on different networks
-└─┬──┘ └─┬──┘ └─┬──┘
-  │      │      │ Execute tools
-  ▼      ▼      ▼
-┌────┐ ┌────┐ ┌────┐
-│ T1 │ │ T2 │ │ T3 │  ← Target systems
-└────┘ └────┘ └────┘
+```mermaid
+flowchart TD
+    A["User"] -- "API / Workflow" --> B["Prospector Studio"]
+    B -- "gRPC job routing" --> C1["Connector 1"]
+    B -- "gRPC job routing" --> C2["Connector 2"]
+    B -- "gRPC job routing" --> C3["Connector 3"]
+    C1 -- "Execute tools" --> T1["Target 1"]
+    C2 -- "Execute tools" --> T2["Target 2"]
+    C3 -- "Execute tools" --> T3["Target 3"]
 ```
 
 ## Configuration

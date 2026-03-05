@@ -39,29 +39,11 @@ Built on **Tokio** for async/await support, the SDK delivers high-performance op
 
 The SDK consists of several key components:
 
-```
-┌─────────────────────────────────────────┐
-│         Your Connector                  │
-│    (implements BaseConnector)           │
-└──────────────┬──────────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────────┐
-│       ConnectorRunner                   │
-│  (lifecycle & message handling)         │
-└──────────────┬──────────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────────┐
-│      gRPC Client (Tonic)                │
-│   (bidirectional streaming)             │
-└──────────────┬──────────────────────────┘
-               │
-               ▼
-┌─────────────────────────────────────────┐
-│       Prospector Studio                 │
-│      (Connector Gateway)                │
-└─────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    A["Your Connector<br/>implements BaseConnector"] --> B["ConnectorRunner<br/>lifecycle & message handling"]
+    B --> C["gRPC Client (Tonic)<br/>bidirectional streaming"]
+    C --> D["Prospector Studio<br/>Connector Gateway"]
 ```
 
 ### Core Components

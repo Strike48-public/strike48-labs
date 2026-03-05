@@ -22,18 +22,14 @@ A connector can implement one or more behaviors:
 
 ## How Connectors Work
 
-```
-Connector process
-    │
-    ├─ 1. Register (gRPC) → Prospector Studio
-    │     capabilities, tools, metadata
-    │
-    ├─ 2. Approval → Admin approves registration
-    │
-    ├─ 3. Heartbeat ←→ Keep-alive
-    │
-    └─ 4. Execute ←→ Agent requests tool calls,
-                     connector returns results
+```mermaid
+flowchart LR
+    A["Connector Process"] --> B["1. Register<br/>capabilities, tools, metadata"]
+    B -- "gRPC" --> C["Prospector Studio"]
+    C --> D["2. Approval<br/>Admin approves registration"]
+    D --> E["3. Heartbeat<br/>Keep-alive"]
+    E --> F["4. Execute<br/>Agent requests tool calls"]
+    F <--> C
 ```
 
 1. A connector process connects to Prospector Studio and sends a registration request with its capabilities

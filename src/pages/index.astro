@@ -29,6 +29,12 @@ const features = [
     description:
       "All your Strike48 connectors in one native window. Switch between tools without alt-tabbing.",
   },
+  {
+    iconName: "sparkles",
+    title: "AI-Powered with Prospector Studio",
+    description:
+      "Autonomous agents, RAG-enabled knowledge bases, and multi-step workflows — automate reconnaissance, analysis, and reporting with AI.",
+  },
 ];
 ---
 
@@ -61,6 +67,12 @@ const features = [
       <h2>For End Users</h2>
       <div class="products-grid">
         <ProductCard
+          title="Prospector Studio"
+          description="AI-powered workflow automation and agent platform. Chat with configurable agents, build workflows, and manage knowledge bases through a web interface."
+          href="/prospector-studio/"
+          iconName="bot"
+        />
+        <ProductCard
           title="StrikeHub"
           description="The unified desktop shell. Discover, launch, and manage Strike48 connector apps from a single native window with sidebar navigation and health monitoring."
           href="/strikehub/"
@@ -78,6 +90,12 @@ const features = [
           href="/pick/"
           iconName="shield-alert"
         />
+        <ProductCard
+          title="StrikeKit"
+          description="Comprehensive red team operations workstation. Engagement management, C2 operations, activity tracking, and professional report generation."
+          href="/developers/strikekit/"
+          iconName="terminal"
+        />
       </div>
     </section>
 
@@ -85,22 +103,16 @@ const features = [
       <h2>For Developers</h2>
       <div class="products-grid">
         <ProductCard
+          title="Prospector Studio API"
+          description="GraphQL API reference for integrators and connector developers. Interact with agents, conversations, workflows, and knowledge bases programmatically."
+          href="/developers/prospector-studio/graphql-api/"
+          iconName="braces"
+        />
+        <ProductCard
           title="SDK for Rust"
           description="Build powerful, type-safe connectors with the Strike48 SDK. Integrate with Prospector Studio, execute tools, and handle real-time communication."
           href="/developers/sdk-rs/"
           iconName="code"
-        />
-        <ProductCard
-          title="StrikeKit"
-          description="Comprehensive red team operations workstation. Engagement management, C2 operations, activity tracking, and professional report generation."
-          href="/developers/strikekit/"
-          iconName="terminal"
-        />
-        <ProductCard
-          title="Pick"
-          description="Cross-platform penetration testing connector. Write once, deploy everywhere — desktop, web, mobile, and terminal."
-          href="/pick/"
-          iconName="layers"
         />
       </div>
     </section>

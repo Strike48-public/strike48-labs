@@ -2,11 +2,15 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import rehypeMermaid from "./src/utils/rehype-mermaid";
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: "https://docs.strike48.com",
+
   markdown: {
     rehypePlugins: [rehypeMermaid],
   },
+
   integrations: [
     starlight({
       title: "Strike48 Labs",
@@ -194,4 +198,6 @@ export default defineConfig({
       },
     }),
   ],
+
+  adapter: cloudflare(),
 });

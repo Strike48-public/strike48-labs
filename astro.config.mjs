@@ -88,6 +88,7 @@ export default defineConfig({
               items: [
                 { label: "Overview", slug: "kubestudio" },
                 { label: "Getting Started", slug: "kubestudio/getting-started" },
+                { label: "Installation", slug: "kubestudio/guides/installation" },
                 { label: "Cluster Management", slug: "kubestudio/guides/cluster-management" },
                 { label: "Deployments", slug: "kubestudio/guides/deployments" },
                 {

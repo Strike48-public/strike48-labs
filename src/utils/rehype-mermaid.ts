@@ -2,11 +2,19 @@ import type { Root, Element, Text, ElementContent } from "hast";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 import { fromHtml } from "hast-util-from-html";
-import { renderMermaidSVG, parseMermaid, THEMES } from "beautiful-mermaid";
+import { renderMermaidSVG, parseMermaid } from "beautiful-mermaid";
 
-const colors = {
-  light: THEMES["nord-light"],
-  dark: THEMES["nord"],
+// Use daisyUI CSS variable references so diagrams auto-adapt to the active theme.
+// beautiful-mermaid embeds these as inline styles on the <svg> element;
+// the browser's CSS cascade resolves them at runtime.
+const themeColors = {
+  bg:      "var(--color-base-100, #0f172a)",
+  fg:      "var(--color-base-content, #f1f5f9)",
+  accent:  "var(--color-primary, #2563eb)",
+  muted:   "var(--color-neutral-content, #94a3b8)",
+  surface: "var(--color-base-200, #1e293b)",
+  border:  "var(--color-neutral, #334155)",
+  line:    "var(--color-neutral, #334155)",
 };
 
 const rehypeMermaid: Plugin<[], Root> = () => {
@@ -45,24 +53,16 @@ const rehypeMermaid: Plugin<[], Root> = () => {
       if (!source.trim()) return;
 
       try {
-        const shared = {
+        const svg = renderMermaidSVG(source, {
+          ...themeColors,
           transparent: true,
           font: "Inter, sans-serif",
           padding: 48,
           nodeSpacing: 32,
           layerSpacing: 48,
-        };
-        const lightSvg = renderMermaidSVG(source, {
-          ...colors.light,
-          ...shared,
-        });
-        const darkSvg = renderMermaidSVG(source, {
-          ...colors.dark,
-          ...shared,
         });
 
-        const lightNodes = fromHtml(lightSvg, { fragment: true }).children as ElementContent[];
-        const darkNodes = fromHtml(darkSvg, { fragment: true }).children as ElementContent[];
+        const svgNodes = fromHtml(svg, { fragment: true }).children as ElementContent[];
 
         let direction = "TD";
         try {
@@ -73,20 +73,7 @@ const rehypeMermaid: Plugin<[], Root> = () => {
           type: "element",
           tagName: "div",
           properties: { className: ["mermaid-diagram"], dataDirection: direction },
-          children: [
-            {
-              type: "element",
-              tagName: "div",
-              properties: { className: ["mermaid-light"] },
-              children: lightNodes,
-            },
-            {
-              type: "element",
-              tagName: "div",
-              properties: { className: ["mermaid-dark"] },
-              children: darkNodes,
-            },
-          ],
+          children: svgNodes,
         };
 
         replacements.push({

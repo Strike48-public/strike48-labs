@@ -2,7 +2,7 @@
 import Hero from "../components/Hero.astro";
 import ProductCard from "../components/ProductCard.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
-import "../styles/landing.css";
+import "../styles/global.css";
 
 const features = [
   {
@@ -38,101 +38,92 @@ const features = [
 ];
 ---
 
-<html lang="en">
+<html lang="en" data-theme="strike48">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Strike48 Labs</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: "Inter", system-ui, sans-serif;
-        color: #0f172a;
-        background: #fff;
-      }
-    </style>
   </head>
-  <body>
+  <body class="bg-base-100 text-base-content font-sans">
     <Hero
       tagline="Documentation for the Strike48 security platform. Desktop connector apps for end users, and SDKs for building custom tools and connectors."
     />
 
-    <section class="products-section">
-      <h2>For End Users</h2>
-      <div class="products-grid">
-        <ProductCard
-          title="Prospector Studio"
-          description="AI-powered workflow automation and agent platform. Chat with configurable agents, build workflows, and manage knowledge bases through a web interface."
-          href="/prospector-studio/"
-          iconName="bot"
-        />
-        <ProductCard
-          title="StrikeHub"
-          description="The unified desktop shell. Discover, launch, and manage Strike48 connector apps from a single native window with sidebar navigation and health monitoring."
-          href="/strikehub/"
-          iconName="layout-dashboard"
-        />
-        <ProductCard
-          title="KubeStudio"
-          description="Kubernetes cluster management dashboard. Browse namespaces, inspect workloads, view pod logs, and manage deployments."
-          href="/kubestudio/"
-          iconName="server"
-        />
-        <ProductCard
-          title="Pick"
-          description="Headless penetration testing toolkit. Network scanning, device discovery, traffic capture, and remote tool execution — deployed as a lightweight agent."
-          href="/pick/"
-          iconName="shield-alert"
-        />
-        <ProductCard
-          title="StrikeKit"
-          description="Comprehensive red team operations workstation. Engagement management, C2 operations, activity tracking, and professional report generation."
-          href="/developers/strikekit/"
-          iconName="terminal"
-        />
+    <section class="py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">For End Users</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ProductCard
+            title="Prospector Studio"
+            description="AI-powered workflow automation and agent platform. Chat with configurable agents, build workflows, and manage knowledge bases through a web interface."
+            href="/prospector-studio/"
+            iconName="bot"
+          />
+          <ProductCard
+            title="StrikeHub"
+            description="The unified desktop shell. Discover, launch, and manage Strike48 connector apps from a single native window with sidebar navigation and health monitoring."
+            href="/strikehub/"
+            iconName="layout-dashboard"
+          />
+          <ProductCard
+            title="KubeStudio"
+            description="Kubernetes cluster management dashboard. Browse namespaces, inspect workloads, view pod logs, and manage deployments."
+            href="/kubestudio/"
+            iconName="server"
+          />
+          <ProductCard
+            title="Pick"
+            description="Headless penetration testing toolkit. Network scanning, device discovery, traffic capture, and remote tool execution — deployed as a lightweight agent."
+            href="/pick/"
+            iconName="shield-alert"
+          />
+          <ProductCard
+            title="StrikeKit"
+            description="Comprehensive red team operations workstation. Engagement management, C2 operations, activity tracking, and professional report generation."
+            href="/developers/strikekit/"
+            iconName="terminal"
+          />
+        </div>
       </div>
     </section>
 
-    <section class="products-section">
-      <h2>For Developers</h2>
-      <div class="products-grid">
-        <ProductCard
-          title="Prospector Studio API"
-          description="GraphQL API reference for integrators and connector developers. Interact with agents, conversations, workflows, and knowledge bases programmatically."
-          href="/developers/prospector-studio/graphql-api/"
-          iconName="braces"
-        />
-        <ProductCard
-          title="SDK for Rust"
-          description="Build powerful, type-safe connectors with the Strike48 SDK. Integrate with Prospector Studio, execute tools, and handle real-time communication."
-          href="/developers/sdk-rs/"
-          iconName="code"
-        />
+    <div class="divider max-w-5xl mx-auto px-4"></div>
+
+    <section class="py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">For Developers</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <ProductCard
+            title="Prospector Studio API"
+            description="GraphQL API reference for integrators and connector developers. Interact with agents, conversations, workflows, and knowledge bases programmatically."
+            href="/developers/prospector-studio/graphql-api/"
+            iconName="braces"
+          />
+          <ProductCard
+            title="SDK for Rust"
+            description="Build powerful, type-safe connectors with the Strike48 SDK. Integrate with Prospector Studio, execute tools, and handle real-time communication."
+            href="/developers/sdk-rs/"
+            iconName="code"
+          />
+        </div>
       </div>
     </section>
 
     <FeatureGrid features={features} />
 
-    <section class="cta-section">
-      <h2>Ready to get started?</h2>
-      <p>Set up StrikeHub and start managing your connector apps in one place.</p>
-      <div class="cta-group">
-        <a href="/strikehub/getting-started/" class="cta-primary">
-          Quick Start Guide
-        </a>
-        <a href="/overview/" class="cta-secondary">
-          Browse Documentation
-        </a>
+    <div class="hero bg-gradient-to-br from-base-300 via-base-200 to-base-300 py-20 px-4">
+      <div class="hero-content text-center flex-col">
+        <h2 class="text-3xl font-bold">Ready to get started?</h2>
+        <p class="text-base-content/60 max-w-md mb-2">Set up StrikeHub and start managing your connector apps in one place.</p>
+        <div class="flex gap-3 flex-wrap justify-center">
+          <a href="/strikehub/getting-started/" class="btn btn-primary">Quick Start Guide</a>
+          <a href="/overview/" class="btn btn-outline border-base-content/20 text-base-content hover:border-primary hover:bg-primary hover:text-primary-content">Browse Documentation</a>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <footer class="footer">
+    <footer class="footer sm:footer-horizontal footer-center bg-base-300 text-base-content/50 p-6 border-t border-base-content/10">
       <p>&copy; 2025 Strike48. Licensed under MPL-2.0.</p>
     </footer>
   </body>

@@ -40,11 +40,14 @@ function isActive(href: string): boolean {
   <div class="title-wrapper sl-flex">
     <SiteTitle />
   </div>
-  <nav class="top-nav sl-hidden md:sl-flex" aria-label="Main navigation">
+  <nav class="sl-hidden md:sl-flex gap-1 items-center" aria-label="Main navigation">
     {navLinks.map((link) => (
       <a
         href={link.href}
-        class:list={['top-nav-link', { active: isActive(link.href) }]}
+        class:list={[
+          'btn btn-ghost btn-sm text-sm font-medium no-underline whitespace-nowrap',
+          isActive(link.href) ? 'bg-base-content/10 text-base-content' : 'text-base-content/70'
+        ]}
       >
         {link.label}
       </a>
@@ -72,37 +75,10 @@ function isActive(href: string): boolean {
   }
 
   .title-wrapper {
-    /* Override Starlight's overflow: clip so dropdown can escape */
     overflow: visible !important;
     padding: 0.25rem;
     margin: -0.25rem;
     min-width: 0;
-  }
-
-  .top-nav {
-    gap: 0.25rem;
-    align-items: center;
-  }
-
-  .top-nav-link {
-    padding: 0.375rem 0.75rem;
-    border-radius: 0.375rem;
-    font-size: var(--sl-text-sm);
-    font-weight: 500;
-    color: var(--sl-color-gray-2);
-    text-decoration: none;
-    transition: background-color 0.15s ease, color 0.15s ease;
-    white-space: nowrap;
-  }
-
-  .top-nav-link:hover {
-    background-color: var(--sl-color-gray-6);
-    color: var(--sl-color-white);
-  }
-
-  .top-nav-link.active {
-    color: var(--sl-color-white);
-    background-color: var(--sl-color-gray-5);
   }
 
   .right-group,
@@ -123,11 +99,6 @@ function isActive(href: string): boolean {
     }
     :global(:root:not([data-has-toc])) {
       --__toc-width: 0rem;
-    }
-    .sl-header-custom {
-      display: flex;
-      align-items: center;
-      gap: var(--sl-nav-gap);
     }
   }
 </style>

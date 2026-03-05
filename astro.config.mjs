@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import tailwindcss from "@tailwindcss/vite";
 import rehypeMermaid from "./src/utils/rehype-mermaid";
 
 export default defineConfig({
@@ -19,6 +20,8 @@ export default defineConfig({
         SiteTitle: "./src/components/SiteTitle.astro",
         Header: "./src/components/Header.astro",
         PageTitle: "./src/components/PageTitle.astro",
+        ThemeSelect: "./src/components/ThemeSelect.astro",
+        ThemeProvider: "./src/components/ThemeProvider.astro",
       },
       customCss: [
         "@fontsource/inter/400.css",
@@ -26,7 +29,7 @@ export default defineConfig({
         "@fontsource/inter/700.css",
         "@fontsource/jetbrains-mono/400.css",
         "@fontsource/jetbrains-mono/600.css",
-        "@astrojs/starlight-tailwind",
+        "./src/styles/global.css",
         "./src/styles/custom.css",
       ],
       social: [
@@ -194,4 +197,5 @@ export default defineConfig({
       },
     }),
   ],
+  vite: { plugins: [tailwindcss()] },
 });

@@ -9,11 +9,13 @@ interface Props {
 const { title = "Strike48", tagline = "Desktop shell & connector platform" } = Astro.props;
 ---
 
-<section class="landing-hero">
-  <img src={logo.src} alt="Strike48" height="48" style="margin: 0 auto 1.5rem; display: block;" />
-  <p class="tagline">{tagline}</p>
-  <div class="cta-group">
-    <a href="/strikehub/getting-started/" class="cta-primary">Get Started</a>
-    <a href="/overview/" class="cta-secondary">Read the Docs</a>
+<div class="hero bg-gradient-to-br from-base-300 via-base-200 to-base-300 py-24 px-4">
+  <div class="hero-content text-center flex-col">
+    <img src={logo.src} alt="Strike48" height="48" class="block mx-auto mb-4" />
+    <p class="text-lg text-base-content/60 max-w-xl mb-6">{tagline}</p>
+    <div class="flex gap-3 flex-wrap justify-center">
+      <a href="/strikehub/getting-started/" class="btn btn-primary">Get Started</a>
+      <a href="/overview/" class="btn btn-outline border-base-content/20 text-base-content hover:border-primary hover:bg-primary hover:text-primary-content">Read the Docs</a>
+    </div>
   </div>
-</section>
+</div>

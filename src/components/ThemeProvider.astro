@@ -1,0 +1,25 @@
+---
+/**
+ * Custom ThemeProvider — resolves stored theme on page load.
+ * Inlined to avoid FOUC.
+ */
+---
+
+<script is:inline>
+  window.StarlightThemeProvider = (() => {
+    // Light color-scheme themes
+    var lightThemes = ['light','strike48-light','cupcake','bumblebee','emerald','corporate','retro','cyberpunk','valentine','garden','aqua','lofi','pastel','fantasy','wireframe','cmyk','autumn','acid','lemonade','winter','nord','caramellatte','silk'];
+
+    var storedTheme =
+      typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+    var theme = storedTheme || 'strike48';
+
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.dataset.colorScheme = lightThemes.indexOf(theme) !== -1 ? 'light' : 'dark';
+
+    return {
+      updatePickers: function() {},
+      lightThemes: lightThemes,
+    };
+  })();
+</script>

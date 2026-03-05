@@ -83,67 +83,17 @@ for (let i = 0; i < segments.length; i++) {
 ---
 
 {crumbs.length > 1 && (
-  <nav class="breadcrumbs" aria-label="Breadcrumb">
-    <ol>
-      {crumbs.map((crumb, i) => (
+  <div class="breadcrumbs text-sm mb-3" aria-label="Breadcrumb">
+    <ul>
+      {crumbs.map((crumb) => (
         <li>
-          {i > 0 && (
-            <svg class="breadcrumb-sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          )}
           {crumb.href ? (
-            <a href={crumb.href}>{crumb.label}</a>
+            <a href={crumb.href} class="text-base-content/50 no-underline hover:text-primary transition-colors">{crumb.label}</a>
           ) : (
-            <span aria-current="page">{crumb.label}</span>
+            <span class="text-base-content font-medium">{crumb.label}</span>
           )}
         </li>
       ))}
-    </ol>
-  </nav>
+    </ul>
+  </div>
 )}
-
-<style>
-  .breadcrumbs {
-    margin-bottom: 0.75rem;
-  }
-
-  ol {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.8125rem;
-    line-height: 1;
-  }
-
-  a {
-    color: var(--sl-color-gray-3);
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-
-  a:hover {
-    color: var(--sl-color-accent);
-  }
-
-  span[aria-current='page'] {
-    color: var(--sl-color-white);
-    font-weight: 500;
-  }
-
-  .breadcrumb-sep {
-    color: var(--sl-color-gray-4);
-    margin: 0 0.25rem;
-    flex-shrink: 0;
-  }
-</style>

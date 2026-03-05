@@ -21,5 +21,9 @@
     "sharp": "^0.34.5",
     "shiki": "^4.0.1",
     "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.1",
+    "daisyui": "^5.5.19"
   }
 }

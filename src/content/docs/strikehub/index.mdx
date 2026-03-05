@@ -43,25 +43,22 @@ TOML-based connector management:
 
 ## Architecture
 
-```
-┌──────────────────────────────────────────────────────┐
-│  StrikeHub (Dioxus Desktop)                          │
-│                                                      │
-│  ┌──────────┐  ┌──────────────────────────────────┐  │
-│  │ Sidebar  │  │  Content Area                    │  │
-│  │          │  │                                  │  │
-│  │ ● Kube   │  │  ┌──────────────────────────┐   │  │
-│  │ ● Pick   │  │  │ Embedded WebView         │   │  │
-│  │          │  │  │ (liveview of active app)  │   │  │
-│  │          │  │  │                          │   │  │
-│  │          │  │  └──────────────────────────┘   │  │
-│  │          │  │                                  │  │
-│  └──────────┘  └──────────────────────────────────┘  │
-│                                                      │
-│  ┌──────────────────────────────────────────────────┐│
-│  │ Status Bar: connectors online                    ││
-│  └──────────────────────────────────────────────────┘│
-└──────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph StrikeHub ["StrikeHub (Dioxus Desktop)"]
+        direction LR
+        subgraph Sidebar [" Sidebar "]
+            K["● KubeStudio"]
+            P["● Pick"]
+        end
+        subgraph Content ["Content Area"]
+            WV["Embedded WebView\n(liveview of active app)"]
+        end
+    end
+    subgraph StatusBar ["Status Bar"]
+        SB["Connectors online"]
+    end
+    StrikeHub --> StatusBar
 ```
 
 Each connector runs as a **separate process** with its own Axum HTTP server. StrikeHub embeds the connector's UI via an iframe pointed at a `connector://` custom protocol URL. Orchestration (health checks, lifecycle management) happens over the same Unix domain socket.

@@ -1,6 +1,24 @@
 ---
 title: Installation
-description: Detailed build and installation instructions for StrikeHub.
+description: Build and run StrikeHub from source.
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/Strike48/strikehub.git
+cd strikehub
+cargo run --features desktop
+```
+
+For a release build:
+
+```bash
+cargo build --release --features desktop
+```
+
+The binary is produced at `./target/release/strikehub`.
+
 ---
 
 ## System Requirements
@@ -25,27 +43,6 @@ Verify the installation:
 rustc --version
 # rustc 1.91.1 or later
 ```
-
-## Build from Source
-
-```bash
-git clone https://github.com/Strike48/strikehub.git
-cd strikehub
-```
-
-### Debug Build
-
-```bash
-cargo run --features desktop
-```
-
-### Release Build
-
-```bash
-cargo build --release --features desktop
-```
-
-The binary is produced at `./target/release/strikehub`.
 
 ## macOS Notes
 

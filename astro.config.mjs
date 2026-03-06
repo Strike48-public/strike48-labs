@@ -182,14 +182,6 @@ export default defineConfig({
           ],
         },
         {
-          label: "Resources",
-          items: [
-            { label: "FAQ", slug: "shared/faq" },
-            { label: "Troubleshooting", slug: "shared/troubleshooting" },
-            { label: "Demos & Media", slug: "media" },
-          ],
-        },
-        {
           label: "Contributing",
           collapsed: true,
           items: [

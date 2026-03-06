@@ -2,10 +2,8 @@
 import Hero from "../components/Hero.astro";
 import ProductCard from "../components/ProductCard.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import "../styles/landing.css";
-
-const gaId = import.meta.env.PUBLIC_GA_ID || 'G-VEZGSQCDEP';
-const isProd = import.meta.env.PROD;
 
 const features = [
   {
@@ -60,17 +58,9 @@ const features = [
         background: #fff;
       }
     </style>
-    {isProd && (
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-      <script set:html={`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${gaId}');
-      `} />
-    )}
   </head>
   <body>
+    <CookieConsent />
     <Hero
       tagline="Documentation for the Strike48 security platform. Desktop connector apps for end users, and SDKs for building custom tools and connectors."
     />

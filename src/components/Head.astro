@@ -1,17 +1,5 @@
 ---
 const { head } = Astro.locals.starlightRoute;
-const gaId = import.meta.env.PUBLIC_GA_ID || 'G-VEZGSQCDEP';
-const isProd = import.meta.env.PROD;
 ---
 
 {head.map(({ tag: Tag, attrs, content }) => <Tag {...attrs} set:html={content} />)}
-
-{isProd && (
-  <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
-  <script set:html={`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', '${gaId}');
-  `} />
-)}

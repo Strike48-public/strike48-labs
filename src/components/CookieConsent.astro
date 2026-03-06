@@ -1,10 +1,9 @@
 ---
-const PROD_GA_ID = 'G-VEZGSQCDEP';
-const PREVIEW_GA_ID = import.meta.env.PUBLIC_GA_PREVIEW_ID || '';
+const PREVIEW_GA_ID = 'G-VEZGSQCDEP';
 const branch = process.env.WORKERS_CI_BRANCH || '';
 const isMainBranch = branch === 'main' || branch === '';
 const gaId = isMainBranch
-  ? (import.meta.env.PUBLIC_GA_ID || PROD_GA_ID)
+  ? (import.meta.env.PUBLIC_GA_ID || '')
   : PREVIEW_GA_ID;
 const isProd = import.meta.env.PROD;
 ---

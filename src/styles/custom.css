@@ -16,8 +16,18 @@
   /* Light mode background */
   --sl-color-bg: #f6f7fb;
 
-  /* Wider content area — reduce dead whitespace on both sides */
-  --sl-content-width: 55rem;
+  /* Content width — starts at Starlight default, widens when viewport
+     has room so the right-sidebar TOC doesn't overflow. */
+  --sl-content-width: 45rem;
+}
+
+/* Widen content once the viewport can fit left sidebar + content + right TOC
+   without the right TOC overflowing. 18.75rem sidebar + 55rem content +
+   18.75rem TOC ≈ 92.5rem, so 95rem gives comfortable breathing room. */
+@media (min-width: 95rem) {
+  :root {
+    --sl-content-width: 55rem;
+  }
 }
 
 :root[data-theme="dark"] {

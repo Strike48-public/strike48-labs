@@ -22,6 +22,7 @@ export default defineConfig({
       components: {
         SiteTitle: "./src/components/SiteTitle.astro",
         Header: "./src/components/Header.astro",
+        Head: "./src/components/Head.astro",
         PageTitle: "./src/components/PageTitle.astro",
         PageFrame: "./src/components/PageFrame.astro",
       },

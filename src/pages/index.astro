@@ -4,6 +4,9 @@ import ProductCard from "../components/ProductCard.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
 import "../styles/landing.css";
 
+const gaId = import.meta.env.PUBLIC_GA_ID || 'G-VEZGSQCDEP';
+const isProd = import.meta.env.PROD;
+
 const features = [
   {
     iconName: "plug",
@@ -57,6 +60,15 @@ const features = [
         background: #fff;
       }
     </style>
+    {isProd && (
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+      <script set:html={`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${gaId}');
+      `} />
+    )}
   </head>
   <body>
     <Hero

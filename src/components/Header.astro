@@ -16,7 +16,7 @@ const navLinks = [
   { label: 'Docs', href: '/overview/' },
   { label: 'User Apps', href: '/strikehub/' },
   { label: 'Developers', href: '/developers/sdk-rs/' },
-  { label: 'Resources', href: '/shared/faq/' },
+  { label: 'Resources', href: '/contributing/gif-guidelines/' },
 ];
 
 function isActive(href: string): boolean {
@@ -29,7 +29,7 @@ function isActive(href: string): boolean {
   if (href === '/developers/sdk-rs/') {
     return currentPath.startsWith('/developers/');
   }
-  if (href === '/shared/faq/') {
+  if (href === '/contributing/gif-guidelines/') {
     return currentPath.startsWith('/shared/') || currentPath.startsWith('/media') || currentPath.startsWith('/contributing/');
   }
   return false;

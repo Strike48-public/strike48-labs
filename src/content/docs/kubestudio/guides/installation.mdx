@@ -4,13 +4,16 @@ description: Build and run KubeStudio from source.
 ---
 
 import { Tabs, TabItem, Steps, Aside } from '@astrojs/starlight/components';
+import GitHubReleaseButton from '../../../../components/GitHubReleaseButton.astro';
+
+<GitHubReleaseButton repo="kubestudio" />
 
 ## Install KubeStudio
 
 Clone the repo, build, and run — that's it.
 
 ```bash
-git clone https://github.com/Strike48/studio-kube-desktop.git && cd studio-kube-desktop && cargo run --release
+git clone https://github.com/Strike48-public/kubestudio.git && cd kubestudio && cargo run --release
 ```
 
 The binary is produced at `./target/release/studio-kube-desktop`.

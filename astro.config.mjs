@@ -22,7 +22,9 @@ export default defineConfig({
       components: {
         SiteTitle: "./src/components/SiteTitle.astro",
         Header: "./src/components/Header.astro",
+        Head: "./src/components/Head.astro",
         PageTitle: "./src/components/PageTitle.astro",
+        PageFrame: "./src/components/PageFrame.astro",
       },
       customCss: [
         "@fontsource/inter/400.css",
@@ -37,7 +39,12 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/strike48",
+          href: "https://github.com/strike48-public",
+        },
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/J3mukDFzfq",
         },
       ],
       sidebar: [
@@ -176,20 +183,21 @@ export default defineConfig({
           ],
         },
         {
-          label: "Resources",
-          items: [
-            { label: "FAQ", slug: "shared/faq" },
-            { label: "Troubleshooting", slug: "shared/troubleshooting" },
-            { label: "Demos & Media", slug: "media" },
-          ],
-        },
-        {
           label: "Contributing",
           collapsed: true,
           items: [
             { label: "GIF Guidelines", slug: "contributing/gif-guidelines" },
             { label: "GIF Workflow", slug: "contributing/gif-workflow" },
             { label: "VHS Examples", slug: "contributing/vhs-examples" },
+          ],
+        },
+        {
+          label: "Legal",
+          collapsed: true,
+          items: [
+            { label: "Developing with Us", slug: "legal/developing-with-us" },
+            { label: "Privacy Policy", slug: "legal/privacy-policy" },
+            { label: "Terms of Use", slug: "legal/terms-of-use" },
           ],
         },
       ],

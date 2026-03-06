@@ -2,6 +2,7 @@
 import Hero from "../components/Hero.astro";
 import ProductCard from "../components/ProductCard.astro";
 import FeatureGrid from "../components/FeatureGrid.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import "../styles/landing.css";
 
 const features = [
@@ -55,10 +56,12 @@ const features = [
         font-family: "Inter", system-ui, sans-serif;
         color: #0f172a;
         background: #fff;
+        color-scheme: light;
       }
     </style>
   </head>
   <body>
+    <CookieConsent />
     <Hero
       tagline="Documentation for the Strike48 security platform. Desktop connector apps for end users, and SDKs for building custom tools and connectors."
     />
@@ -136,8 +139,5 @@ const features = [
       </div>
     </section>
 
-    <footer class="footer">
-      <p>&copy; 2025 Strike48. Licensed under MPL-2.0.</p>
-    </footer>
   </body>
 </html>

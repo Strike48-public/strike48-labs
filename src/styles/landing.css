@@ -70,9 +70,7 @@
 }
 
 .products-section {
-  padding: 5rem 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
+  padding: 5rem calc(max(2rem, (100% - 1100px) / 2));
 }
 
 .products-section h2 {

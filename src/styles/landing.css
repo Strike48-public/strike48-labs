@@ -154,13 +154,6 @@
   margin-right: auto;
 }
 
-.footer {
-  padding: 2rem;
-  text-align: center;
-  color: #64748b;
-  font-size: 0.875rem;
-  border-top: 1px solid #e2e8f0;
-}
 
 /* Dark mode for landing page */
 @media (prefers-color-scheme: dark) {
@@ -181,9 +174,4 @@
     background: #0f172a;
   }
 
-  .footer {
-    border-top-color: #334155;
-    color: #94a3b8;
-    background: #0f172a;
-  }
 }

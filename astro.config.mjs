@@ -23,6 +23,7 @@ export default defineConfig({
         SiteTitle: "./src/components/SiteTitle.astro",
         Header: "./src/components/Header.astro",
         PageTitle: "./src/components/PageTitle.astro",
+        PageFrame: "./src/components/PageFrame.astro",
       },
       customCss: [
         "@fontsource/inter/400.css",
@@ -190,6 +191,15 @@ export default defineConfig({
             { label: "GIF Guidelines", slug: "contributing/gif-guidelines" },
             { label: "GIF Workflow", slug: "contributing/gif-workflow" },
             { label: "VHS Examples", slug: "contributing/vhs-examples" },
+          ],
+        },
+        {
+          label: "Legal",
+          collapsed: true,
+          items: [
+            { label: "Developing with Us", slug: "legal/developing-with-us" },
+            { label: "Privacy Policy", slug: "legal/privacy-policy" },
+            { label: "Terms of Use", slug: "legal/terms-of-use" },
           ],
         },
       ],

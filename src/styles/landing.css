@@ -152,24 +152,3 @@
   margin-right: auto;
 }
 
-
-/* Dark mode for landing page */
-@media (prefers-color-scheme: dark) {
-  .products-section h2,
-  .feature-item h3 {
-    color: #f1f5f9;
-  }
-
-  .feature-item p {
-    color: #94a3b8;
-  }
-
-  .features-section {
-    background: #1e293b;
-  }
-
-  .products-section {
-    background: #0f172a;
-  }
-
-}

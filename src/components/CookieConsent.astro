@@ -1,5 +1,11 @@
 ---
-const gaId = import.meta.env.PUBLIC_GA_ID || 'G-VEZGSQCDEP';
+const PROD_GA_ID = 'G-VEZGSQCDEP';
+const PREVIEW_GA_ID = import.meta.env.PUBLIC_GA_PREVIEW_ID || '';
+const branch = process.env.WORKERS_CI_BRANCH || '';
+const isMainBranch = branch === 'main' || branch === '';
+const gaId = isMainBranch
+  ? (import.meta.env.PUBLIC_GA_ID || PROD_GA_ID)
+  : PREVIEW_GA_ID;
 const isProd = import.meta.env.PROD;
 ---
 
@@ -124,7 +130,7 @@ const isProd = import.meta.env.PROD;
     }
 
     function loadGA() {
-      if (!isProd) return;
+      if (!isProd || !gaId) return;
       if (document.querySelector('script[src*="googletagmanager"]')) return;
       const s = document.createElement('script');
       s.async = true;

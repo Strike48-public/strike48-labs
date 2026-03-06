@@ -7,9 +7,10 @@ interface Props {
   href: string;
   iconName: string;
   badge?: string;
+  imageSrc?: string;
 }
 
-const { title, description, href, iconName, badge } = Astro.props;
+const { title, description, href, iconName, badge, imageSrc } = Astro.props;
 ---
 
 <a href={href} class="product-card">
@@ -23,6 +24,9 @@ const { title, description, href, iconName, badge } = Astro.props;
     {title}
     {badge && <span class="product-badge">{badge}</span>}
   </h3>
+  {imageSrc && (
+    <img src={imageSrc} alt={`${title} screenshot`} class="product-card-img" loading="lazy" />
+  )}
   <p>{description}</p>
   <span class="product-card-arrow" aria-hidden="true">
     <LucideIcon name="arrow-right" size={16} />
@@ -149,6 +153,16 @@ const { title, description, href, iconName, badge } = Astro.props;
     transform: translateX(0);
   }
 
+  /* ── Screenshot image ── */
+  .product-card-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 0.75rem;
+  }
+
   /* ── Dark mode ── */
   @media (prefers-color-scheme: dark) {
     .product-card {
@@ -190,6 +204,10 @@ const { title, description, href, iconName, badge } = Astro.props;
 
     .product-card p {
       color: #94a3b8;
+    }
+
+    .product-card-img {
+      border-color: #334155;
     }
 
     .product-card-arrow {

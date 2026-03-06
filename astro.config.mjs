@@ -38,7 +38,12 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/strike48",
+          href: "https://github.com/strike48-public",
+        },
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/J3mukDFzfq",
         },
       ],
       sidebar: [

@@ -3,7 +3,6 @@ const gaId = import.meta.env.PUBLIC_GA_ID || 'G-VEZGSQCDEP';
 const isProd = import.meta.env.PROD;
 ---
 
-{isProd && (
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent">
   <div class="cookie-inner">
     <p class="cookie-text">
@@ -106,7 +105,7 @@ const isProd = import.meta.env.PROD;
   }
 </style>
 
-<script define:vars={{ gaId }}>
+<script define:vars={{ gaId, isProd }}>
   (function() {
     const COOKIE_NAME = 'cookie_consent';
     const banner = document.getElementById('cookie-banner');
@@ -125,6 +124,7 @@ const isProd = import.meta.env.PROD;
     }
 
     function loadGA() {
+      if (!isProd) return;
       if (document.querySelector('script[src*="googletagmanager"]')) return;
       const s = document.createElement('script');
       s.async = true;
@@ -148,7 +148,6 @@ const isProd = import.meta.env.PROD;
     } else if (consent === 'declined') {
       hideBanner();
     }
-    // else: show banner (default)
 
     if (acceptBtn) {
       acceptBtn.addEventListener('click', function() {
@@ -166,4 +165,3 @@ const isProd = import.meta.env.PROD;
     }
   })();
 </script>
-)}

@@ -1,6 +1,6 @@
 # Strike48 Labs
 
-Documentation and content site for the Strike48 platform — **Prospector Studio**, **StrikeHub**, **KubeStudio**, **Pick**, and **StrikeKit**.
+Documentation and content site for the Strike48 platform — **Prospector Studio**, **StrikeHub**, **KubeStudio**, and **Pick**.
 
 Built with [Astro](https://astro.build) + [Starlight](https://starlight.astro.build). Deployed on [Cloudflare Workers](https://developers.cloudflare.com/workers/).
 
@@ -47,7 +47,7 @@ src/
 │   ├── strikehub/       # StrikeHub docs
 │   ├── kubestudio/      # KubeStudio docs
 │   ├── pick/            # Pick docs
-│   ├── developers/      # SDK, API, StrikeKit docs
+│   ├── developers/      # SDK, API docs
 │   ├── legal/           # Terms, privacy, developer guidelines
 │   ├── contributing/    # Contribution guidelines
 │   ├── shared/          # FAQ, troubleshooting (draft)

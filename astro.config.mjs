@@ -136,16 +136,6 @@ export default defineConfig({
                 },
               ],
             },
-            {
-              label: "StrikeKit",
-              collapsed: true,
-              items: [
-                { label: "Overview", slug: "developers/strikekit" },
-                { label: "Installation", slug: "developers/strikekit/installation" },
-                { label: "Quick Start", slug: "developers/strikekit/quick-start" },
-                { label: "Configuration", slug: "developers/strikekit/configuration" },
-              ],
-            },
           ],
         },
         {

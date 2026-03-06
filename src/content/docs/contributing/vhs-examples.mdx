@@ -64,10 +64,10 @@ Sleep 2s
 Showing a command-line tool with flags and output:
 
 ```tape
-# StrikeKit - Engagement Creation
-# Demonstrates creating a new penetration testing engagement
+# Pick - Network Scan
+# Demonstrates running a network scan with Pick
 
-Output ../public/gifs/strikekit-engagement-create.gif
+Output ../public/gifs/pick-network-scan.gif
 
 Require echo
 
@@ -79,31 +79,31 @@ Set Theme "Dracula"
 Set TypingSpeed 50ms
 Set PlaybackSpeed 1.0
 
-Type "# StrikeKit - Create Engagement"
+Type "# Pick - Network Scan"
 Sleep 1s
 Enter
 Enter
 
-Type "strikekit engagement create 'Acme Corp Pentest'"
+Type "pick scan --target 192.168.1.0/24 --ports 22,80,443"
 Sleep 300ms
 Enter
 Sleep 1s
 
-Type "✓ Created engagement: acme-corp-pentest"
-Type "  ID: eng-a3b7c9d2"
-Type "  Status: Planning"
+Type "✓ Scan complete"
+Type "  Hosts found: 5"
+Type "  Open ports: 12"
 Sleep 2s
 
-Type "strikekit engagement list"
+Type "pick results list"
 Sleep 300ms
 Enter
 Sleep 500ms
 
-Type "ID              NAME                 STATUS      CREATED"
-Type "eng-a3b7c9d2    Acme Corp Pentest    Planning    2026-03-04"
+Type "HOST              PORTS        STATUS      SCANNED"
+Type "192.168.1.1       22,80        up          2026-03-04"
 Sleep 2s
 
-Type "# Ready to start testing 🎯"
+Type "# Scan complete 🎯"
 Sleep 2s
 ```
 
@@ -216,7 +216,7 @@ Sleep 2s
 Simulating interactive prompts:
 
 ```tape
-Type "strikekit engagement delete eng-123"
+Type "pick results delete scan-123"
 Sleep 300ms
 Enter
 Sleep 800ms
@@ -447,10 +447,10 @@ cargo install strike48-sdk  # Example
 
 **Solution 2:** Simulate the entire interaction:
 ```tape
-Type "strikekit --version"
+Type "pick --version"
 Enter
 Sleep 300ms
-Type "strikekit 0.5.0"
+Type "pick 0.5.0"
 ```
 
 **Solution 3:** Use `Require` to validate prerequisites:
@@ -542,12 +542,12 @@ Sleep 2s                # Longer pause after output
 1. **Interactive prompt without input:**
    ```tape
    # Problem: Waits for user input
-   Type "strikekit delete"
+   Type "pick delete"
    Enter
    # Hangs here waiting for confirmation
 
    # Solution: Simulate the prompt
-   Type "strikekit delete"
+   Type "pick delete"
    Enter
    Sleep 500ms
    Type "Are you sure? (y/N): y"
@@ -572,11 +572,11 @@ Sleep 2s                # Longer pause after output
 3. **Background process:**
    ```tape
    # Problem: Process doesn't exit
-   Type "strikekit server start"
+   Type "pick server start"
    Enter
 
    # Solution: Use & or show startup only
-   Type "strikekit server start &"
+   Type "pick server start &"
    Enter
    Sleep 1s
    Type "[1] 12345"

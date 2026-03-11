@@ -1,143 +1,47 @@
 ---
-title: StrikeKit
-description: Comprehensive red team operations workstation for professional penetration testers
+title: "StrikeKit Documentation"
+description: "Welcome to the StrikeKit documentation. This guide will help you get started with using StrikeKit for red team operations."
 ---
 
-import InstallButton from '../../../../components/InstallButton.astro';
+## Documentation Structure
 
-StrikeKit is a comprehensive red team operations workstation built with Rust and Dioxus 0.7, designed for professional penetration testers and security researchers. It provides a unified platform for managing engagements, coordinating C2 infrastructure, and documenting findings.
+### User Guide
+- **[Quick Start](user-guide/quick-start)** - Get started in 15 minutes
+- [Getting Started](user-guide/getting-started) - Installation and first-time setup
+- [Interface Overview](user-guide/interface-overview) - Understanding the UI
+- [Workflow](user-guide/workflow) - Recommended engagement workflow
 
-<InstallButton href="/developers/strikekit/installation/" />
+### Tutorials
+- **[Creating Your First Engagement](tutorials/creating-your-first-engagement)** - Complete walkthrough with screenshots (20 min)
 
-![StrikeKit Dashboard](/img/strikekit/screenshots/dashboard-active-engagement.png)
+### Features
+- [Assistant](features/assistant) - AI-powered engagement assistant
+- [Engagements](features/engagements) - Managing red team engagements
+- [Planning](features/planning) - AI-assisted engagement planning
+- [Execution](features/execution) - Running and monitoring operations
+- [Objectives](features/objectives) - Defining and tracking goals
+- [Checklists](features/checklists) - Methodology verification
+- [Targets](features/targets) - Target management and tracking
+- [Credentials](features/credentials) - Credential storage and organization
+- [Evidence](features/evidence) - Evidence collection and management
+- [Findings](features/findings) - Documenting vulnerabilities
+- [Kill Chain](features/kill-chain) - Attack phase progression tracking
+- [Timeline](features/timeline) - Event chronology
+- [Network Topology](features/network-topology) - Network visualization
+- [MITRE ATT&CK](features/mitre-attack) - Technique mapping and coverage
+- [Notes](features/notes) - Engagement documentation
+- [C2](features/c2) - Command and control operations
+- [Reports](features/reports) - Generating deliverables
 
-## What is StrikeKit?
+## Quick Links
 
-StrikeKit is a full-featured platform that combines engagement management, command and control capabilities, and collaborative documentation in a single application. It runs in **connector mode** as a headless liveview server with hot-reloading support, enabling team collaboration through Prospector Studio integration.
+- **[Quick Start - 15 Minutes](user-guide/quick-start)** - Fastest way to get started
+- **[Creating Your First Engagement - Tutorial](tutorials/creating-your-first-engagement)** - Step-by-step walkthrough
+- [Accessing StrikeKit](user-guide/getting-started)
+- [C2 Quick Start](features/c2#quick-start)
+- [Generating Reports](features/reports)
 
-## Key Features
+## Support
 
-### Engagement Management
-Track red team engagements through a complete lifecycle workflow:
-- **Planning** - Define objectives, scope, and rules of engagement
-- **Active** - Execute operations and track progress
-- **Paused** - Temporarily suspend operations
-- **Complete** - Finalize and document results
-- **Archived** - Historical reference
+For issues, feature requests, or questions, please open an issue on the project repository.
 
-![Engagement List](/img/strikekit/screenshots/engagements-list.png)
-
-### Target Tracking
-Comprehensive asset management:
-- Host discovery and enumeration
-- Service identification
-- Network topology mapping
-- Infrastructure visualization
-
-![Targets](/img/strikekit/screenshots/targets.png)
-
-### Credential Storage
-Secure credential management:
-- Passwords, hashes, and tokens
-- Organized by source and context
-- Quick search and filtering
-
-![Credentials](/img/strikekit/screenshots/credentials.png)
-
-### Findings Documentation
-Professional vulnerability reporting:
-- Severity ratings (Critical, High, Medium, Low, Info)
-- MITRE ATT&CK technique tagging
-- Evidence collection and screenshots
-- Automated PDF report generation
-
-![Findings](/img/strikekit/screenshots/findings.png)
-
-### C2 Infrastructure
-Built-in command and control:
-- HTTPS listener with SSL/TLS
-- Lightweight cross-platform agent
-- Interactive shell access
-- File upload/download
-- Screenshot capture
-- Auto-extraction of targets, credentials, and findings from command output
-
-![Operations](/img/strikekit/screenshots/operations.png)
-
-### Pivot Tracking
-Visualize attack chains:
-- Track lateral movement
-- Document blockers and obstacles
-- Map kill chains
-- Maintain operation timeline
-
-![Pivot Chain](/img/strikekit/screenshots/pivot-chain.png)
-
-### MITRE ATT&CK Integration
-- Comprehensive technique browser
-- Automatic activity tagging
-- Tactical analysis
-
-### Methodology Checklists
-Built-in attack paths for:
-- External network assessments
-- Internal network penetration
-- Web application testing
-- Active Directory exploitation
-
-### Prospector Studio Integration
-Collaborative red teaming:
-- Run UI through Prospector Studio connector
-- Team coordination
-- Real-time collaboration
-- Distributed operations
-
-## Architecture
-
-StrikeKit is built with a modular crate structure:
-
-```
-crates/
-├── sk-core/      # Core domain types and business logic
-├── sk-db/        # SQLite database layer
-├── sk-c2/        # C2 listener and protocol
-├── sk-agent/     # Cross-platform agent/implant
-├── sk-matrix/    # Prospector Studio connector integration
-├── sk-executor/  # Task execution engine
-├── sk-workflow/  # Workflow orchestration
-└── sk-ui/        # Dioxus liveview UI (connector mode)
-```
-
-## Technology Stack
-
-- **Language**: Rust 1.85+ (edition 2024)
-- **UI Framework**: Dioxus 0.7 (liveview mode)
-- **Database**: SQLite
-- **Integration**: Prospector Studio connector protocol
-- **Build Tool**: Just command runner
-
-## Use Cases
-
-StrikeKit is designed for:
-
-- **Red Team Operations** - Full-spectrum offensive security engagements
-- **Penetration Testing** - Internal and external network assessments
-- **Security Research** - Tool development and testing
-- **Training & Education** - Teaching offensive security techniques
-- **Purple Team Exercises** - Collaborative detection engineering
-
-## License
-
-StrikeKit is licensed under the Mozilla Public License 2.0 (MPL-2.0). You can use, modify, and distribute the software. Modifications to MPL-licensed files must be shared under the same license.
-
-## Disclaimer
-
-**IMPORTANT**: StrikeKit is intended for authorized security testing, red team engagements, and educational purposes only. Users are responsible for ensuring they have proper authorization before using this tool against any systems. Unauthorized access to computer systems is illegal.
-
-## Next Steps
-
-Ready to get started? Check out the following guides:
-
-- [Installation Guide](./installation/) - Install dependencies and set up StrikeKit
-- [Quick Start Guide](./quick-start/) - Your first engagement in 5 minutes
-- [Configuration Guide](./configuration/) - Customize StrikeKit for your environment

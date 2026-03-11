@@ -75,6 +75,7 @@ export default defineConfig({
                   label: "Features",
                   collapsed: true,
                   items: [
+                    { label: "Chat Interface", slug: "prospector-studio/guides/chat-interface" },
                     { label: "Agents", slug: "prospector-studio/guides/agents" },
                     { label: "Knowledge Bases", slug: "prospector-studio/guides/knowledge-bases" },
                     { label: "Workflows", slug: "prospector-studio/guides/workflows" },

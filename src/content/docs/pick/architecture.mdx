@@ -172,15 +172,13 @@ pub fn ToolList(tools: Vec<ToolInfo>) -> Element {
 ```mermaid
 flowchart LR
     subgraph UI ["Desktop UI (Dioxus)"]
-        TL["Tool List"]
-        ST["Settings"]
+        TL["Tool List & Settings"]
     end
     subgraph Core ["Core State & Logic"]
-        TO["Tools"]
-        CO["Connector"]
+        TO["Tool & Connector State"]
     end
     subgraph Platform ["Platform Layer (Desktop)"]
-        NS["Native system calls"]
+        NS["Native OS system calls"]
     end
     UI --> Core --> Platform
 ```
@@ -206,7 +204,7 @@ flowchart LR
         SM["Session Manager"]
     end
     subgraph Core ["Core State & Logic"]
-        CS["State & Logic"]
+        CS["Tool & Connector State"]
     end
     subgraph Platform ["Platform Layer (Server)"]
         SE["Server-side execution"]
@@ -228,15 +226,14 @@ flowchart LR
 ```mermaid
 flowchart LR
     subgraph MobileUI ["Mobile UI (Dioxus Native)"]
-        TL["Tool List"]
-        ST["Settings"]
+        TL["Tool List & Settings Panel"]
     end
     subgraph Core ["Core State & Logic"]
-        CS["State & Logic"]
+        CS["Tool & Connector State"]
     end
     subgraph Platform ["Platform Layer (Mobile)"]
-        AN["Android (JNI/NDK)"]
-        IO["iOS (Swift)"]
+        AN["Android native (JNI/NDK)"]
+        IO["iOS native (Swift bridge)"]
     end
     MobileUI --> Core --> Platform
 ```
@@ -255,14 +252,13 @@ flowchart LR
 ```mermaid
 flowchart LR
     subgraph Terminal ["Terminal (ratatui)"]
-        TM["Tool Menu"]
-        OP["Output"]
+        TM["Tool Menu & Output"]
     end
     subgraph Core ["Core State & Logic"]
-        CS["State & Logic"]
+        CS["Tool & Connector State"]
     end
     subgraph Platform ["Platform Layer (Desktop)"]
-        PL["Native system calls"]
+        PL["Native OS system calls"]
     end
     Terminal --> Core --> Platform
 ```

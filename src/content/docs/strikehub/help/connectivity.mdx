@@ -1,6 +1,6 @@
 ---
 title: "StrikeHub: Connectivity"
-description: Troubleshooting connector offline status, socket mismatches, WebSocket drops, stale sockets, and port conflicts.
+description: Troubleshooting connector offline status, socket mismatches, WebSocket drops, and stale sockets.
 ---
 
 This guide covers common connectivity issues between StrikeHub and its connector applications.
@@ -11,7 +11,6 @@ This guide covers common connectivity issues between StrikeHub and its connector
 
 **Possible causes:**
 
-- **Wrong transport mode** — The connector is running on TCP but configured as IPC (or vice versa).
 - **Socket path mismatch** — The Unix socket path in the connector doesn't match what's in `connectors.toml`.
 - **Health endpoint not responding** — The connector must serve `GET /health` and return `200 OK`.
 
@@ -23,13 +22,10 @@ ls -la /tmp/strikehub-kubestudio.sock
 
 # Test health over Unix socket
 curl --unix-socket /tmp/strikehub-kubestudio.sock http://localhost/health
-
-# Test health over TCP
-curl http://127.0.0.1:3030/health
 ```
 
 :::tip
-Check `~/.config/strikehub/connectors.toml` to verify the transport mode and path/port for each connector.
+Check `~/.config/strikehub/connectors.toml` to verify the socket path for each connector.
 :::
 
 ## Socket path mismatch
@@ -97,23 +93,3 @@ lsof /tmp/strikehub-kubestudio.sock
 
 StrikeHub cleans up stale sockets on startup, but manual removal may be needed if the cleanup itself fails.
 
-## Port conflicts
-
-**Symptom:** A connector in TCP mode fails to start with `address already in use`.
-
-**Possible causes:**
-
-- Another process is using the same port.
-- A previous connector instance didn't fully shut down.
-
-**Debugging:**
-
-```bash
-# Find what's using the port
-lsof -i :3030
-
-# Kill the conflicting process (if safe to do so)
-kill <PID>
-```
-
-Update the port in `connectors.toml` if you need to run multiple connectors on TCP simultaneously.

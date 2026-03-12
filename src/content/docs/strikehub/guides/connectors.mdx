@@ -1,15 +1,17 @@
 ---
 title: Connectors
-description: How StrikeHub's connector system works — IPC, TCP, and the content delivery pipeline.
+description: How StrikeHub's connector system works — IPC and the content delivery pipeline.
 ---
 
-StrikeHub uses a connector architecture where each tool runs as an independent process. This page explains the two transport modes and the content delivery pipeline.
+StrikeHub uses a connector architecture where each tool runs as an independent process. This page explains the IPC transport and the content delivery pipeline.
 
-## Transport Modes
+<video autoplay loop muted playsinline style="width:100%; margin-top:0.75rem; border-radius:0.75rem; box-shadow:0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.10);">
+  <source src="/img/strikehub/videos/overview.mp4" type="video/mp4" />
+</video>
 
-### IPC Mode (Recommended)
+## IPC Transport
 
-In IPC mode, connectors run as child processes communicating over **Unix domain sockets**. This is the recommended transport for new connectors.
+Connectors run as child processes communicating over **Unix domain sockets**.
 
 **How it works:**
 
@@ -31,17 +33,9 @@ In IPC mode, connectors run as child processes communicating over **Unix domain 
 | `STRIKEHUB_SOCKET` | `/tmp/strikehub-{id}.sock` | Tells the connector to bind a Unix socket |
 | `STRIKE48_API_URL` | From StrikeHub config | API access if needed |
 
-### TCP Mode (Legacy)
-
-TCP mode is the original transport. The connector runs its Axum server on `127.0.0.1:{port}` and StrikeHub proxies requests through its built-in HTTP proxy.
-
-TCP mode is retained for backward compatibility with connectors that haven't adopted Unix socket support.
-
 ## Content Delivery Pipeline
 
-### IPC: Custom Protocol
-
-When a connector uses IPC mode, content is served through Wry's custom protocol handler:
+Content is served through Wry's custom protocol handler:
 
 ```
 connector://kubestudio/liveview
@@ -55,16 +49,6 @@ The request flow:
 4. HTML response is rewritten — auth token, API URL, and WebSocket URL are injected
 5. Response is returned to the webview
 
-### TCP: HTTP Proxy
-
-For TCP-mode connectors, StrikeHub runs an HTTP proxy:
-
-```
-http://127.0.0.1:{proxy_port}/c/{connector_port}/liveview
-```
-
-The same HTML rewriting (auth injection) happens in the proxy layer.
-
 ## WebSocket Bridge
 
 WebSocket connections can't go through custom protocol handlers, so StrikeHub runs a **WsRelay** — a single TCP listener that bridges WebSocket traffic:
@@ -74,26 +58,20 @@ WebSocket connections can't go through custom protocol handlers, so StrikeHub ru
 | `/ws/{connector_id}` | Connector's Unix socket (Dioxus liveview WS) |
 | `/ws/graphql` | Prospector Studio (GraphQL subscriptions) |
 
-This is the **only TCP port** StrikeHub opens in IPC mode, regardless of how many connectors are active.
+This is the only TCP port StrikeHub opens, regardless of how many connectors are active.
 
 ## Building a Connector
 
-A connector is any Axum HTTP server that serves the required endpoints:
+A connector is any Axum HTTP server that serves the required endpoints over a Unix socket:
 
 ```rust
-let listener = if let Ok(sock_path) = std::env::var("STRIKEHUB_SOCKET") {
-    // IPC mode: bind Unix socket
-    let path = PathBuf::from(&sock_path);
-    if path.exists() {
-        std::fs::remove_file(&path)?;
-    }
-    let unix_listener = tokio::net::UnixListener::bind(&path)?;
-    ServerListener::Unix(unix_listener)
-} else {
-    // Standalone mode: bind TCP
-    let tcp_listener = tokio::net::TcpListener::bind(("127.0.0.1", port)).await?;
-    ServerListener::Tcp(tcp_listener)
-};
+let sock_path = std::env::var("STRIKEHUB_SOCKET")
+    .expect("STRIKEHUB_SOCKET must be set");
+let path = PathBuf::from(&sock_path);
+if path.exists() {
+    std::fs::remove_file(&path)?;
+}
+let listener = tokio::net::UnixListener::bind(&path)?;
 
 axum::serve(listener, router).await?;
 ```
@@ -116,7 +94,7 @@ StrikeHub checks connector health at regular intervals:
 
 - **Interval:** Every 3–5 seconds
 - **Timeout:** 2 seconds per check
-- **Endpoint:** `GET /health` over the connector's socket or TCP port
+- **Endpoint:** `GET /health` over the connector's Unix socket
 - **Status indicators:** Green (online), yellow (checking), red (offline)
 
 When a connector goes offline:

@@ -64,12 +64,25 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { label: "Overview", slug: "prospector-studio" },
-                { label: "Getting Started", slug: "prospector-studio/getting-started" },
-                { label: "Agents", slug: "prospector-studio/guides/agents" },
-                { label: "Knowledge Bases", slug: "prospector-studio/guides/knowledge-bases" },
-                { label: "Workflows", slug: "prospector-studio/guides/workflows" },
-                { label: "MCP Servers", slug: "prospector-studio/guides/mcp-servers" },
-                { label: "Connectors", slug: "prospector-studio/guides/connectors" },
+                {
+                  label: "User Guide",
+                  collapsed: true,
+                  items: [
+                    { label: "Getting Started", slug: "prospector-studio/getting-started" },
+                  ],
+                },
+                {
+                  label: "Features",
+                  collapsed: true,
+                  items: [
+                    { label: "Chat Interface", slug: "prospector-studio/guides/chat-interface" },
+                    { label: "Agents", slug: "prospector-studio/guides/agents" },
+                    { label: "Knowledge Bases", slug: "prospector-studio/guides/knowledge-bases" },
+                    { label: "Workflows", slug: "prospector-studio/guides/workflows" },
+                    { label: "MCP Servers", slug: "prospector-studio/guides/mcp-servers" },
+                    { label: "Connectors", slug: "prospector-studio/guides/connectors" },
+                  ],
+                },
               ],
             },
             {
@@ -77,11 +90,23 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { label: "Overview", slug: "strikehub" },
-                { label: "Getting Started", slug: "strikehub/getting-started" },
-                { label: "Installation", slug: "strikehub/guides/installation" },
-                { label: "Configuration", slug: "strikehub/guides/configuration" },
-                { label: "Custom Site URL", slug: "strikehub/guides/custom-site-url" },
-                { label: "Connectors", slug: "strikehub/guides/connectors" },
+                {
+                  label: "User Guide",
+                  collapsed: true,
+                  items: [
+                    { label: "Getting Started", slug: "strikehub/getting-started" },
+                    { label: "Installation", slug: "strikehub/guides/installation" },
+                    { label: "Configuration", slug: "strikehub/guides/configuration" },
+                    { label: "Custom Site URL", slug: "strikehub/guides/custom-site-url" },
+                  ],
+                },
+                {
+                  label: "Features",
+                  collapsed: true,
+                  items: [
+                    { label: "Connectors", slug: "strikehub/guides/connectors" },
+                  ],
+                },
                 {
                   label: "Help",
                   collapsed: true,
@@ -99,11 +124,23 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { label: "Overview", slug: "kubestudio" },
-                { label: "Getting Started", slug: "kubestudio/getting-started" },
-                { label: "Installation", slug: "kubestudio/guides/installation" },
-                { label: "Helm Chart", slug: "kubestudio/guides/helm" },
-                { label: "Cluster Management", slug: "kubestudio/guides/cluster-management" },
-                { label: "Deployments", slug: "kubestudio/guides/deployments" },
+                {
+                  label: "User Guide",
+                  collapsed: true,
+                  items: [
+                    { label: "Getting Started", slug: "kubestudio/getting-started" },
+                    { label: "Installation", slug: "kubestudio/guides/installation" },
+                    { label: "Helm Chart", slug: "kubestudio/guides/helm" },
+                  ],
+                },
+                {
+                  label: "Features",
+                  collapsed: true,
+                  items: [
+                    { label: "Cluster Management", slug: "kubestudio/guides/cluster-management" },
+                    { label: "Deployments", slug: "kubestudio/guides/deployments" },
+                  ],
+                },
                 {
                   label: "Help",
                   collapsed: true,
@@ -121,12 +158,24 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { label: "Overview", slug: "pick" },
-                { label: "Getting Started", slug: "pick/getting-started" },
-                { label: "Architecture", slug: "pick/architecture" },
-                { label: "Installation", slug: "pick/getting-started/installation" },
-                { label: "Helm Chart", slug: "pick/getting-started/helm" },
-                { label: "Configuration", slug: "pick/getting-started/configuration" },
-                { label: "Tools", slug: "pick/guides/marketplace" },
+                {
+                  label: "User Guide",
+                  collapsed: true,
+                  items: [
+                    { label: "Getting Started", slug: "pick/getting-started" },
+                    { label: "Architecture", slug: "pick/architecture" },
+                    { label: "Installation", slug: "pick/getting-started/installation" },
+                    { label: "Helm Chart", slug: "pick/getting-started/helm" },
+                    { label: "Configuration", slug: "pick/getting-started/configuration" },
+                  ],
+                },
+                {
+                  label: "Features",
+                  collapsed: true,
+                  items: [
+                    { label: "Tools", slug: "pick/guides/marketplace" },
+                  ],
+                },
                 {
                   label: "Help",
                   collapsed: true,

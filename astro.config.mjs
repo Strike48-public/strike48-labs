@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightBlog from "starlight-blog";
 import rehypeMermaid from "./src/utils/rehype-mermaid";
 
 import cloudflare from "@astrojs/cloudflare";
@@ -13,6 +14,17 @@ export default defineConfig({
 
   integrations: [
     starlight({
+      plugins: [
+        starlightBlog({
+          title: "Blog",
+          authors: {
+            strike48: {
+              name: "Strike48",
+              url: "https://strike48.com",
+            },
+          },
+        }),
+      ],
       title: "Strike48 Labs",
       logo: {
         light: "./src/assets/strike48-logo.svg",
@@ -25,6 +37,7 @@ export default defineConfig({
         Head: "./src/components/Head.astro",
         PageTitle: "./src/components/PageTitle.astro",
         PageFrame: "./src/components/PageFrame.astro",
+        ThemeProvider: "./src/components/ThemeProvider.astro",
       },
       customCss: [
         "@fontsource/inter/400.css",
@@ -297,5 +310,19 @@ export default defineConfig({
     }),
   ],
 
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    prerenderEnvironment: "node",
+  }),
+
+  vite: {
+    optimizeDeps: {
+      exclude: ["starlight-blog"],
+    },
+    ssr: {
+      optimizeDeps: {
+        exclude: ["starlight-blog"],
+      },
+      external: ["esbuild"],
+    },
+  },
 });

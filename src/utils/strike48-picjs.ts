@@ -12,8 +12,8 @@ const picjsStyles = `
   align-items: flex-start;
 }
 .picjs-example > * {
-  flex: 1 1 18rem;
-  min-width: 0;
+  flex: 1 1 0%;
+  min-width: 18rem;
 }
 .picjs-example .picjs-source {
   margin: 0;
@@ -144,7 +144,7 @@ const strike48Picjs: Plugin<[], Root> = () => {
               className: ["picjs-diagram"],
               ...(containerStyle && { style: containerStyle }),
             },
-            children: svgNodes,
+            children: diagramChildren,
           };
         }
 
